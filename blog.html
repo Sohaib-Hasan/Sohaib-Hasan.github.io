@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Blog — Sohaib Hasan</title>
+<meta name="description" content="Writing on mathematics, AI reasoning, and teaching by Sohaib Hasan.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;0,9..144,600;1,9..144,400&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<div class="grain"></div>
+
+<nav>
+  <div class="brand"><a href="index.html">Sohaib <span>Hasan</span></a></div>
+  <div class="navlinks">
+    <a href="about.html">About</a>
+    <a href="teaching.html">Teaching</a>
+    <a href="research.html">Research</a>
+    <a href="plotlab.html">PlotLab</a>
+    <a href="notes.html">Notes</a>
+    <a href="blog.html" class="active">Blog</a>
+    <a href="resources.html">Resources</a>
+    <a href="contact.html">Contact</a>
+  </div>
+</nav>
+
+<header class="page-header">
+  <a class="back-link" href="index.html">← Home</a>
+  <div class="eyebrow">Blog</div>
+  <h1>Writing.</h1>
+  <p class="lede">Long-form pieces on mathematics, AI reasoning, and teaching — with full LaTeX math support built in.</p>
+</header>
+
+<section class="block" id="posts" style="border-top:none; padding-top:1rem;">
+  <div class="empty-state">
+    <span class="mono">First posts — coming soon</span>
+    Tell me the first topic you'd like to write about and we'll draft it together.
+  </div>
+</section>
+
+<section class="block contact-block" id="contact">
+  <div class="block-title">Let's talk</div>
+  <p>For teaching, research collaboration, or PhD-related conversations — reach out directly.</p>
+  <a class="btn primary" href="mailto:sohaibhassan199@gmail.com">sohaibhassan199@gmail.com</a>
+</section>
+
+<footer>
+  © <span id="year"></span> Sohaib Hasan · Chakwal, Pakistan
+</footer>
+
+<script>
+  document.getElementById('year').textContent = new Date().getFullYear();
+</script>
+
+</body>
+</html>
