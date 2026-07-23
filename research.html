@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Research — Sohaib Hasan</title>
+<meta name="description" content="Research and achievements — AIMO3, Harvard CS50x Puzzle Day, cryptography and fluid dynamics theses, and applied ML projects.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;0,9..144,600;1,9..144,400&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<div class="grain"></div>
+
+<nav>
+  <div class="brand"><a href="index.html">Sohaib <span>Hasan</span></a></div>
+  <div class="navlinks">
+    <a href="about.html">About</a>
+    <a href="teaching.html">Teaching</a>
+    <a href="research.html" class="active">Research</a>
+    <a href="plotlab.html">PlotLab</a>
+    <a href="notes.html">Notes</a>
+    <a href="blog.html">Blog</a>
+    <a href="resources.html">Resources</a>
+    <a href="contact.html">Contact</a>
+  </div>
+</nav>
+
+<header class="page-header">
+  <a class="back-link" href="index.html">← Home</a>
+  <div class="eyebrow">Research &amp; Achievements</div>
+  <h1>Where rigor meets reasoning.</h1>
+  <p class="lede">From elliptic-curve cryptography to AI systems that solve olympiad mathematics — the throughline is verification-driven problem-solving.</p>
+</header>
+
+<section class="block" id="aimo3" style="border-top:none; padding-top:1rem;">
+  <div class="block-head">
+    <div>
+      <div class="block-num">Featured · AI Mathematical Olympiad, Progress Prize 3</div>
+      <div class="block-title">Top 12% globally</div>
+    </div>
+  </div>
+  <div class="about-grid">
+    <div>
+      <p style="color:var(--chalk-dim); margin-bottom:1.1rem; font-size:0.98rem;">Competed in Kaggle's AIMO3 as Team Proof Engine, alongside engineering lead Samuel Koh, building a <em>Parallel Self-Consistency Pipeline for Olympiad-Level Mathematical Reasoning</em>. The system ran GPT-OSS-120B across 8 parallel reasoning attempts per problem, paired with Python-based tool-integrated reasoning, and combined into a final answer using an entropy-weighted confidence vote — under a strict 9-hour GPU budget with binary, no-partial-credit scoring.</p>
+      <p style="color:var(--chalk-dim); font-size:0.98rem;">My role centred on the mathematics: diagnosing early reasoning bugs, designing verification-driven few-shot prompts, writing dual-verification guardrails, and manually solving reference problems to validate the pipeline's output.</p>
+    </div>
+    <div class="stat-list">
+      <div class="stat"><b>42/50</b><span>final score (84%)</span></div>
+      <div class="stat"><b>495 / 4,138</b><span>team ranking</span></div>
+      <div class="stat"><b>Top 12%</b><span>globally</span></div>
+    </div>
+  </div>
+</section>
+
+<section class="block" id="cs50">
+  <div class="block-head">
+    <div>
+      <div class="block-num">Featured · Harvard CS50x</div>
+      <div class="block-title">Puzzle Day 2026 — perfect score</div>
+    </div>
+  </div>
+  <p style="color:var(--chalk-dim); max-width:680px;">Solved all 10 puzzles, including the Metapuzzle, in Harvard's annual international logic and combinatorial reasoning competition — open to participants from 166+ countries. The competition tests formal reasoning and systematic logical deduction under timed conditions.</p>
+</section>
+
+<section class="block" id="theses">
+  <div class="block-head">
+    <div>
+      <div class="block-num">Theses</div>
+      <div class="block-title">Graduate research</div>
+    </div>
+  </div>
+  <div class="card-grid">
+    <div class="card">
+      <span class="card-tag">MPHIL · CUST ISLAMABAD · 2018–2021</span>
+      <h3>Generalized Signcryption Based on Elliptic Curve Cryptography</h3>
+      <p>Extends an efficient ECC-based signcryption scheme into a generalized construction that operates in signcryption, signature-only, or encryption-only mode as required — with full analysis against chosen-plaintext, chosen-ciphertext, forgery, and man-in-the-middle attacks.</p>
+    </div>
+    <div class="card">
+      <span class="card-tag">MSC · COMSATS ATTOCK · 2015–2017</span>
+      <h3>Flow of Eyring-Powell Fluid in a Channel Using Adomian Decomposition Method</h3>
+      <p>Derives a series solution for steady, isothermal channel flow of a non-Newtonian Eyring-Powell fluid, with velocity profile, flow rate, and stream function obtained via the Adomian Decomposition Method.</p>
+    </div>
+  </div>
+</section>
+
+<section class="block" id="projects">
+  <div class="block-head">
+    <div>
+      <div class="block-num">Applied Projects &amp; Hackathons</div>
+      <div class="block-title">Building &amp; shipping</div>
+    </div>
+  </div>
+  <div class="card-grid">
+    <div class="card">
+      <span class="card-tag">RAISE YOUR HACK · PARIS 2025</span>
+      <h3>Acumen AI</h3>
+      <p>Multi-agent conversational platform (MCP Agents, Groq, LLaMA-3.3-70B, FAISS semantic search) built among 6,247 global participants.</p>
+      <span class="proj-link disabled">GitHub link — to be added</span>
+    </div>
+    <div class="card">
+      <span class="card-tag">TRAE AI IDE · ZERO LIMITS HACKATHON</span>
+      <h3>Anti-Short-Video-Addiction Assistant</h3>
+      <p>XGBoost behavioral classifier with real-time empathetic interventions, built in a 48-hour global competition — FastAPI + Node.js multi-agent pipeline.</p>
+      <span class="proj-link disabled">GitHub link — to be added</span>
+    </div>
+    <div class="card">
+      <span class="card-tag">ML PIPELINE</span>
+      <h3>Math Score Prediction</h3>
+      <p>End-to-end regression pipeline benchmarking five models; 88%+ R² with 5-fold cross-validation, deployed live on Hugging Face Spaces.</p>
+      <a class="proj-link" href="https://huggingface.co/spaces/Sohaib4314/MathMarksPrediction" target="_blank" rel="noopener">Live app →</a>
+    </div>
+    <div class="card">
+      <span class="card-tag">REGRESSION STUDY</span>
+      <h3>Socioeconomic Determinants of Housing Valuation</h3>
+      <p>Empirical regression quantifying income, structural, and demographic influences on property prices (R² = 0.92).</p>
+      <span class="proj-link disabled">GitHub link — to be added</span>
+    </div>
+    <div class="card">
+      <span class="card-tag">POWER BI DASHBOARD</span>
+      <h3>Employee Attrition &amp; Workforce Analytics</h3>
+      <p>Analyzed a 1,470-employee dataset (16.2% attrition); interactive dashboards identifying highest-risk cohorts.</p>
+      <span class="proj-link disabled">GitHub link — to be added</span>
+    </div>
+    <div class="card">
+      <span class="card-tag">SQL / POSTGRESQL</span>
+      <h3>Music Store Customer Behavior Analysis</h3>
+      <p>11 structured SQL queries extracting revenue patterns, genre preferences, and regional customer segmentation.</p>
+      <span class="proj-link disabled">GitHub link — to be added</span>
+    </div>
+  </div>
+</section>
+
+<section class="block contact-block" id="contact">
+  <div class="block-title">Let's talk</div>
+  <p>For teaching, research collaboration, or PhD-related conversations — reach out directly.</p>
+  <a class="btn primary" href="mailto:sohaibhassan199@gmail.com">sohaibhassan199@gmail.com</a>
+</section>
+
+<footer>
+  © <span id="year"></span> Sohaib Hasan · Chakwal, Pakistan
+</footer>
+
+<script>
+  document.getElementById('year').textContent = new Date().getFullYear();
+</script>
+
+</body>
+</html>
