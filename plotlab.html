@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>PlotLab — Sohaib Hasan</title>
+<meta name="description" content="PlotLab — Manim-based mathematical animation by Sohaib Hasan.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;0,9..144,600;1,9..144,400&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<div class="grain"></div>
+
+<nav>
+  <div class="brand"><a href="index.html">Sohaib <span>Hasan</span></a></div>
+  <div class="navlinks">
+    <a href="about.html">About</a>
+    <a href="teaching.html">Teaching</a>
+    <a href="research.html">Research</a>
+    <a href="plotlab.html" class="active">PlotLab</a>
+    <a href="notes.html">Notes</a>
+    <a href="blog.html">Blog</a>
+    <a href="resources.html">Resources</a>
+    <a href="contact.html">Contact</a>
+  </div>
+</nav>
+
+<header class="page-header">
+  <a class="back-link" href="index.html">← Home</a>
+  <div class="eyebrow">PlotLab</div>
+  <h1>Mathematics, animated.</h1>
+  <p class="lede">PlotLab turns abstract mathematics into Manim-built animation — for 45,000+ people following along on Facebook and Instagram.</p>
+</header>
+
+<section class="block" id="topics" style="border-top:none; padding-top:1rem;">
+  <div class="block-head">
+    <div>
+      <div class="block-num">Browse by topic</div>
+      <div class="block-title">Categories</div>
+    </div>
+  </div>
+  <div class="tag-cloud">
+    <span class="tag filter">Calculus</span>
+    <span class="tag filter">Linear Algebra</span>
+    <span class="tag filter">Real Analysis</span>
+    <span class="tag filter">Number Theory</span>
+    <span class="tag filter">Group Theory</span>
+    <span class="tag filter">Machine Learning</span>
+  </div>
+</section>
+
+<section class="block" id="videos">
+  <div class="block-head">
+    <div>
+      <div class="block-num">Featured Animations</div>
+      <div class="block-title">Watch</div>
+    </div>
+  </div>
+  <div class="empty-state">
+    <span class="mono">Video gallery — coming soon</span>
+    Share your Facebook/Instagram (and future YouTube) video links and I'll embed them here, organized by the topics above.
+  </div>
+</section>
+
+<section class="block contact-block" id="contact">
+  <div class="block-title">Let's talk</div>
+  <p>For teaching, research collaboration, or PhD-related conversations — reach out directly.</p>
+  <a class="btn primary" href="mailto:sohaibhassan199@gmail.com">sohaibhassan199@gmail.com</a>
+</section>
+
+<footer>
+  © <span id="year"></span> Sohaib Hasan · Chakwal, Pakistan
+</footer>
+
+<script>
+  document.getElementById('year').textContent = new Date().getFullYear();
+</script>
+
+</body>
+</html>
