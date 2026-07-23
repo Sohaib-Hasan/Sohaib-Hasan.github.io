@@ -3,104 +3,300 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Sohaib Hasan</title>
+<title>Sohaib Hasan — Mathematics, AI Reasoning &amp; PlotLab</title>
+<meta name="description" content="Sohaib Hasan — Mathematics Lecturer & Head of Department. Research in cryptography and AI mathematical reasoning. Creator of PlotLab.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;1,9..144,400&family=Inter:wght@400;500&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;0,9..144,600;1,9..144,400&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
 <style>
   :root{
     --board: #1c2b26;
-    --board-edge: #16211d;
+    --board-deep: #12201b;
+    --board-light: #24382f;
     --chalk: #f2ede1;
     --chalk-dim: #b9c2bb;
-    --accent: #e8b04b;
+    --chalk-faint: #7c8c83;
+    --gold: #e8b04b;
+    --ink: #7ca6a8;
+    --line: rgba(242,237,225,0.12);
   }
-  *{box-sizing:border-box;}
-  html,body{height:100%;}
+  *{box-sizing:border-box; margin:0; padding:0;}
+  html{scroll-behavior:smooth;}
   body{
-    margin:0;
-    background: radial-gradient(ellipse at 50% 40%, var(--board) 0%, var(--board-edge) 100%);
+    background: var(--board);
     color: var(--chalk);
-    font-family: 'Inter', sans-serif;
-    display:flex;
-    align-items:center;
-    justify-content:center;
-    overflow:hidden;
-    position:relative;
+    font-family:'Inter', sans-serif;
+    line-height:1.6;
+    -webkit-font-smoothing:antialiased;
   }
-  svg.doodle{
-    position:absolute;
-    inset:0;
-    width:100%;
-    height:100%;
-    opacity:0.16;
-    stroke: var(--chalk);
-    fill:none;
-    stroke-width:1.1;
+  a{color:inherit; text-decoration:none;}
+  .mono{font-family:'JetBrains Mono', monospace;}
+
+  /* ---- grain texture overlay ---- */
+  .grain{
+    position:fixed; inset:0; pointer-events:none; z-index:50;
+    opacity:0.035; mix-blend-mode:overlay;
+    background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
   }
-  .wrap{
+
+  /* ---- nav ---- */
+  nav{
+    position:fixed; top:0; left:0; right:0; z-index:40;
+    display:flex; align-items:center; justify-content:space-between;
+    padding: 1.3rem clamp(1.5rem, 5vw, 4rem);
+    backdrop-filter: blur(10px);
+    background: linear-gradient(to bottom, rgba(28,43,38,0.92), rgba(28,43,38,0));
+  }
+  .brand{
+    font-family:'Fraunces', serif; font-weight:500; font-size:1.05rem; letter-spacing:0.01em;
+  }
+  .brand span{color:var(--gold);}
+  .navlinks{gap:clamp(1.2rem, 3vw, 2.4rem); font-size:0.85rem; color:var(--chalk-dim); display:none;}
+  .navlinks a{transition:color 0.2s;}
+  .navlinks a:hover{color:var(--chalk);}
+  @media(min-width:720px){ .navlinks{display:flex;} }
+
+  /* ---- hero ---- */
+  .hero{
     position:relative;
-    z-index:1;
+    min-height:100svh;
+    display:flex; flex-direction:column; align-items:center; justify-content:center;
     text-align:center;
-    padding:2rem;
-    max-width:640px;
+    padding: 6rem 1.5rem 3rem;
+    overflow:hidden;
   }
+  .hero-svg{
+    position:absolute; inset:0; width:100%; height:100%;
+    opacity:0.9;
+  }
+  .hero-svg path{
+    fill:none; stroke:var(--chalk-faint); stroke-width:1.4; stroke-linecap:round;
+  }
+  .hero-svg .drawn{
+    stroke: var(--gold);
+    stroke-width:2;
+  }
+  .hero-inner{ position:relative; z-index:2; max-width:680px; }
   .eyebrow{
-    font-size:0.72rem;
-    letter-spacing:0.22em;
-    text-transform:uppercase;
-    color:var(--accent);
-    margin-bottom:1.1rem;
-    font-weight:500;
+    font-family:'JetBrains Mono', monospace;
+    font-size:0.72rem; letter-spacing:0.24em; text-transform:uppercase;
+    color:var(--ink); margin-bottom:1.4rem;
   }
   h1{
-    font-family:'Fraunces', serif;
-    font-weight:500;
-    font-size:clamp(2.6rem, 7vw, 4.2rem);
-    margin:0 0 0.6rem 0;
-    letter-spacing:-0.01em;
+    font-family:'Fraunces', serif; font-weight:500;
+    font-size:clamp(2.8rem, 8vw, 5rem);
+    letter-spacing:-0.015em;
+    margin-bottom:0.7rem;
   }
   .role{
-    font-family:'Fraunces', serif;
-    font-style:italic;
-    font-weight:400;
-    font-size:1.15rem;
+    font-family:'Fraunces', serif; font-style:italic; font-weight:400;
+    font-size:clamp(1.05rem, 2.4vw, 1.3rem);
     color:var(--chalk-dim);
-    margin:0 0 2.2rem 0;
+    margin-bottom:1.9rem;
   }
-  .status{
-    display:inline-flex;
-    align-items:center;
-    gap:0.5rem;
-    font-size:0.8rem;
-    color:var(--chalk-dim);
-    letter-spacing:0.03em;
-    border-top:1px solid rgba(242,237,225,0.18);
-    padding-top:1.4rem;
+  .hero-desc{
+    color:var(--chalk-dim); font-size:1rem; max-width:520px; margin:0 auto 2.4rem;
   }
-  .dot{
-    width:6px;height:6px;border-radius:50%;
-    background:var(--accent);
-    box-shadow:0 0 8px var(--accent);
+  .hero-desc strong{color:var(--chalk); font-weight:500;}
+  .cta-row{display:flex; gap:1rem; justify-content:center; flex-wrap:wrap;}
+  .btn{
+    padding:0.8rem 1.6rem; border-radius:2px; font-size:0.88rem; font-weight:500;
+    border:1px solid var(--line); transition: all 0.25s; display:inline-block;
+  }
+  .btn.primary{background:var(--gold); color:var(--board-deep); border-color:var(--gold);}
+  .btn.primary:hover{background:#f2c168;}
+  .btn.ghost:hover{border-color:var(--chalk-dim); background:rgba(242,237,225,0.04);}
+
+  .scroll-cue{
+    position:absolute; bottom:2rem; left:50%; transform:translateX(-50%);
+    font-family:'JetBrains Mono',monospace; font-size:0.68rem; color:var(--chalk-faint);
+    letter-spacing:0.15em; display:flex; flex-direction:column; align-items:center; gap:0.5rem;
+  }
+  .scroll-cue::after{
+    content:''; width:1px; height:28px; background:var(--chalk-faint);
+    animation: pulse 2s ease-in-out infinite;
+  }
+  @keyframes pulse{ 0%,100%{opacity:0.3;} 50%{opacity:1;} }
+
+  /* ---- section shell ---- */
+  section.block{
+    padding: 6rem clamp(1.5rem, 6vw, 5rem);
+    max-width:1180px; margin:0 auto;
+    border-top:1px solid var(--line);
+  }
+  .block-head{
+    display:flex; align-items:baseline; justify-content:space-between; gap:1rem;
+    margin-bottom:2.6rem; flex-wrap:wrap;
+  }
+  .block-num{
+    font-family:'JetBrains Mono', monospace; color:var(--ink); font-size:0.78rem; letter-spacing:0.1em;
+  }
+  .block-title{
+    font-family:'Fraunces', serif; font-weight:500; font-size:clamp(1.8rem,3.6vw,2.6rem);
+  }
+  .soon{
+    font-family:'JetBrains Mono', monospace; font-size:0.66rem; letter-spacing:0.08em;
+    color:var(--chalk-faint); border:1px solid var(--line); padding:0.28rem 0.6rem; border-radius:2px;
+  }
+
+  /* ---- about ---- */
+  .about-grid{ display:grid; grid-template-columns: 1.4fr 1fr; gap:3rem; align-items:start; }
+  @media(max-width:760px){ .about-grid{grid-template-columns:1fr;} }
+  .about-grid p{color:var(--chalk-dim); margin-bottom:1.1rem; font-size:0.98rem;}
+  .stat-list{display:flex; flex-direction:column; gap:1.4rem;}
+  .stat{border-left:2px solid var(--gold); padding-left:1rem;}
+  .stat b{font-family:'Fraunces', serif; font-size:1.7rem; font-weight:500; display:block;}
+  .stat span{color:var(--chalk-faint); font-size:0.82rem;}
+
+  /* ---- cards ---- */
+  .card-grid{display:grid; grid-template-columns:repeat(auto-fit,minmax(260px,1fr)); gap:1.4rem;}
+  .card{
+    background:var(--board-light); border:1px solid var(--line); border-radius:4px;
+    padding:1.8rem; transition:border-color 0.25s, transform 0.25s;
+  }
+  .card:hover{border-color:var(--gold); transform:translateY(-3px);}
+  .card-tag{font-family:'JetBrains Mono',monospace; font-size:0.68rem; color:var(--ink); letter-spacing:0.08em; margin-bottom:0.9rem; display:block;}
+  .card h3{font-family:'Fraunces', serif; font-weight:500; font-size:1.25rem; margin-bottom:0.6rem;}
+  .card p{color:var(--chalk-dim); font-size:0.9rem;}
+
+  /* ---- contact ---- */
+  .contact-block{text-align:center; padding-bottom:8rem;}
+  .contact-block .block-num{justify-content:center; display:flex;}
+  .contact-block .block-title{margin-bottom:1rem;}
+  .contact-block p{color:var(--chalk-dim); max-width:440px; margin:0 auto 2rem;}
+
+  footer{
+    text-align:center; padding:2.4rem 1.5rem; color:var(--chalk-faint);
+    font-family:'JetBrains Mono', monospace; font-size:0.72rem; border-top:1px solid var(--line);
   }
 </style>
 </head>
 <body>
 
-<svg class="doodle" viewBox="0 0 1000 600" preserveAspectRatio="xMidYMid slice">
-  <path d="M -50 480 Q 250 100, 500 320 T 1050 200" />
-  <line x1="80" y1="60" x2="80" y2="560" />
-  <line x1="40" y1="500" x2="960" y2="500" />
-  <circle cx="80" cy="500" r="220" stroke-dasharray="3 6" />
-  <path d="M 600 480 C 700 380, 700 250, 850 150" />
-</svg>
+<div class="grain"></div>
 
-<div class="wrap">
-  <div class="eyebrow">Mathematics &middot; AI Reasoning &middot; PlotLab</div>
-  <h1>Sohaib Hasan</h1>
-  <p class="role">Mathematics Lecturer &amp; Head of Department</p>
-  <div class="status"><span class="dot"></span> Full site launching soon</div>
-</div>
+<nav>
+  <div class="brand">Sohaib <span>Hasan</span></div>
+  <div class="navlinks">
+    <a href="#about">About</a>
+    <a href="#research">Research</a>
+    <a href="#plotlab">PlotLab</a>
+    <a href="#contact">Contact</a>
+  </div>
+</nav>
+
+<section class="hero">
+  <svg class="hero-svg" viewBox="0 0 1000 800" preserveAspectRatio="xMidYMid slice">
+    <line x1="90" y1="80" x2="90" y2="760" stroke-dasharray="2 6"/>
+    <line x1="60" y1="700" x2="940" y2="700" stroke-dasharray="2 6"/>
+    <path id="drawnCurve" class="drawn" d="M 90 700 C 250 700, 300 200, 500 350 S 800 620, 940 180" />
+  </svg>
+  <div class="hero-inner">
+    <div class="eyebrow">Mathematics &nbsp;·&nbsp; AI Reasoning &nbsp;·&nbsp; PlotLab</div>
+    <h1>Sohaib Hasan</h1>
+    <p class="role">Mathematics Lecturer &amp; Head of Department</p>
+    <p class="hero-desc">
+      9+ years teaching advanced mathematics, with research spanning
+      <strong>elliptic-curve cryptography</strong> and <strong>fluid dynamics</strong> —
+      and current work building AI systems that reason through
+      olympiad-level mathematics.
+    </p>
+    <div class="cta-row">
+      <a href="#research" class="btn primary">See the research</a>
+      <a href="#plotlab" class="btn ghost">Watch PlotLab</a>
+    </div>
+  </div>
+  <div class="scroll-cue">SCROLL</div>
+</section>
+
+<section class="block" id="about">
+  <div class="block-head">
+    <div>
+      <div class="block-num">01 / About</div>
+      <div class="block-title">The short version</div>
+    </div>
+    <span class="soon">full page — coming soon</span>
+  </div>
+  <div class="about-grid">
+    <div>
+      <p>I teach undergraduate mathematics at Horizon Degree &amp; Commerce College in Chakwal, Pakistan, where I now head the Mathematics Department. My own path ran through an MSc in fluid dynamics and an MPhil in elliptic-curve cryptography — and lately, toward AI systems that can reason mathematically.</p>
+      <p>I'm currently applying to PhD programs in Data Science, Applied Mathematics, and Statistics, while building PlotLab — a home for mathematical animation — alongside teaching and research.</p>
+    </div>
+    <div class="stat-list">
+      <div class="stat"><b>9+ yrs</b><span>teaching advanced mathematics</span></div>
+      <div class="stat"><b>1,500+</b><span>undergraduate students taught</span></div>
+      <div class="stat"><b>45,000+</b><span>PlotLab followers</span></div>
+    </div>
+  </div>
+</section>
+
+<section class="block" id="research">
+  <div class="block-head">
+    <div>
+      <div class="block-num">02 / Research &amp; Achievements</div>
+      <div class="block-title">Recent work</div>
+    </div>
+    <span class="soon">full page — coming soon</span>
+  </div>
+  <div class="card-grid">
+    <div class="card">
+      <span class="card-tag">AI MATHEMATICAL OLYMPIAD · PP3</span>
+      <h3>Top 12% globally</h3>
+      <p>Scored 42/50 in Kaggle's AIMO3, ranking 495th of 4,138 teams — designing verification-driven prompting for an olympiad-reasoning pipeline.</p>
+    </div>
+    <div class="card">
+      <span class="card-tag">HARVARD CS50x · PUZZLE DAY 2026</span>
+      <h3>Perfect score, 10/10</h3>
+      <p>Solved every puzzle, including the Metapuzzle, in Harvard's international logic and reasoning competition — 166+ countries.</p>
+    </div>
+    <div class="card">
+      <span class="card-tag">M.PHIL THESIS · CUST ISLAMABAD</span>
+      <h3>Generalized signcryption</h3>
+      <p>Extended an elliptic-curve signcryption scheme into a generalized construction supporting encryption-only and signature-only modes.</p>
+    </div>
+    <div class="card">
+      <span class="card-tag">M.SC THESIS · COMSATS ATTOCK</span>
+      <h3>Eyring–Powell fluid flow</h3>
+      <p>Solved the channel-flow equations for a non-Newtonian fluid using the Adomian Decomposition Method.</p>
+    </div>
+  </div>
+</section>
+
+<section class="block" id="plotlab">
+  <div class="block-head">
+    <div>
+      <div class="block-num">03 / PlotLab</div>
+      <div class="block-title">Mathematics, animated</div>
+    </div>
+    <span class="soon">videos — coming soon</span>
+  </div>
+  <p style="color:var(--chalk-dim); max-width:640px;">PlotLab is where I turn abstract mathematics into Manim-built animation — built for the 45,000+ people following along on Facebook and Instagram. The full showcase, organized by topic, is being built next.</p>
+</section>
+
+<section class="block contact-block" id="contact">
+  <div class="block-num">04 / Contact</div>
+  <div class="block-title">Let's talk</div>
+  <p>For teaching, research collaboration, or PhD-related conversations — reach out directly.</p>
+  <a class="btn primary" href="mailto:sohaibhassan199@gmail.com">sohaibhassan199@gmail.com</a>
+</section>
+
+<footer>
+  © <span id="year"></span> Sohaib Hasan · Chakwal, Pakistan
+</footer>
+
+<script>
+  document.getElementById('year').textContent = new Date().getFullYear();
+
+  const curve = document.getElementById('drawnCurve');
+  if (curve) {
+    const len = curve.getTotalLength();
+    curve.style.strokeDasharray = len;
+    curve.style.strokeDashoffset = len;
+    curve.getBoundingClientRect(); // force reflow
+    curve.style.transition = 'stroke-dashoffset 2.4s cubic-bezier(0.65,0,0.35,1)';
+    requestAnimationFrame(() => { curve.style.strokeDashoffset = '0'; });
+  }
+</script>
 
 </body>
 </html>
