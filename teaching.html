@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Teaching — Sohaib Hasan</title>
+<meta name="description" content="Sohaib Hasan's teaching experience — courses taught, department leadership, and teaching approach.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;0,9..144,600;1,9..144,400&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+<style>
+  .tag-cloud{display:flex; flex-wrap:wrap; gap:0.6rem;}
+  .tag{
+    font-family:'JetBrains Mono', monospace; font-size:0.78rem;
+    border:1px solid var(--line); color:var(--chalk-dim);
+    padding:0.5rem 0.9rem; border-radius:2px;
+  }
+  .lead-list{list-style:none; max-width:640px;}
+  .lead-list li{
+    position:relative; padding-left:1.4rem; margin-bottom:1rem;
+    color:var(--chalk-dim); font-size:0.96rem;
+  }
+  .lead-list li::before{
+    content:'—'; position:absolute; left:0; color:var(--gold);
+  }
+</style>
+</head>
+<body>
+
+<div class="grain"></div>
+
+<nav>
+  <div class="brand"><a href="index.html">Sohaib <span>Hasan</span></a></div>
+  <div class="navlinks">
+    <a href="about.html">About</a>
+    <a href="teaching.html" class="active">Teaching</a>
+    <a href="index.html#research">Research</a>
+    <a href="index.html#plotlab">PlotLab</a>
+    <a href="index.html#notes">Notes</a>
+    <a href="index.html#blog">Blog</a>
+    <a href="index.html#resources">Resources</a>
+    <a href="index.html#contact">Contact</a>
+  </div>
+</nav>
+
+<header class="page-header">
+  <a class="back-link" href="index.html">← Home</a>
+  <div class="eyebrow">Teaching</div>
+  <h1>Nine years in the classroom.</h1>
+  <p class="lede">Undergraduate mathematics, taught with LaTeX-typeset notes and Manim-animated lectures — now paired with leading the department.</p>
+</header>
+
+<section class="block" style="border-top:none; padding-top:1rem;">
+  <div class="about-grid">
+    <div>
+      <p style="color:var(--chalk-dim); margin-bottom:1.1rem; font-size:0.98rem;">I've taught undergraduate mathematics at Horizon Degree &amp; Commerce College since March 2017. My approach leans on the same tools I use in my own research and in PlotLab: LaTeX for precise, well-typeset course materials, and Manim-animated visuals to make abstract ideas — from measure theory to number theory — easier to actually see.</p>
+      <p style="color:var(--chalk-dim); font-size:0.98rem;">Since June 2024, I've also headed the Mathematics Department, which shifted part of my role from the classroom to department-wide academic operations.</p>
+    </div>
+    <div class="stat-list">
+      <div class="stat"><b>9+ yrs</b><span>teaching advanced mathematics</span></div>
+      <div class="stat"><b>1,500+</b><span>undergraduate students taught</span></div>
+      <div class="stat"><b>11</b><span>subjects taught</span></div>
+    </div>
+  </div>
+</section>
+
+<section class="block" id="courses">
+  <div class="block-head">
+    <div>
+      <div class="block-num">Courses Taught</div>
+      <div class="block-title">Subject areas</div>
+    </div>
+  </div>
+  <div class="tag-cloud">
+    <span class="tag">Real Analysis</span>
+    <span class="tag">Measure Theory</span>
+    <span class="tag">Abstract Algebra</span>
+    <span class="tag">Functional Analysis</span>
+    <span class="tag">Linear Algebra</span>
+    <span class="tag">Discrete Mathematics</span>
+    <span class="tag">Number Theory</span>
+    <span class="tag">Numerical Analysis</span>
+    <span class="tag">Calculus</span>
+    <span class="tag">Statistics</span>
+    <span class="tag">Machine Learning</span>
+  </div>
+</section>
+
+<section class="block" id="leadership">
+  <div class="block-head">
+    <div>
+      <div class="block-num">Department Leadership</div>
+      <div class="block-title">As Head of Department</div>
+    </div>
+  </div>
+  <ul class="lead-list">
+    <li>Lead academic operations across multiple campuses — faculty assignments, course distribution, and curriculum development.</li>
+    <li>Chair departmental seminars on emerging technologies in mathematics and AI, keeping faculty aligned with current research developments.</li>
+    <li>Serve as primary liaison between administration, faculty, and students — sustaining instructional quality and resolving departmental challenges.</li>
+  </ul>
+</section>
+
+<section class="block contact-block" id="contact">
+  <div class="block-title">Let's talk</div>
+  <p>For teaching, research collaboration, or PhD-related conversations — reach out directly.</p>
+  <a class="btn primary" href="mailto:sohaibhassan199@gmail.com">sohaibhassan199@gmail.com</a>
+</section>
+
+<footer>
+  © <span id="year"></span> Sohaib Hasan · Chakwal, Pakistan
+</footer>
+
+<script>
+  document.getElementById('year').textContent = new Date().getFullYear();
+</script>
+
+</body>
+</html>
