@@ -8,168 +8,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;0,9..144,600;1,9..144,400&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
-<style>
-  :root{
-    --board: #1c2b26;
-    --board-deep: #12201b;
-    --board-light: #24382f;
-    --chalk: #f2ede1;
-    --chalk-dim: #b9c2bb;
-    --chalk-faint: #7c8c83;
-    --gold: #e8b04b;
-    --ink: #7ca6a8;
-    --line: rgba(242,237,225,0.12);
-  }
-  *{box-sizing:border-box; margin:0; padding:0;}
-  html{scroll-behavior:smooth;}
-  body{
-    background: var(--board);
-    color: var(--chalk);
-    font-family:'Inter', sans-serif;
-    line-height:1.6;
-    -webkit-font-smoothing:antialiased;
-  }
-  a{color:inherit; text-decoration:none;}
-  .mono{font-family:'JetBrains Mono', monospace;}
-
-  /* ---- grain texture overlay ---- */
-  .grain{
-    position:fixed; inset:0; pointer-events:none; z-index:50;
-    opacity:0.035; mix-blend-mode:overlay;
-    background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
-  }
-
-  /* ---- nav ---- */
-  nav{
-    position:fixed; top:0; left:0; right:0; z-index:40;
-    display:flex; align-items:center; justify-content:space-between;
-    padding: 1.3rem clamp(1.5rem, 5vw, 4rem);
-    backdrop-filter: blur(10px);
-    background: linear-gradient(to bottom, rgba(28,43,38,0.92), rgba(28,43,38,0));
-  }
-  .brand{
-    font-family:'Fraunces', serif; font-weight:500; font-size:1.05rem; letter-spacing:0.01em;
-  }
-  .brand span{color:var(--gold);}
-  .navlinks{gap:clamp(0.7rem, 1.6vw, 1.5rem); font-size:0.78rem; color:var(--chalk-dim); display:none;}
-  .navlinks a{transition:color 0.2s;}
-  .navlinks a:hover{color:var(--chalk);}
-  @media(min-width:720px){ .navlinks{display:flex;} }
-
-  /* ---- hero ---- */
-  .hero{
-    position:relative;
-    min-height:100svh;
-    display:flex; flex-direction:column; align-items:center; justify-content:center;
-    text-align:center;
-    padding: 6rem 1.5rem 3rem;
-    overflow:hidden;
-  }
-  .hero-svg{
-    position:absolute; inset:0; width:100%; height:100%;
-    opacity:0.9;
-  }
-  .hero-svg path{
-    fill:none; stroke:var(--chalk-faint); stroke-width:1.4; stroke-linecap:round;
-  }
-  .hero-svg .drawn{
-    stroke: var(--gold);
-    stroke-width:2;
-  }
-  .hero-inner{ position:relative; z-index:2; max-width:680px; }
-  .eyebrow{
-    font-family:'JetBrains Mono', monospace;
-    font-size:0.72rem; letter-spacing:0.24em; text-transform:uppercase;
-    color:var(--ink); margin-bottom:1.4rem;
-  }
-  h1{
-    font-family:'Fraunces', serif; font-weight:500;
-    font-size:clamp(2.8rem, 8vw, 5rem);
-    letter-spacing:-0.015em;
-    margin-bottom:0.7rem;
-  }
-  .role{
-    font-family:'Fraunces', serif; font-style:italic; font-weight:400;
-    font-size:clamp(1.05rem, 2.4vw, 1.3rem);
-    color:var(--chalk-dim);
-    margin-bottom:1.9rem;
-  }
-  .hero-desc{
-    color:var(--chalk-dim); font-size:1rem; max-width:520px; margin:0 auto 2.4rem;
-  }
-  .hero-desc strong{color:var(--chalk); font-weight:500;}
-  .cta-row{display:flex; gap:1rem; justify-content:center; flex-wrap:wrap;}
-  .btn{
-    padding:0.8rem 1.6rem; border-radius:2px; font-size:0.88rem; font-weight:500;
-    border:1px solid var(--line); transition: all 0.25s; display:inline-block;
-  }
-  .btn.primary{background:var(--gold); color:var(--board-deep); border-color:var(--gold);}
-  .btn.primary:hover{background:#f2c168;}
-  .btn.ghost:hover{border-color:var(--chalk-dim); background:rgba(242,237,225,0.04);}
-
-  .scroll-cue{
-    position:absolute; bottom:2rem; left:50%; transform:translateX(-50%);
-    font-family:'JetBrains Mono',monospace; font-size:0.68rem; color:var(--chalk-faint);
-    letter-spacing:0.15em; display:flex; flex-direction:column; align-items:center; gap:0.5rem;
-  }
-  .scroll-cue::after{
-    content:''; width:1px; height:28px; background:var(--chalk-faint);
-    animation: pulse 2s ease-in-out infinite;
-  }
-  @keyframes pulse{ 0%,100%{opacity:0.3;} 50%{opacity:1;} }
-
-  /* ---- section shell ---- */
-  section.block{
-    padding: 6rem clamp(1.5rem, 6vw, 5rem);
-    max-width:1180px; margin:0 auto;
-    border-top:1px solid var(--line);
-  }
-  .block-head{
-    display:flex; align-items:baseline; justify-content:space-between; gap:1rem;
-    margin-bottom:2.6rem; flex-wrap:wrap;
-  }
-  .block-num{
-    font-family:'JetBrains Mono', monospace; color:var(--ink); font-size:0.78rem; letter-spacing:0.1em;
-  }
-  .block-title{
-    font-family:'Fraunces', serif; font-weight:500; font-size:clamp(1.8rem,3.6vw,2.6rem);
-  }
-  .soon{
-    font-family:'JetBrains Mono', monospace; font-size:0.66rem; letter-spacing:0.08em;
-    color:var(--chalk-faint); border:1px solid var(--line); padding:0.28rem 0.6rem; border-radius:2px;
-  }
-
-  /* ---- about ---- */
-  .about-grid{ display:grid; grid-template-columns: 1.4fr 1fr; gap:3rem; align-items:start; }
-  @media(max-width:760px){ .about-grid{grid-template-columns:1fr;} }
-  .about-grid p{color:var(--chalk-dim); margin-bottom:1.1rem; font-size:0.98rem;}
-  .stat-list{display:flex; flex-direction:column; gap:1.4rem;}
-  .stat{border-left:2px solid var(--gold); padding-left:1rem;}
-  .stat b{font-family:'Fraunces', serif; font-size:1.7rem; font-weight:500; display:block;}
-  .stat span{color:var(--chalk-faint); font-size:0.82rem;}
-
-  /* ---- cards ---- */
-  .card-grid{display:grid; grid-template-columns:repeat(auto-fit,minmax(260px,1fr)); gap:1.4rem;}
-  .card{
-    background:var(--board-light); border:1px solid var(--line); border-radius:4px;
-    padding:1.8rem; transition:border-color 0.25s, transform 0.25s;
-  }
-  .card:hover{border-color:var(--gold); transform:translateY(-3px);}
-  .card-tag{font-family:'JetBrains Mono',monospace; font-size:0.68rem; color:var(--ink); letter-spacing:0.08em; margin-bottom:0.9rem; display:block;}
-  .card h3{font-family:'Fraunces', serif; font-weight:500; font-size:1.25rem; margin-bottom:0.6rem;}
-  .card p{color:var(--chalk-dim); font-size:0.9rem;}
-
-  /* ---- contact ---- */
-  .contact-block{text-align:center; padding-bottom:8rem;}
-  .contact-block .block-num{justify-content:center; display:flex;}
-  .contact-block .block-title{margin-bottom:1rem;}
-  .contact-block p{color:var(--chalk-dim); max-width:440px; margin:0 auto 2rem;}
-
-  footer{
-    text-align:center; padding:2.4rem 1.5rem; color:var(--chalk-faint);
-    font-family:'JetBrains Mono', monospace; font-size:0.72rem; border-top:1px solid var(--line);
-  }
-</style>
+<link rel="stylesheet" href="style.css">
 </head>
 <body>
 
@@ -177,15 +16,16 @@
 
 <nav>
   <div class="brand">Sohaib <span>Hasan</span></div>
+  <button class="menu-toggle">☰ Menu</button>
   <div class="navlinks">
-    <a href="#about">About</a>
-    <a href="#teaching">Teaching</a>
-    <a href="#research">Research</a>
-    <a href="#plotlab">PlotLab</a>
-    <a href="#notes">Notes</a>
-    <a href="#blog">Blog</a>
-    <a href="#resources">Resources</a>
-    <a href="#contact">Contact</a>
+    <a href="about.html">About</a>
+    <a href="teaching.html">Teaching</a>
+    <a href="research.html">Research</a>
+    <a href="plotlab.html">PlotLab</a>
+    <a href="notes.html">Notes</a>
+    <a href="blog.html">Blog</a>
+    <a href="resources.html">Resources</a>
+    <a href="contact.html">Contact</a>
   </div>
 </nav>
 
@@ -206,8 +46,8 @@
       olympiad-level mathematics.
     </p>
     <div class="cta-row">
-      <a href="#research" class="btn primary">See the research</a>
-      <a href="#plotlab" class="btn ghost">Watch PlotLab</a>
+      <a href="research.html" class="btn primary">See the research</a>
+      <a href="plotlab.html" class="btn ghost">Watch PlotLab</a>
     </div>
   </div>
   <div class="scroll-cue">SCROLL</div>
@@ -219,7 +59,7 @@
       <div class="block-num">01 / About</div>
       <div class="block-title">The short version</div>
     </div>
-    <span class="soon">full page — coming soon</span>
+    <a href="about.html" class="readmore">Read full bio →</a>
   </div>
   <div class="about-grid">
     <div>
@@ -240,7 +80,7 @@
       <div class="block-num">02 / Teaching</div>
       <div class="block-title">In the classroom</div>
     </div>
-    <span class="soon">full page — coming soon</span>
+    <a href="teaching.html" class="readmore">Read more →</a>
   </div>
   <p style="color:var(--chalk-dim); max-width:640px; margin-bottom:1.4rem;">Nine years lecturing undergraduate mathematics at Horizon Degree &amp; Commerce College — Real Analysis, Abstract Algebra, Functional Analysis, Number Theory, and more — using LaTeX-typeset notes and Manim-animated lectures.</p>
   <div class="card-grid">
@@ -263,7 +103,7 @@
       <div class="block-num">03 / Research &amp; Achievements</div>
       <div class="block-title">Recent work</div>
     </div>
-    <span class="soon">full page — coming soon</span>
+    <a href="research.html" class="readmore">Read more →</a>
   </div>
   <div class="card-grid">
     <div class="card">
@@ -295,7 +135,7 @@
       <div class="block-num">04 / PlotLab</div>
       <div class="block-title">Mathematics, animated</div>
     </div>
-    <span class="soon">videos — coming soon</span>
+    <a href="plotlab.html" class="readmore">Read more →</a>
   </div>
   <p style="color:var(--chalk-dim); max-width:640px;">PlotLab is where I turn abstract mathematics into Manim-built animation — built for the 45,000+ people following along on Facebook and Instagram. The full showcase, organized by topic, is being built next.</p>
 </section>
@@ -306,7 +146,7 @@
       <div class="block-num">05 / Notes Library</div>
       <div class="block-title">Mathematics notes</div>
     </div>
-    <span class="soon">library — coming soon</span>
+    <a href="notes.html" class="readmore">Read more →</a>
   </div>
   <p style="color:var(--chalk-dim); max-width:640px;">A growing library of LaTeX-typeset notes — Calculus, Linear Algebra, Real Analysis, Group Theory, Number Theory, and Machine Learning — each with independent view/download control. Being built next.</p>
 </section>
@@ -317,7 +157,7 @@
       <div class="block-num">06 / Blog</div>
       <div class="block-title">Writing</div>
     </div>
-    <span class="soon">first posts — coming soon</span>
+    <a href="blog.html" class="readmore">Read more →</a>
   </div>
   <p style="color:var(--chalk-dim); max-width:640px;">Long-form writing on mathematics, AI reasoning, and teaching — with full LaTeX math support built in.</p>
 </section>
@@ -328,7 +168,7 @@
       <div class="block-num">07 / Resources</div>
       <div class="block-title">Free resources</div>
     </div>
-    <span class="soon">coming soon</span>
+    <a href="resources.html" class="readmore">Read more →</a>
   </div>
   <p style="color:var(--chalk-dim); max-width:640px;">Cheat sheets, guides, and useful links for mathematics students, collected here as the library grows.</p>
 </section>
@@ -355,6 +195,15 @@
     curve.getBoundingClientRect(); // force reflow
     curve.style.transition = 'stroke-dashoffset 2.4s cubic-bezier(0.65,0,0.35,1)';
     requestAnimationFrame(() => { curve.style.strokeDashoffset = '0'; });
+  }
+
+  // Mobile Menu Toggle
+  const toggle = document.querySelector('.menu-toggle');
+  const navlinks = document.querySelector('.navlinks');
+  if (toggle) {
+    toggle.addEventListener('click', () => {
+      navlinks.classList.toggle('active');
+    });
   }
 </script>
 
