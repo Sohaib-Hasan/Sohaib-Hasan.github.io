@@ -16,7 +16,6 @@
 
 <nav>
   <div class="brand">Sohaib <span>Hasan</span></div>
-  <button class="menu-toggle">☰ Menu</button>
   <div class="navlinks">
     <a href="about.html">About</a>
     <a href="teaching.html">Teaching</a>
@@ -36,6 +35,7 @@
     <path id="drawnCurve" class="drawn" d="M 90 700 C 250 700, 300 200, 500 350 S 800 620, 940 180" />
   </svg>
   <div class="hero-inner">
+    <img src="images/profile.jpg" alt="Sohaib Hasan" class="portrait">
     <div class="eyebrow">Mathematics &nbsp;·&nbsp; AI Reasoning &nbsp;·&nbsp; PlotLab</div>
     <h1>Sohaib Hasan</h1>
     <p class="role">Mathematics Lecturer &amp; Head of Department</p>
@@ -59,7 +59,7 @@
       <div class="block-num">01 / About</div>
       <div class="block-title">The short version</div>
     </div>
-    <a href="about.html" class="readmore">Read full bio →</a>
+    <a href="about.html" class="readmore">Full bio →</a>
   </div>
   <div class="about-grid">
     <div>
@@ -80,7 +80,7 @@
       <div class="block-num">02 / Teaching</div>
       <div class="block-title">In the classroom</div>
     </div>
-    <a href="teaching.html" class="readmore">Read more →</a>
+    <a href="teaching.html" class="readmore">Full page →</a>
   </div>
   <p style="color:var(--chalk-dim); max-width:640px; margin-bottom:1.4rem;">Nine years lecturing undergraduate mathematics at Horizon Degree &amp; Commerce College — Real Analysis, Abstract Algebra, Functional Analysis, Number Theory, and more — using LaTeX-typeset notes and Manim-animated lectures.</p>
   <div class="card-grid">
@@ -103,7 +103,7 @@
       <div class="block-num">03 / Research &amp; Achievements</div>
       <div class="block-title">Recent work</div>
     </div>
-    <a href="research.html" class="readmore">Read more →</a>
+    <a href="research.html" class="readmore">Full page →</a>
   </div>
   <div class="card-grid">
     <div class="card">
@@ -135,7 +135,7 @@
       <div class="block-num">04 / PlotLab</div>
       <div class="block-title">Mathematics, animated</div>
     </div>
-    <a href="plotlab.html" class="readmore">Read more →</a>
+    <a href="plotlab.html" class="readmore">Full page →</a>
   </div>
   <p style="color:var(--chalk-dim); max-width:640px;">PlotLab is where I turn abstract mathematics into Manim-built animation — built for the 45,000+ people following along on Facebook and Instagram. The full showcase, organized by topic, is being built next.</p>
 </section>
@@ -146,7 +146,7 @@
       <div class="block-num">05 / Notes Library</div>
       <div class="block-title">Mathematics notes</div>
     </div>
-    <a href="notes.html" class="readmore">Read more →</a>
+    <a href="notes.html" class="readmore">Full library →</a>
   </div>
   <p style="color:var(--chalk-dim); max-width:640px;">A growing library of LaTeX-typeset notes — Calculus, Linear Algebra, Real Analysis, Group Theory, Number Theory, and Machine Learning — each with independent view/download control. Being built next.</p>
 </section>
@@ -157,7 +157,7 @@
       <div class="block-num">06 / Blog</div>
       <div class="block-title">Writing</div>
     </div>
-    <a href="blog.html" class="readmore">Read more →</a>
+    <a href="blog.html" class="readmore">Read blog →</a>
   </div>
   <p style="color:var(--chalk-dim); max-width:640px;">Long-form writing on mathematics, AI reasoning, and teaching — with full LaTeX math support built in.</p>
 </section>
@@ -168,7 +168,7 @@
       <div class="block-num">07 / Resources</div>
       <div class="block-title">Free resources</div>
     </div>
-    <a href="resources.html" class="readmore">Read more →</a>
+    <a href="resources.html" class="readmore">See all →</a>
   </div>
   <p style="color:var(--chalk-dim); max-width:640px;">Cheat sheets, guides, and useful links for mathematics students, collected here as the library grows.</p>
 </section>
@@ -195,15 +195,6 @@
     curve.getBoundingClientRect(); // force reflow
     curve.style.transition = 'stroke-dashoffset 2.4s cubic-bezier(0.65,0,0.35,1)';
     requestAnimationFrame(() => { curve.style.strokeDashoffset = '0'; });
-  }
-
-  // Mobile Menu Toggle
-  const toggle = document.querySelector('.menu-toggle');
-  const navlinks = document.querySelector('.navlinks');
-  if (toggle) {
-    toggle.addEventListener('click', () => {
-      navlinks.classList.toggle('active');
-    });
   }
 </script>
 
