@@ -29,28 +29,19 @@
 </nav>
 
 <section class="hero">
-  <svg class="hero-svg" viewBox="0 0 1000 800" preserveAspectRatio="xMidYMid slice">
-    <line x1="90" y1="80" x2="90" y2="760" stroke-dasharray="2 6"/>
-    <line x1="60" y1="700" x2="940" y2="700" stroke-dasharray="2 6"/>
-    <path id="drawnCurve" class="drawn" d="M 90 700 C 250 700, 300 200, 500 350 S 800 620, 940 180" />
-  </svg>
   <div class="hero-inner">
-    <img src="images/profile.jpg" alt="Sohaib Hasan" class="portrait">
+    <img src="images/profile.png" alt="Sohaib Hasan" class="portrait">
     <div class="eyebrow">Mathematics &nbsp;·&nbsp; AI Reasoning &nbsp;·&nbsp; PlotLab</div>
     <h1>Sohaib Hasan</h1>
     <p class="role">Mathematics Lecturer &amp; Head of Department</p>
     <p class="hero-desc">
-      9+ years teaching advanced mathematics, with research spanning
-      <strong>elliptic-curve cryptography</strong> and <strong>fluid dynamics</strong> —
-      and current work building AI systems that reason through
-      olympiad-level mathematics.
+      <strong>Nine years</strong> teaching advanced mathematics. An <strong>MPhil in elliptic-curve cryptography</strong>. A <strong>top-12% finish at the AI Mathematical Olympiad</strong>. Same conviction, three proofs — mathematics rewards whoever reasons carefully, student or machine.
     </p>
     <div class="cta-row">
       <a href="research.html" class="btn primary">See the research</a>
       <a href="plotlab.html" class="btn ghost">Watch PlotLab</a>
     </div>
   </div>
-  <div class="scroll-cue">SCROLL</div>
 </section>
 
 <section class="block" id="about">
@@ -186,16 +177,6 @@
 
 <script>
   document.getElementById('year').textContent = new Date().getFullYear();
-
-  const curve = document.getElementById('drawnCurve');
-  if (curve) {
-    const len = curve.getTotalLength();
-    curve.style.strokeDasharray = len;
-    curve.style.strokeDashoffset = len;
-    curve.getBoundingClientRect(); // force reflow
-    curve.style.transition = 'stroke-dashoffset 2.4s cubic-bezier(0.65,0,0.35,1)';
-    requestAnimationFrame(() => { curve.style.strokeDashoffset = '0'; });
-  }
 </script>
 
 </body>
