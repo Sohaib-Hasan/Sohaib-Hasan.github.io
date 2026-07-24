@@ -66,6 +66,12 @@ nav{
   stroke-width:2;
 }
 .hero-inner{ position:relative; z-index:2; max-width:680px; }
+.portrait{
+  width:128px; height:128px; border-radius:50%; object-fit:cover;
+  border:3px solid var(--gold);
+  box-shadow: 0 0 0 6px rgba(232,176,75,0.12), 0 10px 34px rgba(0,0,0,0.45);
+  margin-bottom:1.7rem;
+}
 .eyebrow{
   font-family:'JetBrains Mono', monospace;
   font-size:0.72rem; letter-spacing:0.24em; text-transform:uppercase;
@@ -203,27 +209,46 @@ section.block{
 .contact-block .block-num{justify-content:center; display:flex;}
 .contact-block .block-title{margin-bottom:1rem;}
 .contact-block p{color:var(--chalk-dim); max-width:440px; margin:0 auto 2rem;}
+.contact-links{
+  display:flex; gap:1.5rem; justify-content:center; flex-wrap:wrap;
+  margin-top:1.6rem; font-family:'JetBrains Mono', monospace; font-size:0.82rem;
+}
+.contact-links a{color:var(--ink); border-bottom:1px solid transparent; padding-bottom:2px;}
+.contact-links a:hover{color:var(--gold); border-bottom-color:var(--gold);}
 
 footer{
   text-align:center; padding:2.4rem 1.5rem; color:var(--chalk-faint);
   font-family:'JetBrains Mono', monospace; font-size:0.72rem; border-top:1px solid var(--line);
 }
 
-/* Read More Button Styling */
-.readmore {
-  font-family: 'JetBrains Mono', monospace;
-  font-size: 0.72rem;
-  letter-spacing: 0.08em;
-  color: var(--gold);
-  border: 1px solid var(--line);
-  padding: 0.28rem 0.6rem;
-  border-radius: 2px;
-  transition: all 0.2s;
+/* ---- tags & lists (shared utility) ---- */
+.tag-cloud{display:flex; flex-wrap:wrap; gap:0.6rem;}
+.tag{
+  font-family:'JetBrains Mono', monospace; font-size:0.78rem;
+  border:1px solid var(--line); color:var(--chalk-dim);
+  padding:0.5rem 0.9rem; border-radius:2px;
 }
-.readmore:hover {
-  border-color: var(--gold);
-  background: rgba(232, 176, 75, 0.1);
+.tag.filter{cursor:default;}
+.lead-list{list-style:none; max-width:640px;}
+.lead-list li{
+  position:relative; padding-left:1.4rem; margin-bottom:1rem;
+  color:var(--chalk-dim); font-size:0.96rem;
 }
+.lead-list li::before{
+  content:'—'; position:absolute; left:0; color:var(--gold);
+}
+
+/* ---- empty / coming-soon state ---- */
+.empty-state{
+  border:1px dashed var(--line); border-radius:4px; padding:2.6rem 2rem;
+  text-align:center; color:var(--chalk-faint); font-size:0.9rem;
+  max-width:680px;
+}
+.empty-state .mono{display:block; color:var(--ink); margin-bottom:0.6rem; font-size:0.72rem; letter-spacing:0.08em; text-transform:uppercase;}
+
+/* ---- project cards ---- */
+.proj-link{font-family:'JetBrains Mono', monospace; font-size:0.74rem; color:var(--ink);}
+.proj-link.disabled{color:var(--chalk-faint); font-style:italic;}
 
 /* Mobile Menu Styling */
 .menu-toggle {
