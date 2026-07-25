@@ -10,27 +10,32 @@
 <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;0,9..144,600;1,9..144,400&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="style.css">
 <style>
-  body{overflow:hidden;}
+  body{ -webkit-user-select:none; user-select:none; }
   .viewer-header{
     display:flex; align-items:center; justify-content:space-between;
     padding: 1rem clamp(1.2rem, 4vw, 2.5rem);
     border-bottom:1px solid var(--line);
+    position:sticky; top:0; background:var(--board); z-index:10;
   }
   .viewer-title{font-family:'Fraunces', serif; font-size:1rem; font-weight:500;}
   .viewer-note{
     font-family:'JetBrains Mono', monospace; font-size:0.68rem; color:var(--chalk-faint);
   }
-  .viewer-frame-wrap{
-    position:relative; width:100%; height:calc(100svh - 62px); background:var(--board-deep);
+  .pages-wrap{
+    display:flex; flex-direction:column; align-items:center; gap:1.2rem;
+    padding: 1.6rem clamp(1rem, 4vw, 2rem) 4rem;
+    background:var(--board-deep);
+    min-height:calc(100svh - 62px);
   }
-  .viewer-frame-wrap iframe{
-    width:100%; height:100%; border:none; display:block;
+  canvas.pdf-page{
+    max-width:100%; height:auto; display:block;
+    box-shadow:0 10px 34px rgba(0,0,0,0.5);
+    border-radius:2px;
+    pointer-events:none; /* blocks drag-to-save gestures on the rendered image */
   }
-  /* transparent shield strip over the top of the iframe to block the native toolbar's
-     download/print icons in browsers that still render them despite #toolbar=0 */
-  .shield{
-    position:absolute; top:0; left:0; right:0; height:40px;
-    background:transparent; z-index:5;
+  #loadingMsg{
+    color:var(--chalk-faint); font-family:'JetBrains Mono', monospace;
+    font-size:0.8rem; padding:3rem 1rem; text-align:center;
   }
 </style>
 </head>
@@ -39,17 +44,20 @@
 <header class="viewer-header">
   <div>
     <div class="viewer-title" id="titleText">Loading…</div>
-    <div class="viewer-note">View only — right-click, printing, and saving are disabled</div>
+    <div class="viewer-note">View only — right-click, selecting, and saving are disabled</div>
   </div>
   <a class="back-link" href="notes.html" style="margin:0;">← Back to Notes</a>
 </header>
 
-<div class="viewer-frame-wrap">
-  <div class="shield" oncontextmenu="return false;"></div>
-  <iframe id="pdfFrame" oncontextmenu="return false;"></iframe>
+<div class="pages-wrap" id="pagesContainer">
+  <div id="loadingMsg">Loading document…</div>
 </div>
 
+<script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js"></script>
 <script>
+  pdfjsLib.GlobalWorkerOptions.workerSrc =
+    "https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.worker.min.js";
+
   const params = new URLSearchParams(window.location.search);
   const file = params.get('file');
   const title = params.get('title') || 'Notes';
@@ -57,14 +65,43 @@
   document.getElementById('pageTitle').textContent = title + ' — Sohaib Hasan';
   document.getElementById('titleText').textContent = title;
 
+  const container = document.getElementById('pagesContainer');
+  const loadingMsg = document.getElementById('loadingMsg');
+
+  async function renderPDF(url) {
+    const pdf = await pdfjsLib.getDocument(url).promise;
+    loadingMsg.remove();
+    const targetWidth = Math.min(window.innerWidth * 0.9, 900);
+    for (let pageNum = 1; pageNum <= pdf.numPages; pageNum++) {
+      const page = await pdf.getPage(pageNum);
+      const baseViewport = page.getViewport({ scale: 1 });
+      const scale = (targetWidth / baseViewport.width) * 2; // 2x for sharpness
+      const viewport = page.getViewport({ scale });
+      const canvas = document.createElement('canvas');
+      canvas.className = 'pdf-page';
+      canvas.width = viewport.width;
+      canvas.height = viewport.height;
+      canvas.style.width = (viewport.width / 2) + 'px';
+      container.appendChild(canvas);
+      const ctx = canvas.getContext('2d');
+      await page.render({ canvasContext: ctx, viewport }).promise;
+    }
+  }
+
   if (file) {
-    document.getElementById('pdfFrame').src = file + '#toolbar=0&navpanes=0&scrollbar=1';
+    renderPDF(file).catch(err => {
+      loadingMsg.textContent = 'Could not load the document.';
+      console.error(err);
+    });
+  } else {
+    loadingMsg.textContent = 'No document specified.';
   }
 
   document.addEventListener('contextmenu', e => e.preventDefault());
+  document.addEventListener('dragstart', e => e.preventDefault());
   document.addEventListener('keydown', e => {
     const k = e.key.toLowerCase();
-    if ((e.ctrlKey || e.metaKey) && (k === 's' || k === 'p')) {
+    if ((e.ctrlKey || e.metaKey) && (k === 's' || k === 'p' || k === 'u' || k === 'c')) {
       e.preventDefault();
     }
   });
