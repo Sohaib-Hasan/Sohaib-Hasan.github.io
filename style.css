@@ -57,6 +57,7 @@ nav{
 .hero-inner{ position:relative; z-index:2; max-width:680px; }
 .portrait{
   width:128px; height:128px; border-radius:50%; object-fit:cover;
+  object-position: 50% 18%;
   border:3px solid var(--gold);
   box-shadow: 0 0 0 6px rgba(232,176,75,0.12), 0 10px 34px rgba(0,0,0,0.45);
   margin-bottom:1.7rem;
