@@ -4,7 +4,7 @@
   --board-light: #24382f;
   --chalk: #f2ede1;
   --chalk-dim: #b9c2bb;
-  --chalk-faint: #7c8c83;
+  --chalk-faint: #8a9890;
   --gold: #e8b04b;
   --ink: #7ca6a8;
   --line: rgba(242,237,225,0.12);
@@ -40,10 +40,43 @@ nav{
   font-family:'Fraunces', serif; font-weight:500; font-size:1.05rem; letter-spacing:0.01em;
 }
 .brand span{color:var(--gold);}
-.navlinks{gap:clamp(0.7rem, 1.6vw, 1.5rem); font-size:0.78rem; color:var(--chalk-dim); display:none;}
+.navlinks{
+  display:flex; flex-direction:column; gap:1.5rem;
+  position:fixed; top:0; right:0; height:100svh; width:min(78vw, 320px);
+  background:var(--board-deep); padding:6rem 2rem 2rem; align-items:flex-start;
+  font-size:1rem; color:var(--chalk-dim);
+  transform:translateX(100%); transition:transform 0.32s ease;
+  box-shadow:-14px 0 40px rgba(0,0,0,0.45); z-index:41;
+}
+.navlinks.open{ transform:translateX(0); }
 .navlinks a{transition:color 0.2s;}
 .navlinks a:hover, .navlinks a.active{color:var(--chalk);}
-@media(min-width:720px){ .navlinks{display:flex;} }
+
+.nav-toggle{
+  display:flex; flex-direction:column; justify-content:center; align-items:center; gap:5px;
+  width:38px; height:38px; background:none; border:1px solid var(--line); border-radius:4px;
+  cursor:pointer; z-index:42; padding:0;
+}
+.nav-toggle span{ display:block; width:18px; height:2px; background:var(--chalk); transition: all 0.25s; border-radius:2px; }
+.nav-toggle.active span:nth-child(1){ transform: translateY(7px) rotate(45deg); }
+.nav-toggle.active span:nth-child(2){ opacity:0; }
+.nav-toggle.active span:nth-child(3){ transform: translateY(-7px) rotate(-45deg); }
+
+.nav-backdrop{
+  position:fixed; inset:0; background:rgba(0,0,0,0.5); z-index:39;
+  opacity:0; pointer-events:none; transition:opacity 0.3s ease;
+}
+.nav-backdrop.open{ opacity:1; pointer-events:auto; }
+
+@media(min-width:720px){
+  .navlinks{
+    position:static; height:auto; width:auto; background:none; box-shadow:none;
+    flex-direction:row; padding:0; transform:none; gap:clamp(0.7rem, 1.6vw, 1.5rem);
+    font-size:0.78rem;
+  }
+  .nav-toggle{ display:none; }
+  .nav-backdrop{ display:none; }
+}
 
 /* ---- hero ---- */
 .hero{
@@ -240,38 +273,48 @@ footer{
 .proj-link{font-family:'JetBrains Mono', monospace; font-size:0.74rem; color:var(--ink);}
 .proj-link.disabled{color:var(--chalk-faint); font-style:italic;}
 
-/* Mobile Menu Styling */
-.menu-toggle {
-  display: none;
-  background: transparent;
-  color: var(--chalk);
-  border: 1px solid var(--line);
-  padding: 0.4rem 0.8rem;
-  font-size: 0.8rem;
-  cursor: pointer;
-  border-radius: 2px;
+/* ---- scroll-in animation (progressive enhancement — only applied via JS) ---- */
+.will-animate{
+  opacity:0; transform:translateY(20px);
+  transition: opacity 0.7s ease, transform 0.7s ease;
+}
+.will-animate.in-view{ opacity:1; transform:translateY(0); }
+@media (prefers-reduced-motion: reduce){
+  .will-animate{ opacity:1; transform:none; transition:none; }
 }
 
-@media (max-width: 720px) {
-  .menu-toggle {
-    display: block;
-  }
-  .navlinks {
-    display: none;
-    flex-direction: column;
-    position: absolute;
-    top: 100%;
-    right: 0;
-    background: var(--board-deep);
-    width: 200px;
-    padding: 1rem;
-    border: 1px solid var(--line);
-  }
-  .navlinks a {
-    padding: 0.6rem 0;
-    display: block;
-  }
-  .navlinks.active {
-    display: flex;
-  }
+/* ---- hero mini animation (small looping graph, subtle) ---- */
+.hero-loop{
+  width:120px; height:56px; margin:0 auto 1.6rem;
+  opacity:0.85;
 }
+.hero-loop path{
+  fill:none; stroke:var(--gold); stroke-width:2; stroke-linecap:round;
+  stroke-dasharray:150; stroke-dashoffset:0;
+  animation: loopdraw 3.2s ease-in-out infinite;
+}
+.hero-loop circle{
+  fill:var(--gold);
+  animation: loopdot 3.2s ease-in-out infinite;
+  offset-path: path("M4 40 C 30 8, 45 8, 60 28 S 95 48, 116 14");
+  offset-rotate: 0deg;
+}
+@keyframes loopdraw{
+  0%{ stroke-dashoffset:150; }
+  45%{ stroke-dashoffset:0; }
+  55%{ stroke-dashoffset:0; }
+  100%{ stroke-dashoffset:-150; }
+}
+@keyframes loopdot{
+  0%{ offset-distance:0%; opacity:0; }
+  8%{ opacity:1; }
+  45%{ offset-distance:100%; opacity:1; }
+  50%{ opacity:0; }
+  100%{ opacity:0; offset-distance:100%; }
+}
+@media (prefers-reduced-motion: reduce){
+  .hero-loop path, .hero-loop circle{ animation:none; stroke-dashoffset:0; }
+}
+
+/* ---- stat count-up target ---- */
+.count-target{ font-variant-numeric: tabular-nums; }

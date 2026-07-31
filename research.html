@@ -3,13 +3,26 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Research — Sohaib Hasan</title>
-<meta name="description" content="Research and achievements — AIMO3, Harvard CS50x Puzzle Day, cryptography and fluid dynamics theses, and applied ML projects.">
+<title>Animations — Sohaib Hasan</title>
+<meta name="description" content="Manim-based mathematical animation by Sohaib Hasan — PlotLab and an animation portfolio for researchers and thesis defenses.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;0,9..144,600;1,9..144,400&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="style.css">
-<link rel="canonical" href="https://sohaib-hasan.github.io/research.html">
+<link rel="canonical" href="https://sohaib-hasan.github.io/plotlab.html">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Animations — Sohaib Hasan">
+<meta property="og:description" content="Manim-based mathematical animation by Sohaib Hasan — PlotLab and an animation portfolio for researchers and thesis defenses.">
+<meta property="og:url" content="https://sohaib-hasan.github.io/plotlab.html">
+<meta property="og:image" content="https://sohaib-hasan.github.io/images/og-image.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:site_name" content="Sohaib Hasan">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Animations — Sohaib Hasan">
+<meta name="twitter:description" content="Manim-based mathematical animation by Sohaib Hasan — PlotLab and an animation portfolio for researchers and thesis defenses.">
+<meta name="twitter:image" content="https://sohaib-hasan.github.io/images/og-image.jpg">
+
 </head>
 <body>
 
@@ -17,121 +30,72 @@
 
 <nav>
   <div class="brand"><a href="index.html">Sohaib <span>Hasan</span></a></div>
-  <div class="navlinks">
+  <button class="nav-toggle" id="navToggle" aria-label="Toggle menu" aria-expanded="false">
+    <span></span><span></span><span></span>
+  </button>
+  <div class="navlinks" id="navLinks">
     <a href="about.html">About</a>
     <a href="teaching.html">Teaching</a>
-    <a href="research.html" class="active">Research</a>
-    <a href="plotlab.html">Animations</a>
+    <a href="research.html">Research</a>
+    <a href="plotlab.html" class="active">Animations</a>
     <a href="notes.html">Notes</a>
     <a href="blog.html">Blog</a>
     <a href="resources.html">Resources</a>
     <a href="contact.html">Contact</a>
   </div>
 </nav>
+<div class="nav-backdrop" id="navBackdrop"></div>
 
 <header class="page-header">
   <a class="back-link" href="index.html">← Home</a>
-  <div class="eyebrow">Research &amp; Achievements</div>
-  <h1>Where rigor meets reasoning.</h1>
-  <p class="lede">From elliptic-curve cryptography to AI systems that solve olympiad mathematics — the throughline is verification-driven problem-solving.</p>
+  <div class="eyebrow">Animations</div>
+  <h1>Mathematics, animated.</h1>
+  <p class="lede">Manim-built mathematical animation — PlotLab for the public, and a portfolio built for researchers and thesis defenses.</p>
 </header>
 
-<section class="block" id="aimo3" style="border-top:none; padding-top:1rem;">
+<section class="block" id="plotlab-social" style="border-top:none; padding-top:1rem;">
   <div class="block-head">
     <div>
-      <div class="block-num">Featured · AI Mathematical Olympiad, Progress Prize 3</div>
-      <div class="block-title">Top 12% globally</div>
-    </div>
-  </div>
-  <div class="about-grid">
-    <div>
-      <p style="color:var(--chalk-dim); margin-bottom:1.1rem; font-size:0.98rem;">Competed in Kaggle's AIMO3 as Team Proof Engine, alongside engineering lead Samuel Koh, building a <em>Parallel Self-Consistency Pipeline for Olympiad-Level Mathematical Reasoning</em>. The system ran GPT-OSS-120B across 8 parallel reasoning attempts per problem, paired with Python-based tool-integrated reasoning, and combined into a final answer using an entropy-weighted confidence vote — under a strict 9-hour GPU budget with binary, no-partial-credit scoring.</p>
-      <p style="color:var(--chalk-dim); font-size:0.98rem; margin-bottom:1rem;">My role centred on the mathematics: diagnosing early reasoning bugs, designing verification-driven few-shot prompts, writing dual-verification guardrails, and manually solving reference problems to validate the pipeline's output.</p>
-      <a class="proj-link" href="https://drive.google.com/file/d/1olxg1uu62i8-bEMQ5xzJsWFvfV6GBYk7/view?usp=sharing" target="_blank" rel="noopener">Watch the full pipeline animation →</a>
-    </div>
-    <div class="stat-list">
-      <div class="stat"><b>42/50</b><span>final score (84%)</span></div>
-      <div class="stat"><b>495 / 4,138</b><span>team ranking</span></div>
-      <div class="stat"><b>Top 12%</b><span>globally</span></div>
-    </div>
-  </div>
-</section>
-
-<section class="block" id="cs50">
-  <div class="block-head">
-    <div>
-      <div class="block-num">Featured · Harvard CS50x</div>
-      <div class="block-title">Puzzle Day 2026 — perfect score</div>
-    </div>
-  </div>
-  <p style="color:var(--chalk-dim); max-width:680px; margin-bottom:1rem;">Solved all 10 puzzles, including the Metapuzzle, in Harvard's annual international logic and combinatorial reasoning competition — open to participants from 166+ countries. The competition tests formal reasoning and systematic logical deduction under timed conditions.</p>
-  <a class="proj-link" href="https://certificates.cs50.io/880fd457-4eb9-4674-a684-ba42be4f9141.pdf?size=letter" target="_blank" rel="noopener">View certificate →</a>
-</section>
-
-<section class="block" id="theses">
-  <div class="block-head">
-    <div>
-      <div class="block-num">Theses</div>
-      <div class="block-title">Graduate research</div>
+      <div class="block-num">PlotLab</div>
+      <div class="block-title">Follow along</div>
     </div>
   </div>
   <div class="card-grid">
     <div class="card">
-      <span class="card-tag">MPHIL · CUST ISLAMABAD · 2018–2021</span>
-      <h3>Generalized Signcryption Based on Elliptic Curve Cryptography</h3>
-      <p>Extends an efficient ECC-based signcryption scheme into a generalized construction that operates in signcryption, signature-only, or encryption-only mode as required — with full analysis against chosen-plaintext, chosen-ciphertext, forgery, and man-in-the-middle attacks.</p>
+      <span class="card-tag">FACEBOOK</span>
+      <h3>PlotLab Reels</h3>
+      <p>The full animation archive — 45,000+ followers watching mathematics get animated, reel by reel.</p>
+      <a class="proj-link" href="https://web.facebook.com/plotlab1/reels/" target="_blank" rel="noopener">Watch on Facebook →</a>
     </div>
     <div class="card">
-      <span class="card-tag">MSC · COMSATS ATTOCK · 2015–2017</span>
-      <h3>Flow of Eyring-Powell Fluid in a Channel Using Adomian Decomposition Method</h3>
-      <p>Derives a series solution for steady, isothermal channel flow of a non-Newtonian Eyring-Powell fluid, with velocity profile, flow rate, and stream function obtained via the Adomian Decomposition Method.</p>
+      <span class="card-tag">INSTAGRAM</span>
+      <h3>@plotlab01</h3>
+      <p>Shorter cuts and highlights from the same animation archive, built for the Instagram feed.</p>
+      <a class="proj-link" href="https://www.instagram.com/plotlab01/" target="_blank" rel="noopener">Follow on Instagram →</a>
     </div>
   </div>
 </section>
 
-<section class="block" id="projects">
+<section class="block" id="portfolio">
   <div class="block-head">
     <div>
-      <div class="block-num">Applied Projects &amp; Hackathons</div>
-      <div class="block-title">Building &amp; shipping</div>
+      <div class="block-num">Animation Portfolio</div>
+      <div class="block-title">For researchers &amp; thesis defenses</div>
     </div>
   </div>
+  <p style="color:var(--chalk-dim); max-width:680px; margin-bottom:2rem;">A defense or a paper walkthrough is easier to follow — and easier to remember — when the method is animated instead of just described. These are built for researchers and students with a defense coming up who want their work to actually be <em>seen</em>.</p>
   <div class="card-grid">
     <div class="card">
-      <span class="card-tag">RAISE YOUR HACK · PARIS 2025</span>
-      <h3>Acumen AI</h3>
-      <p>Multi-agent conversational platform (MCP Agents, Groq, LLaMA-3.3-70B, FAISS semantic search) built among 6,247 global participants.</p>
-      <a class="proj-link" href="https://github.com/Zorain98/Acumen-AI" target="_blank" rel="noopener">GitHub</a> · <a class="proj-link" href="https://lablab.ai/u/@Sohaib_Hasan/cmcvzwqia00c88m0stayv1z33" target="_blank" rel="noopener">Certificate →</a>
+      <span class="card-tag">AIMO3 · FULL PIPELINE</span>
+      <h3>AI Mathematical Olympiad — Pipeline Walkthrough</h3>
+      <p>A complete animated walkthrough of the Parallel Self-Consistency Pipeline built for AIMO3 — the architecture, the reasoning flow, and the entropy-weighted aggregation, made visual.</p>
+      <a class="proj-link" href="https://drive.google.com/file/d/1olxg1uu62i8-bEMQ5xzJsWFvfV6GBYk7/view?usp=sharing" target="_blank" rel="noopener">Watch the animation →</a>
     </div>
     <div class="card">
-      <span class="card-tag">TRAE AI IDE · ZERO LIMITS HACKATHON</span>
-      <h3>Anti-Short-Video-Addiction Assistant</h3>
-      <p>XGBoost behavioral classifier with real-time empathetic interventions, built in a 48-hour global competition — FastAPI + Node.js multi-agent pipeline.</p>
-      <a class="proj-link" href="https://github.com/Yatineee/AI-Powered-Anti-Short-Video-Addiction-Assistant" target="_blank" rel="noopener">GitHub</a> · <a class="proj-link" href="https://lablab.ai/u/@Sohaib_Hasan/cmd5z6a94001ya90syfv4osju" target="_blank" rel="noopener">Certificate →</a>
-    </div>
-    <div class="card">
-      <span class="card-tag">ML PIPELINE</span>
-      <h3>Math Score Prediction</h3>
-      <p>End-to-end regression pipeline benchmarking five models; 88%+ R² with 5-fold cross-validation, deployed live on Hugging Face Spaces.</p>
-      <a class="proj-link" href="https://github.com/Sohaib-Hasan/Math-Marks-Prediction-App" target="_blank" rel="noopener">GitHub</a> · <a class="proj-link" href="https://huggingface.co/spaces/Sohaib4314/MathMarksPrediction" target="_blank" rel="noopener">Live app →</a>
-    </div>
-    <div class="card">
-      <span class="card-tag">REGRESSION STUDY</span>
-      <h3>Socioeconomic Determinants of Housing Valuation</h3>
-      <p>Empirical regression quantifying income, structural, and demographic influences on property prices (R² = 0.92).</p>
-      <a class="proj-link" href="https://github.com/Sohaib-Hasan/house-price-prediction" target="_blank" rel="noopener">GitHub →</a>
-    </div>
-    <div class="card">
-      <span class="card-tag">POWER BI DASHBOARD</span>
-      <h3>Employee Attrition &amp; Workforce Analytics</h3>
-      <p>Analyzed a 1,470-employee dataset (16.2% attrition); interactive dashboards identifying highest-risk cohorts.</p>
-      <a class="proj-link" href="https://github.com/Sohaib-Hasan/employee-attrition-analysis" target="_blank" rel="noopener">GitHub →</a>
-    </div>
-    <div class="card">
-      <span class="card-tag">SQL / POSTGRESQL</span>
-      <h3>Music Store Customer Behavior Analysis</h3>
-      <p>11 structured SQL queries extracting revenue patterns, genre preferences, and regional customer segmentation.</p>
-      <a class="proj-link" href="https://github.com/Sohaib-Hasan/SQL-Music-Store-Analysis" target="_blank" rel="noopener">GitHub →</a>
+      <span class="card-tag">RESEARCH PROPOSAL</span>
+      <h3>Animated Extension of a Published Paper</h3>
+      <p>After reading a professor's paper, I proposed and fully animated an extension to its method — built the way I think a research proposal should be presented.</p>
+      <a class="proj-link" href="https://drive.google.com/file/d/1LuZVfOsm1UBJHxQU5FzIc-hlYAe21ymC/view?usp=sharing" target="_blank" rel="noopener">Watch the animation →</a>
     </div>
   </div>
 </section>
@@ -146,9 +110,7 @@
   © <span id="year"></span> Sohaib Hasan · Chakwal, Pakistan
 </footer>
 
-<script>
-  document.getElementById('year').textContent = new Date().getFullYear();
-</script>
+<script src="script.js"></script>
 
 </body>
 </html>
