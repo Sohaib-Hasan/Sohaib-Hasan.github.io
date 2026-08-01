@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>{{ page.title }} — Sohaib Hasan</title>
+<meta name="description" content="{{ page.excerpt | strip_html | strip_newlines | truncatewords: 30 }}">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;0,9..144,600;1,9..144,400&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/style.css">
+<link rel="canonical" href="{{ site.url }}{{ page.url }}">
+<meta property="og:type" content="article">
+<meta property="og:title" content="{{ page.title }}">
+<meta property="og:description" content="{{ page.excerpt | strip_html | strip_newlines | truncatewords: 30 }}">
+<meta property="og:url" content="{{ site.url }}{{ page.url }}">
+<meta property="og:image" content="{{ site.url }}/images/og-image.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:site_name" content="Sohaib Hasan">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="{{ page.title }}">
+<meta name="twitter:description" content="{{ page.excerpt | strip_html | strip_newlines | truncatewords: 30 }}">
+<meta name="twitter:image" content="{{ site.url }}/images/og-image.jpg">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.9/katex.min.css">
+<style>
+  .post-content{color:var(--chalk-dim); font-size:1rem; max-width:720px;}
+  .post-content h2{font-family:'Fraunces', serif; font-weight:500; color:var(--chalk); font-size:1.6rem; margin:2.2rem 0 1rem;}
+  .post-content h3{font-family:'Fraunces', serif; font-weight:500; color:var(--chalk); font-size:1.3rem; margin:1.8rem 0 0.8rem;}
+  .post-content p{margin-bottom:1.2rem; line-height:1.7;}
+  .post-content ul, .post-content ol{margin:0 0 1.2rem 1.4rem;}
+  .post-content li{margin-bottom:0.5rem;}
+  .post-content a{color:var(--gold); text-decoration:underline; text-underline-offset:3px;}
+  .post-content blockquote{
+    border-left:2px solid var(--gold); padding-left:1.2rem; margin:1.6rem 0;
+    color:var(--chalk-dim); font-style:italic;
+  }
+  .post-content code{
+    font-family:'JetBrains Mono', monospace; font-size:0.85em;
+    background:var(--board-light); padding:0.15em 0.4em; border-radius:3px;
+  }
+  .post-content pre{
+    background:var(--board-light); border:1px solid var(--line); border-radius:4px;
+    padding:1.2rem; overflow-x:auto; margin-bottom:1.4rem;
+  }
+  .post-content pre code{background:none; padding:0;}
+  .post-content img{max-width:100%; border-radius:4px; margin:1.2rem 0;}
+  .post-meta{
+    font-family:'JetBrains Mono', monospace; font-size:0.75rem; color:var(--ink);
+    letter-spacing:0.05em; margin-bottom:0.8rem;
+  }
+</style>
+</head>
+<body>
+
+<div class="grain"></div>
+
+<nav>
+  <div class="brand"><a href="/index.html">Sohaib <span>Hasan</span></a></div>
+  <button class="nav-toggle" id="navToggle" aria-label="Toggle menu" aria-expanded="false">
+    <span></span><span></span><span></span>
+  </button>
+  <div class="navlinks" id="navLinks">
+    <a href="/about.html">About</a>
+    <a href="/teaching.html">Teaching</a>
+    <a href="/research.html">Research</a>
+    <a href="/plotlab.html">Animations</a>
+    <a href="/notes.html">Notes</a>
+    <a href="/blog.html" class="active">Blog</a>
+    <a href="/contact.html">Contact</a>
+  </div>
+</nav>
+<div class="nav-backdrop" id="navBackdrop"></div>
+
+<header class="page-header">
+  <a class="back-link" href="/blog.html">← Back to Blog</a>
+  <div class="post-meta">{{ page.date | date: "%B %-d, %Y" }}{% if page.reading_time %} · {{ page.reading_time }} min read{% endif %}</div>
+  <h1>{{ page.title }}</h1>
+</header>
+
+<article class="block" style="border-top:none; padding-top:1rem;">
+  <div class="post-content">
+    {{ content }}
+  </div>
+</article>
+
+<section class="block contact-block" id="contact">
+  <div class="block-title">Let's talk</div>
+  <p>For teaching, research collaboration, or PhD-related conversations — reach out directly.</p>
+  <a class="btn primary" href="mailto:sohaibhassan199@gmail.com">sohaibhassan199@gmail.com</a>
+</section>
+
+<footer>
+  © <span id="year"></span> Sohaib Hasan · Chakwal, Pakistan
+</footer>
+
+<script src="/script.js"></script>
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.9/katex.min.js"></script>
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.9/contrib/auto-render.min.js" onload="renderMathInElement(document.querySelector('.post-content'), {delimiters:[{left:'$$',right:'$$',display:true},{left:'$',right:'$',display:false}]});"></script>
+
+</body>
+</html>

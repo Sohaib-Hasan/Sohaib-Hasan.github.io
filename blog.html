@@ -1,3 +1,5 @@
+---
+---
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -40,7 +42,6 @@
     <a href="plotlab.html">Animations</a>
     <a href="notes.html">Notes</a>
     <a href="blog.html" class="active">Blog</a>
-    <a href="resources.html">Resources</a>
     <a href="contact.html">Contact</a>
   </div>
 </nav>
@@ -54,10 +55,23 @@
 </header>
 
 <section class="block" id="posts" style="border-top:none; padding-top:1rem;">
+  {% if site.posts.size > 0 %}
+  <div class="card-grid">
+    {% for post in site.posts %}
+    <div class="card">
+      <span class="card-tag">{{ post.date | date: "%B %-d, %Y" }}</span>
+      <h3>{{ post.title }}</h3>
+      <p>{{ post.excerpt | strip_html | strip_newlines | truncatewords: 22 }}</p>
+      <a class="proj-link" href="{{ post.url }}">Read →</a>
+    </div>
+    {% endfor %}
+  </div>
+  {% else %}
   <div class="empty-state">
     <span class="mono">First posts — coming soon</span>
     Tell me the first topic you'd like to write about and we'll draft it together.
   </div>
+  {% endif %}
 </section>
 
 <section class="block contact-block" id="contact">

@@ -1,0 +1,7 @@
+title: "Sohaib Hasan"
+description: "Mathematics, AI Reasoning & PlotLab"
+url: "https://sohaib-hasan.github.io"
+markdown: kramdown
+kramdown:
+  syntax_highlighter: rouge
+permalink: /blog/:title/
