@@ -1,10 +1,7 @@
-title: My Blog
-description: A simple blog built with Jekyll
-baseurl: ""
+title: "Sohaib Hasan"
+description: "Mathematics, AI Reasoning & PlotLab"
 url: "https://sohaib-hasan.github.io"
-theme: minima
-
-# Build settings
 markdown: kramdown
-plugins:
-  - jekyll-feed
+kramdown:
+  syntax_highlighter: rouge
+permalink: /blog/:title/
