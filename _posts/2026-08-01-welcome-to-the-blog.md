@@ -1,20 +1,49 @@
 ---
 layout: post
-title: "Welcome to the Blog!"
-date: 2026-08-01
-categories: welcome
+title: "Welcome to the Blog"
 ---
 
-Welcome to my blog! This is your first post. You can edit this page and re-build the site to see your changes.
+This is the first post on this site — and also a quick reference for how to publish new ones, since the whole point of this setup is that a new post should never require touching HTML.
 
-## Getting Started
+## How this works
 
-To add new posts, create files in the `_posts` directory with the naming convention `YYYY-MM-DD-name-of-post.md` and include the necessary front matter.
+Every post is just a Markdown file inside the `_posts` folder, named like this:
 
-## Features
+```
+2026-08-01-welcome-to-the-blog.md
+```
 
-- Markdown support
-- Responsive design
-- Simple and clean layout
+The date at the front of the filename **is** the publish date — GitHub Pages reads it automatically. The rest of the filename becomes the post's URL.
 
-Happy blogging!
+At the top of every post, three dashes open and close a small settings block:
+
+```
+---
+layout: post
+title: "Your Post Title Here"
+---
+```
+
+Everything below that line is the actual post, written in plain Markdown:
+
+- `**bold**` and `*italic*` work as expected
+- Headings with `##` and `###`
+- Numbered and bulleted lists
+- [Links](https://sohaib-hasan.github.io) just need `[text](url)`
+
+## Math, properly typeset
+
+Since this is a mathematics site, inline math like $E = mc^2$ and full display equations both render properly:
+
+$$\int_0^1 x^2 \, dx = \frac{1}{3}$$
+
+## Code, when it's needed
+
+```python
+def is_prime(n):
+    if n < 2:
+        return False
+    return all(n % i != 0 for i in range(2, int(n**0.5) + 1))
+```
+
+That's the whole system. New post = new Markdown file, uploaded the same way everything else on this site gets uploaded.
