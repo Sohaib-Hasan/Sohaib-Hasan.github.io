@@ -18,8 +18,11 @@ jobs:
           args: >
             --verbose --no-progress
             --exclude-mail
-            --exclude "linkedin.com"
-            --exclude "instagram.com"
-            --exclude "web.facebook.com"
+            --exclude "linkedin\.com"
+            --exclude "instagram\.com"
+            --exclude "web\.facebook\.com"
+            --exclude "drive\.google\.com"
+            --exclude "^tel:"
+            --exclude "gumroad\.com"
             './**/*.html'
           fail: true
