@@ -186,7 +186,7 @@ section.block{
 .stat{border-left:2px solid var(--gold); padding-left:1rem;}
 .stat b{font-family:'Fraunces', serif; font-size:1.7rem; font-weight:500; display:block;}
 .stat span{color:var(--chalk-faint); font-size:0.82rem;}
-.bio{max-width:680px;}
+.bio{max-width:680px; margin:0 auto;}
 
 /* ---- timeline ---- */
 .timeline{position:relative; max-width:760px; margin-top:0.5rem;}
@@ -265,7 +265,7 @@ footer{
 .empty-state{
   border:1px dashed var(--line); border-radius:4px; padding:2.6rem 2rem;
   text-align:center; color:var(--chalk-faint); font-size:0.9rem;
-  max-width:680px;
+  max-width:680px; margin:0 auto;
 }
 .empty-state .mono{display:block; color:var(--ink); margin-bottom:0.6rem; font-size:0.72rem; letter-spacing:0.08em; text-transform:uppercase;}
 
