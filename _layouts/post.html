@@ -24,7 +24,7 @@
 <meta name="twitter:image" content="{{ site.url }}/images/og-image.jpg">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.17.0/dist/katex.min.css" integrity="sha384-vlBdW0r3AcZO/HboRPznQNowvexd3fY8qHOWkBi5q7KGgqJ+F48+DceybYmrVbmB" crossorigin="anonymous">
 <style>
-  .post-content{color:var(--chalk-dim); font-size:1rem; max-width:720px;}
+  .post-content{color:var(--chalk-dim); font-size:1rem; max-width:720px; margin:0 auto;}
   .post-content h2{font-family:'Fraunces', serif; font-weight:500; color:var(--chalk); font-size:1.6rem; margin:2.2rem 0 1rem;}
   .post-content h3{font-family:'Fraunces', serif; font-weight:500; color:var(--chalk); font-size:1.3rem; margin:1.8rem 0 0.8rem;}
   .post-content p{margin-bottom:1.2rem; line-height:1.7;}
@@ -66,14 +66,14 @@
     <a href="/research.html">Research</a>
     <a href="/plotlab.html">Animations</a>
     <a href="/notes.html">Notes</a>
-    <a href="/blog/" class="active">Blog</a>
+    <a href="/blog.html" class="active">Blog</a>
     <a href="/contact.html">Contact</a>
   </div>
 </nav>
 <div class="nav-backdrop" id="navBackdrop"></div>
 
 <header class="page-header">
-  <a class="back-link" href="/blog/">← Back to Blog</a>
+  <a class="back-link" href="/blog.html">← Back to Blog</a>
   <div class="post-meta">{{ page.date | date: "%B %-d, %Y" }}{% if page.reading_time %} · {{ page.reading_time }} min read{% endif %}</div>
   <h1>{{ page.title }}</h1>
 </header>
