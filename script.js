@@ -39,7 +39,7 @@
 
 // Scroll-in animation
 (function(){
-  var targets = document.querySelectorAll('.block, .page-header, .hero-inner');
+  var targets = document.querySelectorAll('.block, .page-header');
   if (!targets.length) return;
 
   if (!('IntersectionObserver' in window)) {
