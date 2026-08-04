@@ -3,6 +3,10 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="icon" type="image/x-icon" href="/favicon.ico">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
 <title id="pageTitle">Viewing Notes — Sohaib Hasan</title>
 <meta name="robots" content="noindex">
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -32,7 +36,10 @@
     box-shadow:0 10px 34px rgba(0,0,0,0.5);
     border-radius:2px;
     pointer-events:none; /* blocks drag-to-save gestures on the rendered image */
+    background:var(--board-light);
   }
+  .page-slot{ min-height:200px; width:100%; max-width:900px; display:flex; align-items:center; justify-content:center; }
+  .page-slot .placeholder{ color:var(--chalk-faint); font-family:'JetBrains Mono', monospace; font-size:0.75rem; }
   #loadingMsg{
     color:var(--chalk-faint); font-family:'JetBrains Mono', monospace;
     font-size:0.8rem; padding:3rem 1rem; text-align:center;
@@ -53,13 +60,13 @@
   <div id="loadingMsg">Loading document…</div>
 </div>
 
-<script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js"></script>
-<script>
+<script type="module">
+  import * as pdfjsLib from "https://cdnjs.cloudflare.com/ajax/libs/pdf.js/4.7.76/pdf.min.mjs";
   pdfjsLib.GlobalWorkerOptions.workerSrc =
-    "https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.worker.min.js";
+    "https://cdnjs.cloudflare.com/ajax/libs/pdf.js/4.7.76/pdf.worker.min.mjs";
 
   const params = new URLSearchParams(window.location.search);
-  const file = params.get('file');
+  const rawFile = params.get('file');
   const title = params.get('title') || 'Notes';
 
   document.getElementById('pageTitle').textContent = title + ' — Sohaib Hasan';
@@ -68,23 +75,71 @@
   const container = document.getElementById('pagesContainer');
   const loadingMsg = document.getElementById('loadingMsg');
 
+  // SECURITY: only ever allow this viewer to open our own /notes/*.pdf files.
+  // No scheme, no "//", no "..", must start with "notes/" and end in .pdf.
+  function sanitizeFile(raw) {
+    if (!raw) return null;
+    let decoded;
+    try { decoded = decodeURIComponent(raw); } catch (e) { return null; }
+    if (/^[a-z]+:/i.test(decoded)) return null;      // blocks http:, https:, javascript:, etc.
+    if (decoded.startsWith('//')) return null;        // blocks protocol-relative URLs
+    if (decoded.includes('..')) return null;          // blocks path traversal
+    if (!decoded.startsWith('notes/')) return null;    // must be one of our own notes
+    if (!decoded.toLowerCase().endsWith('.pdf')) return null;
+    return decoded;
+  }
+
+  const file = sanitizeFile(rawFile);
+
   async function renderPDF(url) {
     const pdf = await pdfjsLib.getDocument(url).promise;
     loadingMsg.remove();
     const targetWidth = Math.min(window.innerWidth * 0.9, 900);
+
+    // Build empty placeholder slots for every page, then lazily render
+    // each one only when it scrolls near the viewport.
+    const slots = [];
     for (let pageNum = 1; pageNum <= pdf.numPages; pageNum++) {
+      const slot = document.createElement('div');
+      slot.className = 'page-slot';
+      slot.dataset.pageNum = pageNum;
+      slot.innerHTML = '<span class="placeholder">Page ' + pageNum + '</span>';
+      container.appendChild(slot);
+      slots.push(slot);
+    }
+
+    let rendering = false;
+    async function renderSlot(slot) {
+      if (slot.dataset.rendered) return;
+      slot.dataset.rendered = '1';
+      const pageNum = parseInt(slot.dataset.pageNum, 10);
       const page = await pdf.getPage(pageNum);
       const baseViewport = page.getViewport({ scale: 1 });
-      const scale = (targetWidth / baseViewport.width) * 2; // 2x for sharpness
+      const scale = (targetWidth / baseViewport.width) * 1.5;
       const viewport = page.getViewport({ scale });
       const canvas = document.createElement('canvas');
       canvas.className = 'pdf-page';
       canvas.width = viewport.width;
       canvas.height = viewport.height;
-      canvas.style.width = (viewport.width / 2) + 'px';
-      container.appendChild(canvas);
+      canvas.style.width = (viewport.width / 1.5) + 'px';
       const ctx = canvas.getContext('2d');
       await page.render({ canvasContext: ctx, viewport }).promise;
+      slot.replaceWith(canvas);
+    }
+
+    if ('IntersectionObserver' in window) {
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            renderSlot(entry.target);
+            observer.unobserve(entry.target);
+          }
+        });
+      }, { rootMargin: '600px 0px' }); // start rendering a bit before it's on screen
+      slots.forEach(slot => observer.observe(slot));
+    } else {
+      // no IntersectionObserver support: just render everything up front
+      for (const slot of slots) await renderSlot(slot);
     }
   }
 

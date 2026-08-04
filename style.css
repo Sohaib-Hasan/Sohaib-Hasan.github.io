@@ -167,10 +167,7 @@ section.block{
 }
 .block-title{
   font-family:'Fraunces', serif; font-weight:500; font-size:clamp(1.8rem,3.6vw,2.6rem);
-}
-.soon{
-  font-family:'JetBrains Mono', monospace; font-size:0.66rem; letter-spacing:0.08em;
-  color:var(--chalk-faint); border:1px solid var(--line); padding:0.28rem 0.6rem; border-radius:2px;
+  margin:0;
 }
 .readmore{
   font-family:'JetBrains Mono', monospace; font-size:0.72rem; letter-spacing:0.05em;
@@ -272,7 +269,6 @@ footer{
 
 /* ---- project cards ---- */
 .proj-link{font-family:'JetBrains Mono', monospace; font-size:0.74rem; color:var(--ink);}
-.proj-link.disabled{color:var(--chalk-faint); font-style:italic;}
 
 /* ---- scroll-in animation (progressive enhancement — only applied via JS) ---- */
 .will-animate{
