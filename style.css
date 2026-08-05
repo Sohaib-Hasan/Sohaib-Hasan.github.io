@@ -249,7 +249,9 @@ footer{
   border:1px solid var(--line); color:var(--chalk-dim);
   padding:0.5rem 0.9rem; border-radius:2px;
 }
-.tag.filter{cursor:default;}
+.tag.filter{cursor:pointer; transition:all 0.2s;}
+.tag.filter:hover{border-color:var(--gold); color:var(--chalk);}
+.tag.filter.active{background:var(--gold); border-color:var(--gold); color:var(--board-deep); font-weight:500;}
 .lead-list{list-style:none; max-width:640px;}
 .lead-list li{
   position:relative; padding-left:1.4rem; margin-bottom:1rem;
