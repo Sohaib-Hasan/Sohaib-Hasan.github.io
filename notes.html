@@ -38,9 +38,10 @@
     {"@type":"ListItem","position":2,"item":{"@type":"LearningResource","name":"Calculus Notes","learningResourceType":"Lecture notes","educationalLevel":"University","author":{"@type":"Person","name":"Sohaib Hasan"}}},
     {"@type":"ListItem","position":3,"item":{"@type":"LearningResource","name":"Discrete Mathematics Notes","learningResourceType":"Lecture notes","educationalLevel":"University","author":{"@type":"Person","name":"Sohaib Hasan"}}},
     {"@type":"ListItem","position":4,"item":{"@type":"LearningResource","name":"Linear Algebra Notes","learningResourceType":"Lecture notes","educationalLevel":"University","author":{"@type":"Person","name":"Sohaib Hasan"}}},
-    {"@type":"ListItem","position":5,"item":{"@type":"Product","name":"Complete Algebra & Graphs Notes — IGCSE Math 0580","offers":{"@type":"Offer","price":"30","priceCurrency":"USD","url":"https://plotlab1.gumroad.com/l/chp2_full"}}},
-    {"@type":"ListItem","position":6,"item":{"@type":"Product","name":"Complete Statistics Notes — IGCSE Math 0580","offers":{"@type":"Offer","price":"18","priceCurrency":"USD","url":"https://plotlab1.gumroad.com/l/statistics_full_notes"}}},
-    {"@type":"ListItem","position":7,"item":{"@type":"Product","name":"Manim Beginner Handbook","offers":{"@type":"Offer","price":"29","priceCurrency":"USD","url":"https://plotlab1.gumroad.com/l/manim_guide_handbook"}}}
+    {"@type":"ListItem","position":5,"item":{"@type":"LearningResource","name":"History of Mathematics Notes","learningResourceType":"Lecture notes","educationalLevel":"University","author":{"@type":"Person","name":"Sohaib Hasan"}}},
+    {"@type":"ListItem","position":6,"item":{"@type":"Product","name":"Complete Algebra & Graphs Notes — IGCSE Math 0580","offers":{"@type":"Offer","price":"30","priceCurrency":"USD","url":"https://plotlab1.gumroad.com/l/chp2_full"}}},
+    {"@type":"ListItem","position":7,"item":{"@type":"Product","name":"Complete Statistics Notes — IGCSE Math 0580","offers":{"@type":"Offer","price":"18","priceCurrency":"USD","url":"https://plotlab1.gumroad.com/l/statistics_full_notes"}}},
+    {"@type":"ListItem","position":8,"item":{"@type":"Product","name":"Manim Beginner Handbook","offers":{"@type":"Offer","price":"29","priceCurrency":"USD","url":"https://plotlab1.gumroad.com/l/manim_guide_handbook"}}}
   ]
 }
 </script>
@@ -81,14 +82,12 @@
     </div>
   </div>
   <div class="tag-cloud">
-    <span class="tag filter">Calculus</span>
-    <span class="tag filter">Linear Algebra</span>
-    <span class="tag filter">Real Analysis</span>
-    <span class="tag filter">Discrete Math</span>
-    <span class="tag filter">Quantitative Reasoning</span>
-    <span class="tag filter">Number Theory</span>
-    <span class="tag filter">IGCSE Math</span>
-    <span class="tag filter">Machine Learning</span>
+    <span class="tag filter" data-filter="Number Theory">Number Theory</span>
+    <span class="tag filter" data-filter="Calculus">Calculus</span>
+    <span class="tag filter" data-filter="Discrete Math">Discrete Math</span>
+    <span class="tag filter" data-filter="Linear Algebra">Linear Algebra</span>
+    <span class="tag filter" data-filter="History of Mathematics">History of Mathematics</span>
+    <span class="tag filter" data-filter="IGCSE Math">IGCSE Math</span>
   </div>
 </section>
 
@@ -100,32 +99,38 @@
     </div>
   </div>
   <div class="card-grid">
-    <div class="card">
+    <div class="card" data-category="Number Theory">
       <span class="card-tag">BS/ADP MATH . UNIVERSITY OF SARGODHA</span>
       <h3>Number Theory</h3>
       <p>Complete notes for BS/ADP Mathematics students.</p>
       <a class="proj-link" href="viewer.html?file=notes/Number%20Theory%20(Full%20Notes).pdf&title=Number%20Theory" target="_blank" rel="noopener">View</a> · <a class="proj-link" href="notes/Number%20Theory%20(Full%20Notes).pdf" download>Download</a>
     </div>
-    <div class="card">
+    <div class="card" data-category="Calculus">
       <span class="card-tag">BS/ADP CS / IT / SE . UNIVERSITY OF SARGODHA</span>
       <h3>Calculus</h3>
       <p>Complete notes for BS/ADP CS, IT &amp; Software Engineering students.</p>
       <a class="proj-link" href="viewer.html?file=notes/Calculus%20(CS%20IT%20SE).pdf&title=Calculus" target="_blank" rel="noopener">View</a> · <a class="proj-link" href="notes/Calculus%20(CS%20IT%20SE).pdf" download>Download</a>
     </div>
-    <div class="card">
+    <div class="card" data-category="Discrete Math">
       <span class="card-tag">BS/ADP CS / IT / SE . UNIVERSITY OF SARGODHA</span>
       <h3>Discrete Mathematics</h3>
       <p>Complete notes for BS/ADP CS, IT &amp; Software Engineering students.</p>
       <a class="proj-link" href="viewer.html?file=notes/Discrete%20Math%20(CS%20IT%20SE).pdf&title=Discrete%20Mathematics" target="_blank" rel="noopener">View</a> · <a class="proj-link" href="notes/Discrete%20Math%20(CS%20IT%20SE).pdf" download>Download</a>
     </div>
-    <div class="card">
+    <div class="card" data-category="Linear Algebra">
       <span class="card-tag">BS/ADP CS / IT / SE . UNIVERSITY OF SARGODHA</span>
       <h3>Linear Algebra</h3>
       <p>Complete notes for BS/ADP CS, IT &amp; Software Engineering students.</p>
       <a class="proj-link" href="viewer.html?file=notes/Linear%20Algebra%20(CS,IT,SE).pdf&title=Linear%20Algebra" target="_blank" rel="noopener">View</a> · <a class="proj-link" href="notes/Linear%20Algebra%20(CS,IT,SE).pdf" download>Download</a>
     </div>
+    <div class="card" data-category="History of Mathematics">
+      <span class="card-tag">BS/ADP MATH . UNIVERSITY OF SARGODHA</span>
+      <h3>History of Mathematics</h3>
+      <p>Complete notes for BS/ADP Mathematics students.</p>
+      <a class="proj-link" href="viewer.html?file=notes/History%20of%20Mathematics.pdf&title=History%20of%20Mathematics" target="_blank" rel="noopener">View</a> · <a class="proj-link" href="notes/History%20of%20Mathematics.pdf" download>Download</a>
+    </div>
   </div>
-  <p style="margin-top:1.6rem; color:var(--chalk-faint); font-size:0.85rem;">More notes being added — Real Analysis, Group Theory, and Machine Learning coming next.</p>
+  <p style="margin-top:1.6rem; color:var(--chalk-faint); font-size:0.85rem;">More notes being added regularly.</p>
 </section>
 
 <section class="block" id="premium">
@@ -137,85 +142,85 @@
   </div>
   <p style="color:var(--chalk-dim); max-width:680px; margin-bottom:2rem;">Fully animated, downloadable note packs — each one opens on Gumroad, where you can preview and purchase.</p>
   <div class="card-grid">
-    <div class="card">
+    <div class="card" data-category="IGCSE Math">
       <span class="card-tag">BUNDLE · $30+</span>
       <h3>Complete Algebra &amp; Graphs Notes — All Topics</h3>
       <p>Every Algebra &amp; Graphs topic, animated. Cambridge Core &amp; Extended (2025–2027).</p>
       <a class="proj-link" href="https://plotlab1.gumroad.com/l/chp2_full" target="_blank" rel="noopener">Get on Gumroad →</a>
     </div>
-    <div class="card">
+    <div class="card" data-category="IGCSE Math">
       <span class="card-tag">BUNDLE · $18+</span>
       <h3>Complete Statistics Notes — All Topics</h3>
       <p>Every Statistics topic, animated. Cambridge Core &amp; Extended (2025–2027).</p>
       <a class="proj-link" href="https://plotlab1.gumroad.com/l/statistics_full_notes" target="_blank" rel="noopener">Get on Gumroad →</a>
     </div>
-    <div class="card">
+    <div class="card" data-category="IGCSE Math">
       <span class="card-tag">ALGEBRA PART 1 · $6+</span>
       <h3>Foundations — Algebraic Manipulation &amp; Indices</h3>
       <p>Animated notes, Cambridge Core &amp; Extended (2025–2027).</p>
       <a class="proj-link" href="https://plotlab1.gumroad.com/l/algebra_part1" target="_blank" rel="noopener">Get on Gumroad →</a>
     </div>
-    <div class="card">
+    <div class="card" data-category="IGCSE Math">
       <span class="card-tag">ALGEBRA PART 2 · $7+</span>
       <h3>Equations &amp; Inequalities</h3>
       <p>Simultaneous &amp; quadratic equations, animated. Cambridge Core &amp; Extended.</p>
       <a class="proj-link" href="https://plotlab1.gumroad.com/l/algebra_part2" target="_blank" rel="noopener">Get on Gumroad →</a>
     </div>
-    <div class="card">
+    <div class="card" data-category="IGCSE Math">
       <span class="card-tag">ALGEBRA PART 3 · $6+</span>
       <h3>Sequences &amp; Proportion</h3>
       <p>Animated notes, Cambridge Core &amp; Extended (2025–2027).</p>
       <a class="proj-link" href="https://plotlab1.gumroad.com/l/algebra_part3" target="_blank" rel="noopener">Get on Gumroad →</a>
     </div>
-    <div class="card">
+    <div class="card" data-category="IGCSE Math">
       <span class="card-tag">ALGEBRA PART 4 · $7+</span>
       <h3>Graphs — Practical Graphs, Functions &amp; Curve Sketching</h3>
       <p>Animated notes, Cambridge Core &amp; Extended (2025–2027).</p>
       <a class="proj-link" href="https://plotlab1.gumroad.com/l/algebra_part4" target="_blank" rel="noopener">Get on Gumroad →</a>
     </div>
-    <div class="card">
+    <div class="card" data-category="IGCSE Math">
       <span class="card-tag">ALGEBRA PART 5 · $8+</span>
       <h3>Differentiation &amp; Functions</h3>
       <p>Animated notes, Cambridge Extended (2025–2027).</p>
       <a class="proj-link" href="https://plotlab1.gumroad.com/l/algebra_part5" target="_blank" rel="noopener">Get on Gumroad →</a>
     </div>
-    <div class="card">
+    <div class="card" data-category="IGCSE Math">
       <span class="card-tag">STATISTICS PART 1 · $6+</span>
       <h3>Data, Tables &amp; Averages</h3>
       <p>Animated notes, Cambridge Core &amp; Extended (2025–2027).</p>
       <a class="proj-link" href="https://plotlab1.gumroad.com/l/statistics_part1" target="_blank" rel="noopener">Get on Gumroad →</a>
     </div>
-    <div class="card">
+    <div class="card" data-category="IGCSE Math">
       <span class="card-tag">STATISTICS PART 2 · $5+</span>
       <h3>Charts &amp; Diagrams</h3>
       <p>Bar charts, pie charts, stem-and-leaf — animated. Cambridge Core &amp; Extended.</p>
       <a class="proj-link" href="https://plotlab1.gumroad.com/l/stats_charts_diagrams" target="_blank" rel="noopener">Get on Gumroad →</a>
     </div>
-    <div class="card">
+    <div class="card" data-category="IGCSE Math">
       <span class="card-tag">STATISTICS PART 3 · $5+</span>
       <h3>Scatter Diagrams &amp; Correlation</h3>
       <p>Animated notes, Cambridge Core &amp; Extended (2025–2027).</p>
       <a class="proj-link" href="https://plotlab1.gumroad.com/l/scatterdiagram_correlation" target="_blank" rel="noopener">Get on Gumroad →</a>
     </div>
-    <div class="card">
+    <div class="card" data-category="IGCSE Math">
       <span class="card-tag">STATISTICS PART 4 · $7+</span>
       <h3>Cumulative Frequencies &amp; Histograms</h3>
       <p>Animated notes, Cambridge Extended (2025–2027).</p>
       <a class="proj-link" href="https://plotlab1.gumroad.com/l/commulativefrequency_histogram" target="_blank" rel="noopener">Get on Gumroad →</a>
     </div>
-    <div class="card">
+    <div class="card" data-category="IGCSE Math">
       <span class="card-tag">COORDINATE GEOMETRY · $8+</span>
       <h3>Chapter 3, Part 1 (3.1–3.5)</h3>
       <p>Visual notes with Manim animations.</p>
       <a class="proj-link" href="https://plotlab1.gumroad.com/l/chp3_part1" target="_blank" rel="noopener">Get on Gumroad →</a>
     </div>
-    <div class="card">
+    <div class="card" data-category="IGCSE Math">
       <span class="card-tag">EQUATIONS</span>
       <h3>Linear &amp; Quadratic Equations</h3>
       <p>Notes + animated videos, with scannable QR codes.</p>
       <a class="proj-link" href="https://plotlab1.gumroad.com/l/igcse_equations" target="_blank" rel="noopener">Get on Gumroad →</a>
     </div>
-    <div class="card">
+    <div class="card" data-category="IGCSE Math">
       <span class="card-tag">MANIM HANDBOOK · $29+</span>
       <h3>Manim Community Edition (v0.20.1) — Beginner Handbook</h3>
       <p>Create math animations with Python, from scratch.</p>
