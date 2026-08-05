@@ -104,3 +104,29 @@
 
   counters.forEach(function(el){ cObserver.observe(el); });
 })();
+
+// Clickable category filter tags (Notes page, etc.)
+(function(){
+  var tags = document.querySelectorAll('.tag.filter[data-filter]');
+  if (!tags.length) return;
+  var cards = document.querySelectorAll('[data-category]');
+
+  tags.forEach(function(tag){
+    tag.style.cursor = 'pointer';
+    tag.addEventListener('click', function(){
+      var isActive = tag.classList.contains('active');
+      tags.forEach(function(t){ t.classList.remove('active'); });
+
+      if (isActive) {
+        cards.forEach(function(c){ c.style.display = ''; });
+        return;
+      }
+
+      tag.classList.add('active');
+      var filter = tag.getAttribute('data-filter');
+      cards.forEach(function(c){
+        c.style.display = (c.getAttribute('data-category') === filter) ? '' : 'none';
+      });
+    });
+  });
+})();
