@@ -236,6 +236,45 @@ section.block{
 .service-price{font-family:'JetBrains Mono', monospace; font-size:0.74rem; color:var(--chalk-faint);}
 .service-card .btn{padding:0.6rem 1.2rem; font-size:0.8rem;}
 
+/* ---- newsletter (Kit embed) reskin ---- */
+.newsletter-embed{max-width:560px;}
+.newsletter-embed .formkit-form{
+  background-color: var(--board-light) !important;
+  border: 1px solid var(--line) !important;
+}
+.newsletter-embed .formkit-header{
+  color: var(--chalk) !important;
+  font-family:'Fraunces', serif !important;
+}
+.newsletter-embed .formkit-subheader{
+  color: var(--chalk-dim) !important;
+}
+.newsletter-embed .formkit-guarantee{
+  color: var(--chalk-faint) !important;
+}
+.newsletter-embed .formkit-input{
+  background: var(--board-deep) !important;
+  color: var(--chalk) !important;
+  border-color: var(--line) !important;
+}
+.newsletter-embed .formkit-input::placeholder{
+  color: var(--chalk-faint) !important;
+  opacity: 1 !important;
+}
+.newsletter-embed .formkit-input:focus{
+  border-color: var(--gold) !important;
+}
+.newsletter-embed .formkit-submit{
+  background-color: var(--gold) !important;
+}
+.newsletter-embed .formkit-submit:hover{
+  background-color: #f2c168 !important;
+}
+.newsletter-embed .formkit-submit span{
+  color: var(--board-deep) !important;
+  font-weight: 600 !important;
+}
+
 /* ---- contact ---- */
 .contact-block{text-align:center; padding-bottom:8rem;}
 .contact-block .block-num{justify-content:center; display:flex;}
