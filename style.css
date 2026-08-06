@@ -332,37 +332,20 @@ footer{
   .will-animate{ opacity:1; transform:none; transition:none; }
 }
 
-/* ---- hero mini animation (small looping graph, subtle) ---- */
-.hero-loop{
-  width:120px; height:56px; margin:0 auto 1.6rem;
-  opacity:0.85;
+/* ---- hero divider (subtle static accent) ---- */
+.hero-divider{
+  width:64px; height:1px;
+  margin:0 auto 1.6rem;
+  background: linear-gradient(90deg, transparent, var(--gold), transparent);
+  position:relative;
 }
-.hero-loop path{
-  fill:none; stroke:var(--gold); stroke-width:2; stroke-linecap:round;
-  stroke-dasharray:150; stroke-dashoffset:0;
-  animation: loopdraw 3.2s ease-in-out infinite;
-}
-.hero-loop circle{
-  fill:var(--gold);
-  animation: loopdot 3.2s ease-in-out infinite;
-  offset-path: path("M4 40 C 30 8, 45 8, 60 28 S 95 48, 116 14");
-  offset-rotate: 0deg;
-}
-@keyframes loopdraw{
-  0%{ stroke-dashoffset:150; }
-  45%{ stroke-dashoffset:0; }
-  55%{ stroke-dashoffset:0; }
-  100%{ stroke-dashoffset:-150; }
-}
-@keyframes loopdot{
-  0%{ offset-distance:0%; opacity:0; }
-  8%{ opacity:1; }
-  45%{ offset-distance:100%; opacity:1; }
-  50%{ opacity:0; }
-  100%{ opacity:0; offset-distance:100%; }
-}
-@media (prefers-reduced-motion: reduce){
-  .hero-loop path, .hero-loop circle{ animation:none; stroke-dashoffset:0; }
+.hero-divider::after{
+  content:'';
+  position:absolute; left:50%; top:50%;
+  width:5px; height:5px; border-radius:50%;
+  background:var(--gold);
+  transform:translate(-50%,-50%);
+  box-shadow:0 0 8px rgba(232,176,75,0.6);
 }
 
 /* ---- stat count-up target ---- */
