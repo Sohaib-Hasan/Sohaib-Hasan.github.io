@@ -225,6 +225,17 @@ section.block{
 .card h3{font-family:'Fraunces', serif; font-weight:500; font-size:1.25rem; margin-bottom:0.6rem;}
 .card p{color:var(--chalk-dim); font-size:0.9rem;}
 
+/* ---- service cards (Work With Me) ---- */
+.service-card{display:flex; flex-direction:column;}
+.service-card p{flex:1;}
+.service-foot{
+  display:flex; align-items:center; justify-content:space-between; gap:1rem;
+  margin-top:1.4rem; padding-top:1.2rem; border-top:1px solid var(--line);
+  flex-wrap:wrap;
+}
+.service-price{font-family:'JetBrains Mono', monospace; font-size:0.74rem; color:var(--chalk-faint);}
+.service-card .btn{padding:0.6rem 1.2rem; font-size:0.8rem;}
+
 /* ---- contact ---- */
 .contact-block{text-align:center; padding-bottom:8rem;}
 .contact-block .block-num{justify-content:center; display:flex;}
