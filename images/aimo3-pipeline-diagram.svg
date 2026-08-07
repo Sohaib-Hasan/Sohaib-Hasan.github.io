@@ -1,0 +1,135 @@
+<svg viewBox="0 0 900 985" xmlns="http://www.w3.org/2000/svg" font-family="'Segoe UI', Helvetica, Arial, sans-serif">
+  <defs>
+    <marker id="arrow" markerWidth="10" markerHeight="10" refX="8" refY="3" orient="auto" markerUnits="strokeWidth">
+      <path d="M0,0 L0,6 L9,3 z" fill="#475569"/>
+    </marker>
+  </defs>
+
+  <!-- background -->
+  <rect x="0" y="0" width="900" height="985" fill="#FFFFFF"/>
+
+  <!-- Title -->
+  <text x="450" y="45" text-anchor="middle" font-size="22" font-weight="700" fill="#0F172A">Parallel Self-Consistency Pipeline</text>
+  <text x="450" y="70" text-anchor="middle" font-size="13" fill="#64748B">AIMO3 &#8212; Sohaib Hasan &amp; Samuel Koh</text>
+
+  <!-- Node 1: Problem input -->
+  <rect x="300" y="100" width="300" height="60" rx="10" fill="#F1F5F9" stroke="#334155" stroke-width="1.5"/>
+  <text x="450" y="125" text-anchor="middle" font-size="15" fill="#1E293B">AIMO Problem</text>
+  <text x="450" y="145" text-anchor="middle" font-size="12" fill="#475569">written in LaTeX</text>
+  <line x1="450" y1="160" x2="450" y2="195" stroke="#475569" stroke-width="2" marker-end="url(#arrow)"/>
+
+  <!-- Node 2: Prompt constructor -->
+  <rect x="300" y="196" width="300" height="55" rx="10" fill="#F1F5F9" stroke="#334155" stroke-width="1.5"/>
+  <text x="450" y="229" text-anchor="middle" font-size="15" fill="#1E293B">Prompt Constructor</text>
+  <line x1="450" y1="251" x2="450" y2="286" stroke="#475569" stroke-width="2" marker-end="url(#arrow)"/>
+
+  <!-- Node 3: Base model -->
+  <rect x="250" y="287" width="400" height="65" rx="10" fill="#0F766E" stroke="#0F766E" stroke-width="1.5"/>
+  <text x="450" y="315" text-anchor="middle" font-size="16" font-weight="700" fill="#FFFFFF">Base Model: GPT-OSS-120B</text>
+  <text x="450" y="337" text-anchor="middle" font-size="12.5" fill="#CCFBF1">temperature = 0.8</text>
+  <line x1="450" y1="352" x2="450" y2="384" stroke="#475569" stroke-width="2" marker-end="url(#arrow)"/>
+
+  <!-- Sampler label box -->
+  <rect x="90" y="385" width="720" height="215" rx="14" fill="#FFFFFF" stroke="#94A3B8" stroke-width="1.5" stroke-dasharray="6,5"/>
+  <text x="450" y="415" text-anchor="middle" font-size="14.5" font-weight="700" fill="#334155">Parallel Sampler &#8212; N = 8 independent reasoning attempts</text>
+  <text x="450" y="434" text-anchor="middle" font-size="11.5" fill="#64748B">each attempt paired with a Python REPL (Tool-Integrated Reasoning)</text>
+
+  <!-- 8 lanes: circles = attempts, pills = candidate answers -->
+  <!-- lane x centers -->
+  <!-- 8 lanes across width 720 starting x=90, each lane 90 wide -->
+
+  <!-- lane 1 -->
+  <circle cx="135" cy="480" r="26" fill="#E0F2FE" stroke="#0369A1" stroke-width="1.5"/>
+  <text x="135" y="485" text-anchor="middle" font-size="13" fill="#0369A1">1</text>
+  <line x1="135" y1="506" x2="135" y2="546" stroke="#94A3B8" stroke-width="1.5" marker-end="url(#arrow)"/>
+  <rect x="105" y="547" width="60" height="32" rx="16" fill="#FEF3C7" stroke="#B45309" stroke-width="1.5"/>
+  <text x="135" y="568" text-anchor="middle" font-size="12" fill="#92400E">A1</text>
+
+  <!-- lane 2 -->
+  <circle cx="225" cy="480" r="26" fill="#E0F2FE" stroke="#0369A1" stroke-width="1.5"/>
+  <text x="225" y="485" text-anchor="middle" font-size="13" fill="#0369A1">2</text>
+  <line x1="225" y1="506" x2="225" y2="546" stroke="#94A3B8" stroke-width="1.5" marker-end="url(#arrow)"/>
+  <rect x="195" y="547" width="60" height="32" rx="16" fill="#FEF3C7" stroke="#B45309" stroke-width="1.5"/>
+  <text x="225" y="568" text-anchor="middle" font-size="12" fill="#92400E">A2</text>
+
+  <!-- lane 3 -->
+  <circle cx="315" cy="480" r="26" fill="#E0F2FE" stroke="#0369A1" stroke-width="1.5"/>
+  <text x="315" y="485" text-anchor="middle" font-size="13" fill="#0369A1">3</text>
+  <line x1="315" y1="506" x2="315" y2="546" stroke="#94A3B8" stroke-width="1.5" marker-end="url(#arrow)"/>
+  <rect x="285" y="547" width="60" height="32" rx="16" fill="#FEF3C7" stroke="#B45309" stroke-width="1.5"/>
+  <text x="315" y="568" text-anchor="middle" font-size="12" fill="#92400E">A3</text>
+
+  <!-- lane 4 -->
+  <circle cx="405" cy="480" r="26" fill="#E0F2FE" stroke="#0369A1" stroke-width="1.5"/>
+  <text x="405" y="485" text-anchor="middle" font-size="13" fill="#0369A1">4</text>
+  <line x1="405" y1="506" x2="405" y2="546" stroke="#94A3B8" stroke-width="1.5" marker-end="url(#arrow)"/>
+  <rect x="375" y="547" width="60" height="32" rx="16" fill="#FEF3C7" stroke="#B45309" stroke-width="1.5"/>
+  <text x="405" y="568" text-anchor="middle" font-size="12" fill="#92400E">A4</text>
+
+  <!-- lane 5 -->
+  <circle cx="495" cy="480" r="26" fill="#E0F2FE" stroke="#0369A1" stroke-width="1.5"/>
+  <text x="495" y="485" text-anchor="middle" font-size="13" fill="#0369A1">5</text>
+  <line x1="495" y1="506" x2="495" y2="546" stroke="#94A3B8" stroke-width="1.5" marker-end="url(#arrow)"/>
+  <rect x="465" y="547" width="60" height="32" rx="16" fill="#FEF3C7" stroke="#B45309" stroke-width="1.5"/>
+  <text x="495" y="568" text-anchor="middle" font-size="12" fill="#92400E">A5</text>
+
+  <!-- lane 6 -->
+  <circle cx="585" cy="480" r="26" fill="#E0F2FE" stroke="#0369A1" stroke-width="1.5"/>
+  <text x="585" y="485" text-anchor="middle" font-size="13" fill="#0369A1">6</text>
+  <line x1="585" y1="506" x2="585" y2="546" stroke="#94A3B8" stroke-width="1.5" marker-end="url(#arrow)"/>
+  <rect x="555" y="547" width="60" height="32" rx="16" fill="#FEF3C7" stroke="#B45309" stroke-width="1.5"/>
+  <text x="585" y="568" text-anchor="middle" font-size="12" fill="#92400E">A6</text>
+
+  <!-- lane 7 -->
+  <circle cx="675" cy="480" r="26" fill="#E0F2FE" stroke="#0369A1" stroke-width="1.5"/>
+  <text x="675" y="485" text-anchor="middle" font-size="13" fill="#0369A1">7</text>
+  <line x1="675" y1="506" x2="675" y2="546" stroke="#94A3B8" stroke-width="1.5" marker-end="url(#arrow)"/>
+  <rect x="645" y="547" width="60" height="32" rx="16" fill="#FEF3C7" stroke="#B45309" stroke-width="1.5"/>
+  <text x="675" y="568" text-anchor="middle" font-size="12" fill="#92400E">A7</text>
+
+  <!-- lane 8 -->
+  <circle cx="765" cy="480" r="26" fill="#E0F2FE" stroke="#0369A1" stroke-width="1.5"/>
+  <text x="765" y="485" text-anchor="middle" font-size="13" fill="#0369A1">8</text>
+  <line x1="765" y1="506" x2="765" y2="546" stroke="#94A3B8" stroke-width="1.5" marker-end="url(#arrow)"/>
+  <rect x="735" y="547" width="60" height="32" rx="16" fill="#FEF3C7" stroke="#B45309" stroke-width="1.5"/>
+  <text x="765" y="568" text-anchor="middle" font-size="12" fill="#92400E">A8</text>
+
+  <!-- fan out from base model to each attempt circle -->
+  <line x1="450" y1="384" x2="135" y2="454" stroke="#CBD5E1" stroke-width="1.2"/>
+  <line x1="450" y1="384" x2="225" y2="454" stroke="#CBD5E1" stroke-width="1.2"/>
+  <line x1="450" y1="384" x2="315" y2="454" stroke="#CBD5E1" stroke-width="1.2"/>
+  <line x1="450" y1="384" x2="405" y2="454" stroke="#CBD5E1" stroke-width="1.2"/>
+  <line x1="450" y1="384" x2="495" y2="454" stroke="#CBD5E1" stroke-width="1.2"/>
+  <line x1="450" y1="384" x2="585" y2="454" stroke="#CBD5E1" stroke-width="1.2"/>
+  <line x1="450" y1="384" x2="675" y2="454" stroke="#CBD5E1" stroke-width="1.2"/>
+  <line x1="450" y1="384" x2="765" y2="454" stroke="#CBD5E1" stroke-width="1.2"/>
+
+  <!-- converge from each pill down to aggregator -->
+  <line x1="135" y1="579" x2="450" y2="650" stroke="#CBD5E1" stroke-width="1.2"/>
+  <line x1="225" y1="579" x2="450" y2="650" stroke="#CBD5E1" stroke-width="1.2"/>
+  <line x1="315" y1="579" x2="450" y2="650" stroke="#CBD5E1" stroke-width="1.2"/>
+  <line x1="405" y1="579" x2="450" y2="650" stroke="#CBD5E1" stroke-width="1.2"/>
+  <line x1="495" y1="579" x2="450" y2="650" stroke="#CBD5E1" stroke-width="1.2"/>
+  <line x1="585" y1="579" x2="450" y2="650" stroke="#CBD5E1" stroke-width="1.2"/>
+  <line x1="675" y1="579" x2="450" y2="650" stroke="#CBD5E1" stroke-width="1.2"/>
+  <line x1="765" y1="579" x2="450" y2="650" stroke="#CBD5E1" stroke-width="1.2"/>
+
+  <line x1="450" y1="650" x2="450" y2="666" stroke="#475569" stroke-width="2" marker-end="url(#arrow)"/>
+
+  <!-- Aggregator box -->
+  <rect x="175" y="667" width="550" height="140" rx="12" fill="#0B2942" stroke="#0B2942" stroke-width="1.5"/>
+  <text x="450" y="698" text-anchor="middle" font-size="16" font-weight="700" fill="#FFFFFF">Entropy-Weighted Aggregator</text>
+  <text x="450" y="732" text-anchor="middle" font-size="18" font-weight="700" fill="#5EEAD4" font-family="Georgia, 'Times New Roman', serif">score = 1/H + 8.0&#183;V</text>
+  <text x="450" y="758" text-anchor="middle" font-size="12" fill="#CBD5E1">low-entropy (confident) attempts weighted up &#8226; V = verifier score</text>
+  <text x="450" y="778" text-anchor="middle" font-size="12" fill="#CBD5E1">early stop once any answer reaches &#8805; 4 votes</text>
+
+  <line x1="450" y1="807" x2="450" y2="842" stroke="#475569" stroke-width="2" marker-end="url(#arrow)"/>
+
+  <!-- Final answer -->
+  <rect x="320" y="843" width="260" height="65" rx="10" fill="#0F766E" stroke="#0F766E" stroke-width="1.5"/>
+  <text x="450" y="880" text-anchor="middle" font-size="16" font-weight="700" fill="#FFFFFF">Final Submitted Answer</text>
+
+  <!-- caption -->
+  <text x="450" y="940" text-anchor="middle" font-size="12" fill="#94A3B8">Core idea based on Wang et al. (2022), "Self-Consistency Improves Chain of Thought Reasoning in Language Models"</text>
+  <text x="450" y="960" text-anchor="middle" font-size="12" fill="#94A3B8">Served via vLLM on H100 GPUs &#8212; 5-hour compute budget, binary scoring</text>
+</svg>
