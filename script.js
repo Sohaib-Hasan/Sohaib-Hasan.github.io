@@ -39,7 +39,11 @@
 
 // Scroll-in animation
 (function(){
-  var targets = document.querySelectorAll('.block, .page-header');
+  var targets = Array.prototype.slice.call(document.querySelectorAll('.block, .page-header')).filter(function(el){
+    return el.tagName !== 'ARTICLE'; // long-form content (blog posts) is excluded — very tall
+                                      // elements can never satisfy a >0 intersection threshold
+                                      // on narrow (mobile) viewports, which left them stuck at opacity:0
+  });
   if (!targets.length) return;
 
   if (!('IntersectionObserver' in window)) {
@@ -54,7 +58,7 @@
         observer.unobserve(entry.target);
       }
     });
-  }, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
+  }, { threshold: 0, rootMargin: '0px 0px -40px 0px' });
 
   targets.forEach(function(el){
     el.classList.add('will-animate');
