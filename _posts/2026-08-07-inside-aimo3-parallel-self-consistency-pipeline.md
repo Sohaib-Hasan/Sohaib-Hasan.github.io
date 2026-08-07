@@ -19,7 +19,7 @@ AIMO1 was won by Project Numina in 2024. AIMO2 was won by NVIDIA's team, NemoSki
 
 Competitors were also given access to H100 GPUs, roughly double the compute of AIMO2, which meant we could run larger open-weight models than previous years: models like GPT-OSS-120B and Qwen3-Next became viable for the first time.
 
-So when you read that an AI "scored a perfect IMO," understand what's actually being claimed. In 2026, most of those results — including the ones from Huawei and Xiaohongshu — were the companies' own self-reported submissions, run after the human competition window closed, evaluated against the same problems and time limit but not scored live by IMO coordinators. Only a small number of 2025 and 2026 results have been independently, officially graded. That's not a reason to dismiss the progress — it's real, and it's fast — but it's worth knowing the difference between "officially certified" and "self-administered" when you see the next big claim.
+So when you read that an AI "scored a perfect IMO," understand what's actually being claimed. In 2026, most of those results, including the ones from Huawei and Xiaohongshu, were the companies' own self-reported submissions, run after the human competition window closed, evaluated against the same problems and time limit but not scored live by IMO coordinators. Only a small number of 2025 and 2026 results have been independently, officially graded. That's not a reason to dismiss the progress; it's real, and it's fast, but it's worth knowing the difference between "officially certified" and "self-administered" when you see the next big claim.
 
 ## Two Rules That Shaped Every Decision We Made
 
@@ -33,7 +33,7 @@ I handled the mathematical side: interpreting problems, checking whether a given
 
 ## Four Ideas We Killed Before Writing a Line of the Final System
 
-Here's what we considered and rejected — and why each one matters as a lesson, not just a footnote:
+Here's what we considered and rejected and why each one matters as a lesson, not just a footnote:
 
 - **Supervised fine-tuning.** The obvious first instinct. Rejected immediately: it needs massive GPU clusters and months of runway, not a fixed five-hour, competition-scale budget.
 - **Fully agentic search**, a system that breaks a problem into steps, calls tools, verifies intermediate results, and loops back on itself. Conceptually, this is the closest thing to how a human mathematician actually thinks. We rejected it anyway, because Kaggle's environment has no outbound internet access, and an open-ended agentic loop risked silently burning our entire compute budget before ever producing a final answer.
@@ -56,26 +56,26 @@ What we actually built and submitted, we called a **Parallel Self-Consistency Pi
 
 $$\text{score} = \frac{1}{H} + 8.0 \cdot V$$
 
-Here, *H* is the mean generation entropy of that attempt — how "confident" the model was, token by token, while producing it — and *V* is a verifier score. Because the formula uses 1/H, a low-entropy, confident attempt scores higher than a scattered, uncertain one, even if it wasn't the majority answer. There's also an early-stopping rule: if any single answer already has four or more votes, the aggregator stops and submits it immediately, saving compute for the next problem instead of waiting out the clock.
+Here, *H* is the mean generation entropy of that attempt, how "confident" the model was, token by token, while producing it, and *V* is a verifier score. Because the formula uses 1/H, a low-entropy, confident attempt scores higher than a scattered, uncertain one, even if it wasn't the majority answer. There's also an early-stopping rule: if any single answer already has four or more votes, the aggregator stops and submits it immediately, saving compute for the next problem instead of waiting out the clock.
 
-I actually animated this entire pipeline in Manim — every arrow, every fan-out, every step of the aggregation — so you can watch it play out visually instead of just reading a static diagram:
+I actually animated this entire pipeline in Manim, every arrow, every fan-out, every step of the aggregation so you can watch it play out visually instead of just reading a static diagram:
 
 **[Watch the animation: AIMO3 Pipeline, visualized](https://youtu.be/qOPH9anSiw4)**
 
 ## From 8/50 to 42/50: What the Climb Actually Looked Like
 
-Our first working version of this pipeline scored 8 out of 50. The final version scored 42. That climb didn't come from one clever trick — it came from three unglamorous things, repeated over and over: systematically diagnosing bugs in the pipeline itself, upgrading the base model as better open-weight options became available, and steadily refining the few-shot prompts feeding into step one.
+Our first working version of this pipeline scored 8 out of 50. The final version scored 42. That climb didn't come from one clever trick; it came from three unglamorous things, repeated over and over: systematically diagnosing bugs in the pipeline itself, upgrading the base model as better open-weight options became available, and steadily refining the few-shot prompts feeding into step one.
 
 There's one more data point that told us we were on the right track, and it came after the competition closed. The eventual first-place team's public writeup also centered on GPT-OSS-120B, and their approach was also built around entropy-weighted self-consistency — refined further with things like adaptive runtime scheduling, but directionally the same idea we'd arrived at independently. When a team with more resources converges on the same core mechanism you did, without either of you seeing the other's work, that's a stronger signal than any single benchmark score.
 
 ## The One Lesson I'd Give Anyone Building AI Under Real Constraints
 
-Every rejected idea — fine-tuning, agentic search, tree search, verbose prompting — failed for a version of the same reason: it added complexity we couldn't fully control inside a budget we couldn't negotiate. The thing that actually worked was the opposite: precision and reliability over architectural cleverness.
+Every rejected idea, fine-tuning, agentic search, tree search, and verbose prompting failed for a version of the same reason: it added complexity we couldn't fully control inside a budget we couldn't negotiate. The thing that actually worked was the opposite: precision and reliability over architectural cleverness.
 
-That's not a lesson specific to Kaggle competitions. It's true anywhere you're building an AI system against a real constraint — a latency budget, a cost ceiling, a compliance requirement. The fanciest architecture on paper is worth nothing if you can't trust what it does when the clock is running.
+That's not a lesson specific to Kaggle competitions. It's true anywhere you're building an AI system against a real constraint, a latency budget, a cost ceiling, a compliance requirement. The fanciest architecture on paper is worth nothing if you can't trust what it does when the clock is running.
 
-As for the "AI beat the Olympiad" headlines — they're not wrong, exactly. The field genuinely moved from silver-medal level in 2024, to officially certified gold in 2025, to multiple perfect-score claims in 2026, in about two years. I watched a smaller version of that same curve happen inside my own project, going from 8/50 to 42/50 in a few months of iteration. The trend is real. Just read the fine print on "official" versus "self-reported" before you decide how impressed to be by any single claim.
+As for the "AI beat the Olympiad" headlines, they're not wrong, exactly. The field genuinely moved from silver-medal level in 2024 to officially certified gold in 2025 to multiple perfect-score claims in 2026 in about two years. I watched a smaller version of that same curve happen inside my own project, going from 8/50 to 42/50 in a few months of iteration. The trend is real. Just read the fine print on "official" versus "self-reported" before you decide how impressed to be by any single claim.
 
 ---
 
-*I teach undergraduate mathematics in Chakwal, Pakistan, and I build Manim-animated math content as PlotLab. If you want to learn the exact animation workflow used in the diagram above — from your first `Scene` to a full multi-step pipeline animation — I wrote a complete, copy-paste-ready guide to it: [Manim CE Beginner's Handbook](https://plotlab1.gumroad.com/l/manim_guide_handbook). I'd genuinely like to hear what you think of the pipeline above — reach out or drop a comment.*
+*I teach undergraduate mathematics, and I build Manim-animated math content as PlotLab. If you want to learn the exact animation workflow used in the diagram above, from your first `Scene` to a full multi-step pipeline animation. I wrote a complete, copy-paste-ready guide to it: [Manim CE Beginner's Handbook](https://plotlab1.gumroad.com/l/manim_guide_handbook). I'd genuinely like to hear what you think of the pipeline above.*
