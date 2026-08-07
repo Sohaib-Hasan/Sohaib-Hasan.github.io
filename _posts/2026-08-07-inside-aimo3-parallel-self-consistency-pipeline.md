@@ -1,23 +1,23 @@
 ---
 layout: post
-title: "AI Just Posted a Perfect Score at the Real Math Olympiad. I Spent Months Building One of These Systems — Here's What It Actually Takes"
+title: "AI Just Posted a Perfect Score at the Real Math Olympiad. I Spent Months Building One of These Systems. Here's What It Actually Takes"
 ---
 
-In July 2026, in Shanghai, something happened that mathematicians had been debating for two years: AI systems from Huawei and Xiaohongshu were each reported to have solved all six problems of the International Mathematical Olympiad — a perfect 42 out of 42. Several other labs reported matching results on their own. It followed a 2025 breakthrough where Google DeepMind's Gemini Deep Think, officially graded by IMO coordinators, and an OpenAI experimental model both reached the gold-medal threshold of 35/42.
+In July 2026, in Shanghai, something happened that mathematicians had been debating for two years: AI systems from Huawei and Xiaohongshu were each reported to have solved all six problems of the International Mathematical Olympiad, a perfect 42 out of 42. Several other labs reported matching results on their own. It followed a 2025 breakthrough where Google DeepMind's Gemini Deep Think, officially graded by IMO coordinators, and an OpenAI experimental model both reached the gold-medal threshold of 35/42.
 
-Headlines called it AI "beating" the world's best teenage mathematicians. I want to tell you what's actually behind a headline like that — not as a journalist, but as someone who spent the past several months building a much smaller, much less glamorous version of exactly this kind of system.
+Headlines called it AI "beating" the world's best teenage mathematicians. I want to tell you what's actually behind a headline like that, not as a journalist, but as someone who spent the past several months building a much smaller, much less glamorous version of exactly this kind of system.
 
-My teammate Samuel Koh and I entered AIMO3 — the third AI Mathematical Olympiad Progress Prize, hosted on Kaggle. We scored 42 out of 50, placing 495th out of 4,138 teams — the top 12% globally. Here's the honest, unglamorous story of how we got there, what we tried that failed, and what the finished system actually looks like under the hood.
+My teammate Samuel Koh and I entered AIMO3, the third AI Mathematical Olympiad Progress Prize, hosted on Kaggle. We scored 42 out of 50, placing 495th out of 4,138 teams, the top 12% globally. Here's the honest, unglamorous story of how we got there, what we tried that failed, and what the finished system actually looks like under the hood.
 
 ## What AIMO Actually Is (And Why It's Not the IMO)
 
 First, an important distinction, because the acronyms get confusing fast: AIMO is not the IMO.
 
-The AI Mathematical Olympiad is a $10 million prize fund, created in 2023, that exists specifically to close the gap between what the closed, proprietary models at OpenAI and Google can do and what the open community can build. Its grand prize — $5 million — goes to the first team that publicly shares a model capable of gold-medal-equivalent performance at the actual IMO. Along the way, Kaggle hosts periodic "Progress Prize" competitions to measure how far the open field has come.
+The AI Mathematical Olympiad is a $10 million prize fund, created in 2023, that exists specifically to close the gap between what the closed, proprietary models at OpenAI and Google can do and what the open community can build. Its grand prize, $5 million, goes to the first team that publicly shares a model capable of gold-medal-equivalent performance at the actual IMO. Along the way, Kaggle hosts periodic "Progress Prize" competitions to measure how far the open field has come.
 
-AIMO1 was won by Project Numina in 2024. AIMO2 was won by NVIDIA's team, NemoSkills, who solved 34 of 50 problems. AIMO3 — the one we entered — raised the difficulty again: 110 entirely original problems, ranging from national-olympiad level up to full IMO standard, spanning algebra, combinatorics, geometry, and number theory. "Entirely original" matters enormously here — it means no amount of memorization from training data helps you. Every problem has to be reasoned through, not recalled.
+AIMO1 was won by Project Numina in 2024. AIMO2 was won by NVIDIA's team, NemoSkills, who solved 34 of 50 problems. AIMO3, the one we entered, raised the difficulty again: 110 entirely original problems, ranging from national-olympiad level up to full IMO standard, spanning algebra, combinatorics, geometry, and number theory. "Entirely original" matters enormously here: it means no amount of memorization from training data helps you. Every problem has to be reasoned through, not recalled.
 
-Competitors were also given access to H100 GPUs, roughly double the compute of AIMO2, which meant we could run larger open-weight models than previous years — models like GPT-OSS-120B and Qwen3-Next became viable for the first time.
+Competitors were also given access to H100 GPUs, roughly double the compute of AIMO2, which meant we could run larger open-weight models than previous years: models like GPT-OSS-120B and Qwen3-Next became viable for the first time.
 
 So when you read that an AI "scored a perfect IMO," understand what's actually being claimed. In 2026, most of those results — including the ones from Huawei and Xiaohongshu — were the companies' own self-reported submissions, run after the human competition window closed, evaluated against the same problems and time limit but not scored live by IMO coordinators. Only a small number of 2025 and 2026 results have been independently, officially graded. That's not a reason to dismiss the progress — it's real, and it's fast — but it's worth knowing the difference between "officially certified" and "self-administered" when you see the next big claim.
 
@@ -25,18 +25,18 @@ So when you read that an AI "scored a perfect IMO," understand what's actually b
 
 Before I describe what we built, you need to understand the two constraints that made this hard, because they killed almost every "obvious" idea we had.
 
-**Rule one: five hours of GPU compute, total, per problem set.** Not per problem — per set. That immediately rules out anything computationally greedy.
+**Rule one: five hours of GPU compute, total, per problem set.** Not per problem. Per set. That immediately rules out anything computationally greedy.
 
 **Rule two: binary scoring, no partial credit.** A problem is either fully correct or fully wrong. This sounds simple, but it has a brutal implication: a system that produces a plausible, confident-sounding, but wrong answer is worse than a "generic" wrong answer, because it's confidently wrong. Under this rule, knowing when your system is unsure is almost as valuable as getting the right answer.
 
-I handled the mathematical side — interpreting problems, checking whether a given line of reasoning was actually valid, and sourcing harder test cases beyond the standard dataset to stress-test our system. Samuel handled the engineering — building and running the inference pipeline under that fixed compute budget. Neither role alone was enough. The problems weren't purely mathematical, and they weren't purely a systems problem either.
+I handled the mathematical side: interpreting problems, checking whether a given line of reasoning was actually valid, and sourcing harder test cases beyond the standard dataset to stress-test our system. Samuel handled the engineering: building and running the inference pipeline under that fixed compute budget. Neither role alone was enough. The problems weren't purely mathematical, and they weren't purely a systems problem either.
 
 ## Four Ideas We Killed Before Writing a Line of the Final System
 
 Here's what we considered and rejected — and why each one matters as a lesson, not just a footnote:
 
-- **Supervised fine-tuning.** The obvious first instinct. Rejected immediately — it needs massive GPU clusters and months of runway, not a fixed five-hour, competition-scale budget.
-- **Fully agentic search** — a system that breaks a problem into steps, calls tools, verifies intermediate results, and loops back on itself. Conceptually, this is the closest thing to how a human mathematician actually thinks. We rejected it anyway, because Kaggle's environment has no outbound internet access, and an open-ended agentic loop risked silently burning our entire compute budget before ever producing a final answer.
+- **Supervised fine-tuning.** The obvious first instinct. Rejected immediately: it needs massive GPU clusters and months of runway, not a fixed five-hour, competition-scale budget.
+- **Fully agentic search**, a system that breaks a problem into steps, calls tools, verifies intermediate results, and loops back on itself. Conceptually, this is the closest thing to how a human mathematician actually thinks. We rejected it anyway, because Kaggle's environment has no outbound internet access, and an open-ended agentic loop risked silently burning our entire compute budget before ever producing a final answer.
 - **Monte Carlo Tree Search.** Not used.
 - **Long, verbose chain-of-thought prompting.** We tested it. Concise prompting consistently outperformed it.
 
@@ -49,9 +49,9 @@ What we actually built and submitted, we called a **Parallel Self-Consistency Pi
 ![Diagram of the Parallel Self-Consistency Pipeline: an AIMO problem enters as LaTeX, passes through a prompt constructor into GPT-OSS-120B, fans out into 8 parallel reasoning attempts each paired with a Python REPL, and converges into an entropy-weighted aggregator that selects the final answer.](/images/aimo3-pipeline-diagram.svg)
 
 1. **The problem** arrives written in LaTeX and gets converted into a structured prompt.
-2. **The base model**, GPT-OSS-120B — OpenAI's open-weight mixture-of-experts model, around 120 billion total parameters but only about 5 billion active per token, which is exactly why it fits on a single H100 despite its size — generates a reasoning attempt at temperature 0.8.
+2. **The base model**, GPT-OSS-120B (OpenAI's open-weight mixture-of-experts model, around 120 billion total parameters but only about 5 billion active per token, which is exactly why it fits on a single H100 despite its size), generates a reasoning attempt at temperature 0.8.
 3. **The Parallel Sampler** does this eight times, independently, all at once. This is the "self-consistency" idea, and it's built on a real insight from a 2022 paper by Wang et al.: a single reasoning chain can silently go wrong at any step with no way to catch it, but across eight independent attempts, correct reasoning tends to converge on the same answer while failure modes tend to scatter in different directions.
-4. **Tool-Integrated Reasoning.** Each of those eight attempts is paired with a live Python interpreter. The moment a reasoning chain hits a calculation it can't reliably do purely in text, it hands that calculation off to Python instead of guessing — a small design choice that removes an entire category of careless arithmetic errors.
+4. **Tool-Integrated Reasoning.** Each of those eight attempts is paired with a live Python interpreter. The moment a reasoning chain hits a calculation it can't reliably do purely in text, it hands that calculation off to Python instead of guessing, a small design choice that removes an entire category of careless arithmetic errors.
 5. **The Entropy-Weighted Aggregator.** This is the part I'm proudest of. Instead of a simple majority vote across the eight candidate answers, each one is scored by:
 
 $$\text{score} = \frac{1}{H} + 8.0 \cdot V$$
