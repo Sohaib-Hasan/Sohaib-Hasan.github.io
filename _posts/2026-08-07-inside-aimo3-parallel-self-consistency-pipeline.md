@@ -66,7 +66,7 @@ I actually animated this entire pipeline in Manim, every arrow, every fan-out, e
 
 Our first working version of this pipeline scored 8 out of 50. The final version scored 42. That climb didn't come from one clever trick; it came from three unglamorous things, repeated over and over: systematically diagnosing bugs in the pipeline itself, upgrading the base model as better open-weight options became available, and steadily refining the few-shot prompts feeding into step one.
 
-There's one more data point that told us we were on the right track, and it came after the competition closed. The eventual first-place team's public writeup also centered on GPT-OSS-120B, and their approach was also built around entropy-weighted self-consistency — refined further with things like adaptive runtime scheduling, but directionally the same idea we'd arrived at independently. When a team with more resources converges on the same core mechanism you did, without either of you seeing the other's work, that's a stronger signal than any single benchmark score.
+There's one more data point that told us we were on the right track, and it came after the competition closed. The eventual first-place team's public writeup also centered on GPT-OSS-120B, and their approach was also built around entropy-weighted self-consistency. They refined it further with things like adaptive runtime scheduling, but directionally it was the same idea we'd arrived at independently. When a team with more resources converges on the same core mechanism you did, without either of you seeing the other's work, that's a stronger signal than any single benchmark score.
 
 ## The One Lesson I'd Give Anyone Building AI Under Real Constraints
 
