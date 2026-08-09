@@ -237,7 +237,7 @@ h1{
 .service-card .btn{padding:0.6rem 1.2rem; font-size:0.8rem;}
 
 /* ---- newsletter (Kit embed) reskin ---- */
-.newsletter-embed{max-width:560px;}
+.newsletter-embed{max-width:560px; margin:0 auto;}
 .newsletter-embed .formkit-form{
   background-color: var(--board-light) !important;
   border: 1px solid var(--line) !important;

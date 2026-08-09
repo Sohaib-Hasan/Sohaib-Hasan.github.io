@@ -16,7 +16,7 @@
 <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
 <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
 <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
-<title id="pageTitle">Viewing Notes — Sohaib Hasan</title>
+<title id="pageTitle">Viewing Notes · Sohaib Hasan</title>
 <meta name="robots" content="noindex">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -61,7 +61,7 @@
 <header class="viewer-header">
   <div>
     <div class="viewer-title" id="titleText">Loading…</div>
-    <div class="viewer-note">View only — right-click, selecting, and saving are disabled</div>
+    <div class="viewer-note">View only. Right-click, selecting, and saving are disabled</div>
   </div>
   <a class="back-link" href="notes.html" style="margin:0;">← Back to Notes</a>
 </header>
@@ -79,7 +79,7 @@
   const rawFile = params.get('file');
   const title = params.get('title') || 'Notes';
 
-  document.getElementById('pageTitle').textContent = title + ' — Sohaib Hasan';
+  document.getElementById('pageTitle').textContent = title + ' · Sohaib Hasan';
   document.getElementById('titleText').textContent = title;
 
   const container = document.getElementById('pagesContainer');
