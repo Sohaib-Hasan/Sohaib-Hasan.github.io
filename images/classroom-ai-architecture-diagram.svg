@@ -1,0 +1,52 @@
+<svg viewBox="0 0 900 620" xmlns="http://www.w3.org/2000/svg" font-family="'Segoe UI', Helvetica, Arial, sans-serif">
+  <defs>
+    <marker id="arrow3" markerWidth="10" markerHeight="10" refX="8" refY="3" orient="auto" markerUnits="strokeWidth">
+      <path d="M0,0 L0,6 L9,3 z" fill="#475569"/>
+    </marker>
+  </defs>
+
+  <rect x="0" y="0" width="900" height="620" fill="#FFFFFF"/>
+
+  <text x="450" y="42" text-anchor="middle" font-size="22" font-weight="700" fill="#0F172A">Two Apps, One Shared Brain</text>
+  <text x="450" y="66" text-anchor="middle" font-size="13" fill="#64748B">Two separate Streamlit Cloud deployments, kept in sync</text>
+
+  <!-- Two app containers -->
+  <rect x="60" y="100" width="330" height="120" rx="12" fill="#F1F5F9" stroke="#334155" stroke-width="1.5"/>
+  <text x="225" y="132" text-anchor="middle" font-size="15" font-weight="700" fill="#1E293B">Student Assistant</text>
+  <text x="225" y="153" text-anchor="middle" font-size="11.5" fill="#475569">app.py &#183; PIN-gated</text>
+  <text x="225" y="173" text-anchor="middle" font-size="11" fill="#64748B">its own Streamlit Cloud container</text>
+  <text x="225" y="191" text-anchor="middle" font-size="11" fill="#64748B">its own URL</text>
+
+  <rect x="510" y="100" width="330" height="120" rx="12" fill="#F1F5F9" stroke="#334155" stroke-width="1.5"/>
+  <text x="675" y="132" text-anchor="middle" font-size="15" font-weight="700" fill="#1E293B">Teacher Dashboard</text>
+  <text x="675" y="153" text-anchor="middle" font-size="11.5" fill="#475569">dashboard.py &#183; password-gated</text>
+  <text x="675" y="173" text-anchor="middle" font-size="11" fill="#64748B">its own Streamlit Cloud container</text>
+  <text x="675" y="191" text-anchor="middle" font-size="11" fill="#64748B">its own URL</text>
+
+  <text x="450" y="243" text-anchor="middle" font-size="12" fill="#94A3B8">isolated containers &#183; local files aren't shared between them</text>
+
+  <!-- lines down to shared resources -->
+  <line x1="225" y1="220" x2="225" y2="270" stroke="#475569" stroke-width="2"/>
+  <line x1="225" y1="270" x2="450" y2="270" stroke="#475569" stroke-width="2"/>
+  <line x1="675" y1="220" x2="675" y2="270" stroke="#475569" stroke-width="2"/>
+  <line x1="675" y1="270" x2="450" y2="270" stroke="#475569" stroke-width="2"/>
+  <line x1="450" y1="270" x2="450" y2="305" stroke="#475569" stroke-width="2" marker-end="url(#arrow3)"/>
+
+  <!-- knowledge_base.json shared -->
+  <rect x="240" y="306" width="420" height="64" rx="10" fill="#0F766E" stroke="#0F766E" stroke-width="1.5"/>
+  <text x="450" y="333" text-anchor="middle" font-size="14" font-weight="700" fill="#FFFFFF">knowledge_base.json</text>
+  <text x="450" y="352" text-anchor="middle" font-size="11" fill="#CCFBF1">read by both apps &#183; deployed with the repo</text>
+
+  <line x1="450" y1="370" x2="450" y2="405" stroke="#475569" stroke-width="2" marker-end="url(#arrow3)"/>
+
+  <!-- Turso DB shared -->
+  <rect x="215" y="406" width="470" height="80" rx="10" fill="#0B2942" stroke="#0B2942" stroke-width="1.5"/>
+  <text x="450" y="433" text-anchor="middle" font-size="14" font-weight="700" fill="#FFFFFF">Turso &#183; question_log table</text>
+  <text x="450" y="453" text-anchor="middle" font-size="11" fill="#CBD5E1">shared, hosted SQLite &#183; read + write from both apps</text>
+  <text x="450" y="470" text-anchor="middle" font-size="10.5" fill="#94A3B8">connect via https://, not libsql:// (avoids a WebSocket handshake failure)</text>
+
+  <text x="450" y="530" text-anchor="middle" font-size="12" fill="#334155">Without Turso: the dashboard sees nothing. Local SQLite in one container</text>
+  <text x="450" y="548" text-anchor="middle" font-size="12" fill="#334155">is invisible to the other. There is no error, just an empty dashboard.</text>
+
+  <text x="450" y="590" text-anchor="middle" font-size="11" fill="#94A3B8">Secret key must be named exactly TURSO_AUTH_TOKEN &#183; both apps need a full reboot after it's set</text>
+</svg>

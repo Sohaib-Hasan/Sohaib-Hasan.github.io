@@ -1,0 +1,100 @@
+<svg viewBox="0 0 1000 710" xmlns="http://www.w3.org/2000/svg" font-family="'Segoe UI', Helvetica, Arial, sans-serif">
+  <defs>
+    <marker id="arrow2" markerWidth="10" markerHeight="10" refX="8" refY="3" orient="auto" markerUnits="strokeWidth">
+      <path d="M0,0 L0,6 L9,3 z" fill="#475569"/>
+    </marker>
+  </defs>
+
+  <rect x="0" y="0" width="1000" height="710" fill="#FFFFFF"/>
+
+  <text x="500" y="42" text-anchor="middle" font-size="22" font-weight="700" fill="#0F172A">How a Question Gets Answered</text>
+  <text x="500" y="66" text-anchor="middle" font-size="13" fill="#64748B">Classroom AI System &#183; two-stage pipeline</text>
+
+  <!-- STAGE A LABEL -->
+  <text x="60" y="115" font-size="14" font-weight="700" fill="#334155">STAGE 1 &#183; Indexing (done once, offline)</text>
+  <line x1="60" y1="124" x2="940" y2="124" stroke="#E2E8F0" stroke-width="1.5"/>
+
+  <!-- Row of 5 boxes: .tex notes -> chunk_notes -> raw chunks -> clean_chunks -> cleaned chunks -> embed_chunks -> knowledge_base.json -->
+  <!-- box template width 150 height 60, y=150 -->
+  <rect x="20" y="150" width="150" height="64" rx="10" fill="#F1F5F9" stroke="#334155" stroke-width="1.5"/>
+  <text x="95" y="177" text-anchor="middle" font-size="13" fill="#1E293B">.tex course notes</text>
+  <text x="95" y="196" text-anchor="middle" font-size="11" fill="#64748B">source of truth</text>
+
+  <line x1="170" y1="182" x2="205" y2="182" stroke="#475569" stroke-width="2" marker-end="url(#arrow2)"/>
+  <text x="187" y="143" text-anchor="middle" font-size="10" fill="#64748B">chunk_notes.py</text>
+
+  <rect x="206" y="150" width="150" height="64" rx="10" fill="#F1F5F9" stroke="#334155" stroke-width="1.5"/>
+  <text x="281" y="177" text-anchor="middle" font-size="13" fill="#1E293B">raw chunks</text>
+  <text x="281" y="196" text-anchor="middle" font-size="10.5" fill="#64748B">1 per definition/proof</text>
+
+  <line x1="356" y1="182" x2="391" y2="182" stroke="#475569" stroke-width="2" marker-end="url(#arrow2)"/>
+  <text x="373" y="143" text-anchor="middle" font-size="10" fill="#64748B">clean_chunks.py</text>
+
+  <rect x="392" y="150" width="150" height="64" rx="10" fill="#FEF3C7" stroke="#B45309" stroke-width="1.5"/>
+  <text x="467" y="177" text-anchor="middle" font-size="13" fill="#78350F">cleaned chunks</text>
+  <text x="467" y="196" text-anchor="middle" font-size="10.5" fill="#92400E">decoration stripped</text>
+
+  <line x1="542" y1="182" x2="577" y2="182" stroke="#475569" stroke-width="2" marker-end="url(#arrow2)"/>
+  <text x="559" y="143" text-anchor="middle" font-size="10" fill="#64748B">embed_chunks.py</text>
+
+  <rect x="578" y="150" width="160" height="64" rx="10" fill="#0F766E" stroke="#0F766E" stroke-width="1.5"/>
+  <text x="658" y="177" text-anchor="middle" font-size="13" font-weight="700" fill="#FFFFFF">knowledge_base.json</text>
+  <text x="658" y="196" text-anchor="middle" font-size="10.5" fill="#CCFBF1">chunks + embeddings</text>
+
+  <!-- connector down to stage B -->
+  <line x1="658" y1="214" x2="658" y2="260" stroke="#475569" stroke-width="2" marker-end="url(#arrow2)"/>
+
+  <!-- STAGE B LABEL -->
+  <text x="60" y="300" font-size="14" font-weight="700" fill="#334155">STAGE 2 &#183; Runtime (every time a student asks a question)</text>
+  <line x1="60" y1="309" x2="940" y2="309" stroke="#E2E8F0" stroke-width="1.5"/>
+
+  <!-- Student question box -->
+  <rect x="60" y="335" width="200" height="64" rx="10" fill="#F1F5F9" stroke="#334155" stroke-width="1.5"/>
+  <text x="160" y="362" text-anchor="middle" font-size="13" fill="#1E293B">Student question</text>
+  <text x="160" y="381" text-anchor="middle" font-size="10.5" fill="#64748B">typed in app.py</text>
+
+  <line x1="260" y1="367" x2="330" y2="367" stroke="#475569" stroke-width="2" marker-end="url(#arrow2)"/>
+  <text x="295" y="352" text-anchor="middle" font-size="10" fill="#64748B">embed +</text>
+  <text x="295" y="363" text-anchor="middle" font-size="10" fill="#64748B">cosine</text>
+  <text x="295" y="374" text-anchor="middle" font-size="10" fill="#64748B">similarity</text>
+
+  <!-- matching chunks box, pulls from knowledge_base -->
+  <rect x="331" y="335" width="190" height="64" rx="10" fill="#E0F2FE" stroke="#0369A1" stroke-width="1.5"/>
+  <text x="426" y="362" text-anchor="middle" font-size="13" fill="#0C4A6E">Matching chunks</text>
+  <text x="426" y="381" text-anchor="middle" font-size="10.5" fill="#0369A1">retrieved from KB</text>
+
+  <line x1="658" y1="214" x2="658" y2="290" stroke="#CBD5E1" stroke-width="1.3" stroke-dasharray="4,4"/>
+  <line x1="658" y1="290" x2="426" y2="335" stroke="#CBD5E1" stroke-width="1.3" stroke-dasharray="4,4" marker-end="url(#arrow2)"/>
+  <text x="560" y="300" text-anchor="middle" font-size="10" fill="#94A3B8">searched against</text>
+
+  <line x1="521" y1="367" x2="591" y2="367" stroke="#475569" stroke-width="2" marker-end="url(#arrow2)"/>
+
+  <!-- Gemini box -->
+  <rect x="592" y="335" width="150" height="64" rx="10" fill="#0F766E" stroke="#0F766E" stroke-width="1.5"/>
+  <text x="667" y="362" text-anchor="middle" font-size="13" font-weight="700" fill="#FFFFFF">Gemini</text>
+  <text x="667" y="381" text-anchor="middle" font-size="10.5" fill="#CCFBF1">chunks + question</text>
+
+  <line x1="742" y1="367" x2="812" y2="367" stroke="#475569" stroke-width="2" marker-end="url(#arrow2)"/>
+
+  <!-- Answer box -->
+  <rect x="813" y="335" width="150" height="64" rx="10" fill="#0B2942" stroke="#0B2942" stroke-width="1.5"/>
+  <text x="888" y="362" text-anchor="middle" font-size="13" font-weight="700" fill="#FFFFFF">Answer</text>
+  <text x="888" y="381" text-anchor="middle" font-size="10.5" fill="#CBD5E1">shown to student</text>
+
+  <!-- logging branch -->
+  <line x1="888" y1="399" x2="888" y2="440" stroke="#475569" stroke-width="2"/>
+  <line x1="888" y1="440" x2="500" y2="440" stroke="#475569" stroke-width="2"/>
+  <line x1="500" y1="440" x2="500" y2="475" stroke="#475569" stroke-width="2" marker-end="url(#arrow2)"/>
+
+  <rect x="360" y="476" width="280" height="60" rx="10" fill="#FEF3C7" stroke="#B45309" stroke-width="1.5"/>
+  <text x="500" y="502" text-anchor="middle" font-size="13" fill="#78350F">question_log (Turso DB)</text>
+  <text x="500" y="521" text-anchor="middle" font-size="10.5" fill="#92400E">question + answer, every time</text>
+
+  <line x1="500" y1="536" x2="500" y2="571" stroke="#475569" stroke-width="2" marker-end="url(#arrow2)"/>
+
+  <rect x="350" y="572" width="300" height="60" rx="10" fill="#0F766E" stroke="#0F766E" stroke-width="1.5"/>
+  <text x="500" y="598" text-anchor="middle" font-size="13" font-weight="700" fill="#FFFFFF">dashboard.py</text>
+  <text x="500" y="617" text-anchor="middle" font-size="10.5" fill="#CCFBF1">teacher sees real class-wide trends</text>
+
+  <text x="500" y="670" text-anchor="middle" font-size="12" fill="#94A3B8">Caching (cache_store.py) can short-circuit stage 2 for a repeated question, skipping the Gemini call entirely.</text>
+</svg>
