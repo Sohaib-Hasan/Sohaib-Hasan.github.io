@@ -59,10 +59,6 @@ I built a complete animated walkthrough of this exact idea, start to finish, and
 
 **[Watch: Linear Regression, animated](https://www.youtube.com/watch?v=MQzgPcSX0Wc)**
 
-<div style="position:relative;padding-bottom:56.25%;height:0;overflow:hidden;max-width:100%;">
-<iframe src="https://www.youtube.com/embed/MQzgPcSX0Wc" style="position:absolute;top:0;left:0;width:100%;height:100%;" frameborder="0" allowfullscreen></iframe>
-</div>
-
 It answers the question I deliberately left open above: why squaring the gaps is the right call, what the bowl actually looks like once you see it move, and the exact two formulas that let you calculate the one honest line for any set of dots you are ever handed, worked out by hand so you can follow every step.
 
 ## Back to My Student
