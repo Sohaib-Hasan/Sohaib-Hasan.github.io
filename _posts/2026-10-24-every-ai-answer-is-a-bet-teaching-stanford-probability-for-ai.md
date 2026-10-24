@@ -3,7 +3,7 @@ layout: post
 title: "Every AI Answer Is a Bet: What I Learned Teaching Stanford's Probability for AI"
 ---
 
-Ask an AI a question and watch the words arrive, one after another. It feels like the machine is looking something up. It is not. At every step, the model is placing a bet. Given everything written so far, it assigns a probability to each possible next word, picks one, and moves on. The paragraph you finally read is a chain of weighted guesses, and the quality of the whole answer depends on how well those guesses were calibrated.
+Ask an AI a question and watch the words arrive, one after another. It feels like the machine is looking something up. It is not. At every step, the model is placing a bet. Given everything written so far, it assigns a probability to each possible next word, picks one, and moves on. The paragraph you finally read is a chain of weighted guesses, and the quality of the whole answer depends on how well those guesses were calibrated. It is also why asking the same question twice can give you two different answers.
 
 If that sounds strange, it should. We are used to computers being certain. A calculator never hesitates over 7 times 8. But the systems now writing our emails, reading our medical scans and ranking our search results work differently. They live inside uncertainty, and the mathematics of living inside uncertainty is probability.
 
@@ -33,11 +33,21 @@ Here is why. Imagine 10,000 people. Of them, 100 have the condition and 95 of th
 
 Nothing in that calculation is advanced. Yet our intuition gets it badly wrong, and the same mistake hides inside AI systems that flag fraud, detect disease or screen applicants. Learning to think this way is not a luxury for mathematicians. It is basic literacy for anyone who will live alongside AI.
 
-## Week 1
+## Week 1: Same Prompt, Twice
 
-[WRITE ONE OR TWO LINES HERE: the main topic of Week 1 and the one idea you most wanted students to leave with.]
+Week 1 opened with something every AI user has quietly noticed: ask the same question twice and you may get two different answers. Why?
 
-For Week 1, I prepared a detailed solutions PDF and a Manim animation so that students could revisit the ideas at their own pace, long after the live session ended.
+In our section, we explored it with a toy language model small enough to hold in your head. Give it the prompt "A sleepy robot dreams about" and it has exactly five possible outputs: electric sheep (44 percent), counting stars (20), sample spaces (14), counting outcomes (13) and robot puppies (9). Each call picks one at random, independently of the last.
+
+So what is the chance that two calls give two different outputs? Three simple rules are enough: NOT, OR and AND. The chance that both calls give the same output is the sum of each output's probability squared, which comes to 0.2782. The chance of two different outputs is 1 minus that, about 72 percent. Even a model with a clear favorite disagrees with itself most of the time.
+
+Then came a question that catches almost everyone. "Robot puppies" appears with a 9 percent chance on each call. How many calls until you are more likely than not to see it at least once? The tempting answer adds the chances: six calls, 6 times 9 percent, is 54 percent. But those chances overlap, so adding them overcounts. The right way is to ask for the chance of never seeing it. That is 0.91 on each call, so 0.91 multiplied by itself n times. After six calls the real chance is only 43 percent. It takes eight calls to pass 50 percent.
+
+Finally, we met the dial that every AI tool hides behind a slider: temperature. It raises each probability to the power 1/T and rescales them so they add up to 1. Look at the first word the model writes. "Electric" starts at 44 percent. Turn the temperature down to 0.5 and it climbs to about 59 percent, while "robot" shrinks from 9 percent to about 2.5 percent. Two calls now start with the same word about 46 percent of the time, up from 33 percent. Turn the temperature up to 2 and the chances even out: "electric" falls to about 35 percent, "robot" rises to about 16 percent, and two calls match only about 27 percent of the time.
+
+The randomness setting in an AI tool is not magic. It is probability, rescaled.
+
+I turned this section into a detailed solutions PDF with every step worked out, and a Manim animation so that students could revisit the ideas at their own pace, long after the live session ended.
 
 ## Week 2: The Palpatine Poll
 
