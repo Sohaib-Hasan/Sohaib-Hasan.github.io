@@ -350,3 +350,101 @@ footer{
 
 /* ---- stat count-up target ---- */
 .count-target{ font-variant-numeric: tabular-nums; }
+
+/* ---- platform logos, cards and chips (Home, Animations, Work With Me) ---- */
+.platform-logo{
+  width:52px; height:52px; border-radius:50%; flex:none;
+  display:flex; align-items:center; justify-content:center;
+  background:var(--board-deep); border:1px solid var(--line);
+}
+.platform-logo svg{ width:26px; height:26px; }
+.platform-logo.fb svg{ fill:#1877f2; }
+.platform-logo.ig svg{ fill:#e4405f; }
+.platform-logo.yt svg{ fill:#ff0000; }
+
+.platform-card{ display:flex; flex-direction:column; }
+.platform-head{ display:flex; align-items:center; gap:0.9rem; margin-bottom:1.3rem; }
+.platform-head .card-tag{ margin:0; }
+.platform-stat{
+  font-family:'Fraunces', serif; font-weight:500; font-size:2.2rem; line-height:1.1;
+  margin-bottom:0.15rem;
+}
+.platform-stat small{
+  font-family:'Inter', sans-serif; font-size:0.82rem; font-weight:400;
+  color:var(--chalk-faint); margin-left:0.45rem;
+}
+.platform-card h3{ margin-bottom:0.7rem; }
+.platform-card p{ flex:1; margin-bottom:1.2rem; }
+
+.platform-row{ display:flex; flex-wrap:wrap; gap:1rem; margin-top:1.8rem; }
+.platform-chip{
+  display:flex; align-items:center; gap:0.8rem;
+  padding:0.6rem 1.2rem 0.6rem 0.6rem;
+  border:1px solid var(--line); border-radius:999px; background:var(--board-light);
+  color:var(--chalk-faint); font-size:0.78rem; line-height:1.25;
+  transition:border-color 0.25s, transform 0.25s;
+}
+.platform-chip:hover{ border-color:var(--gold); transform:translateY(-2px); }
+.platform-chip b{
+  display:block; font-family:'Fraunces', serif; font-weight:500;
+  color:var(--chalk); font-size:1.02rem;
+}
+.platform-chip .platform-logo{ width:38px; height:38px; }
+.platform-chip .platform-logo svg{ width:18px; height:18px; }
+
+/* ---- buttons (extra variants) ---- */
+button.btn{ font-family:inherit; cursor:pointer; background:none; color:inherit; }
+.btn.small{ padding:0.6rem 1.1rem; font-size:0.8rem; }
+.btn.outline{ background:transparent; color:var(--chalk); border-color:var(--line); }
+.btn.outline:hover{ border-color:var(--gold); color:var(--gold); }
+.btn[disabled]{ opacity:0.45; cursor:not-allowed; pointer-events:none; }
+
+/* ---- notes: folders ---- */
+.folder-grid{ display:grid; grid-template-columns:1fr; gap:1.4rem; }
+@media(min-width:600px){ .folder-grid{ grid-template-columns:repeat(2, 1fr); } }
+@media(min-width:1100px){ .folder-grid{ grid-template-columns:repeat(4, 1fr); } }
+.folder-card{
+  position:relative; display:flex; flex-direction:column;
+  background:var(--board-light); border:1px solid var(--line); border-radius:4px;
+  padding:1.8rem; transition:border-color 0.25s, transform 0.25s;
+}
+.folder-card:hover{ border-color:var(--gold); transform:translateY(-3px); }
+.folder-card.featured{ border-color:rgba(232,176,75,0.45); }
+.folder-icon{ width:44px; height:44px; color:var(--gold); margin-bottom:1.2rem; }
+.folder-icon svg{ width:100%; height:100%; fill:none; stroke:currentColor; stroke-width:1.5; stroke-linejoin:round; }
+.folder-card h3{ font-family:'Fraunces', serif; font-weight:500; font-size:1.3rem; margin-bottom:0.6rem; }
+.folder-card p{ color:var(--chalk-dim); font-size:0.9rem; flex:1; }
+.folder-meta{
+  font-family:'JetBrains Mono', monospace; font-size:0.72rem; letter-spacing:0.05em;
+  color:var(--ink); margin-top:1.3rem; padding-top:1rem; border-top:1px solid var(--line);
+}
+.folder-badge{
+  position:absolute; top:1.3rem; right:1.3rem;
+  font-family:'JetBrains Mono', monospace; font-size:0.62rem; letter-spacing:0.1em;
+  background:var(--gold); color:var(--board-deep); padding:0.18rem 0.5rem; border-radius:2px;
+}
+.sub-head{
+  font-family:'JetBrains Mono', monospace; font-size:0.72rem; letter-spacing:0.1em;
+  color:var(--ink); text-transform:uppercase; margin:2.6rem 0 1.1rem;
+}
+.sub-head:first-child{ margin-top:0; }
+
+/* ---- notes: weekly entries with notes + video (Stanford folder) ---- */
+.week-list{ display:flex; flex-direction:column; gap:1.4rem; max-width:860px; }
+.week-card{
+  background:var(--board-light); border:1px solid var(--line); border-radius:4px;
+  padding:1.8rem; transition:border-color 0.25s;
+}
+.week-card:hover{ border-color:rgba(232,176,75,0.45); }
+.week-card h3{ font-family:'Fraunces', serif; font-weight:500; font-size:1.35rem; margin-bottom:0.6rem; }
+.week-card p{ color:var(--chalk-dim); font-size:0.92rem; max-width:640px; }
+.week-actions{
+  display:flex; flex-wrap:wrap; gap:0.7rem; align-items:center;
+  margin-top:1.4rem; padding-top:1.2rem; border-top:1px solid var(--line);
+}
+.video-embed{
+  margin-top:1.2rem; width:100%; aspect-ratio:16 / 9;
+  border:1px solid var(--line); border-radius:4px; overflow:hidden; background:#000;
+}
+.video-embed[hidden]{ display:none; }
+.video-embed iframe{ width:100%; height:100%; border:0; display:block; }

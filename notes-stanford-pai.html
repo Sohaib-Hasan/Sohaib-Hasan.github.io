@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-QJ9JGJTL16"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-QJ9JGJTL16');
+</script>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="icon" type="image/x-icon" href="/favicon.ico">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+<title>Stanford Probability for AI: Weekly Notes &amp; Videos · Sohaib Hasan</title>
+<meta name="description" content="Weekly notes, worked solutions and Manim animation videos from Sohaib Hasan's section at Stanford's Probability for AI.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;0,9..144,600;1,9..144,400&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" onload="this.onload=null;this.rel='stylesheet'">
+<noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;0,9..144,600;1,9..144,400&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap"></noscript>
+<link rel="stylesheet" href="style.css">
+<link rel="canonical" href="https://sohaib-hasan.github.io/notes-stanford-pai.html">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Stanford Probability for AI: Weekly Notes &amp; Videos · Sohaib Hasan">
+<meta property="og:description" content="Weekly notes, worked solutions and Manim animation videos from Sohaib Hasan's section at Stanford's Probability for AI.">
+<meta property="og:url" content="https://sohaib-hasan.github.io/notes-stanford-pai.html">
+<meta property="og:image" content="https://sohaib-hasan.github.io/images/og-image.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:site_name" content="Sohaib Hasan">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Stanford Probability for AI: Weekly Notes &amp; Videos · Sohaib Hasan">
+<meta name="twitter:description" content="Weekly notes, worked solutions and Manim animation videos from Sohaib Hasan's section at Stanford's Probability for AI.">
+<meta name="twitter:image" content="https://sohaib-hasan.github.io/images/og-image.jpg">
+</head>
+<body>
+
+<div class="grain"></div>
+
+<nav>
+  <div class="brand"><a href="index.html">Sohaib <span>Hasan</span></a></div>
+  <button class="nav-toggle" id="navToggle" aria-label="Toggle menu" aria-expanded="false">
+    <span></span><span></span><span></span>
+  </button>
+  <div class="navlinks" id="navLinks">
+    <a href="about.html">About</a>
+    <a href="teaching.html">Teaching</a>
+    <a href="research.html">Research</a>
+    <a href="plotlab.html">Animations</a>
+    <a href="notes.html" class="active">Notes</a>
+    <a href="/blog/">Blog</a>
+    <a href="work-with-me.html">Work With Me</a>
+    <a href="contact.html">Contact</a>
+  </div>
+</nav>
+<div class="nav-backdrop" id="navBackdrop"></div>
+
+<header class="page-header">
+  <a class="back-link" href="notes.html">← Notes Library</a>
+  <div class="eyebrow">Notes Library · Stanford</div>
+  <h1>Probability for AI, week by week.</h1>
+  <p class="lede">Worked solutions and Manim animations from my section of Stanford's Probability for AI. Every week has a notes PDF to download and a video to watch.</p>
+</header>
+
+<section class="block" id="about-folder" style="border-top:none; padding-top:1rem;">
+  <div class="about-grid">
+    <div>
+      <p style="color:var(--chalk-dim); margin-bottom:1.1rem; font-size:0.98rem;"><a href="https://pai.stanford.edu" target="_blank" rel="noopener" style="color:var(--gold);">Probability for AI</a> teaches the math language that AI speaks. I'm a section leader in the course, working with top tech minds, researchers, and working professionals from around the world.</p>
+      <p style="color:var(--chalk-dim); font-size:0.98rem;">After each class I write detailed worked solutions and build a Manim animation that shows the week's ideas moving. Everything lands here, one week at a time.</p>
+    </div>
+    <div>
+      <a class="btn primary" href="https://www.youtube.com/playlist?list=PLUR1g6hiXfoQ" target="_blank" rel="noopener">Watch the full playlist →</a>
+      <p style="margin-top:1.2rem; font-size:0.85rem;">
+        <a class="proj-link" href="/blog/every-ai-answer-is-a-bet-teaching-stanford-probability-for-ai/">Read the blog post</a> ·
+        <a class="proj-link" href="teaching.html#stanford">About my section</a>
+      </p>
+    </div>
+  </div>
+</section>
+
+<section class="block" id="weeks">
+  <div class="block-head">
+    <div>
+      <div class="block-num">Folder · Stanford Probability for AI</div>
+      <h2 class="block-title">Notes &amp; videos</h2>
+    </div>
+  </div>
+
+  <!--
+    HOW TO ADD OR FILL IN A WEEK
+    1. Upload the notes PDF to the /notes/stanford-pai/ folder of the repo, named week-1.pdf, week-2.pdf, week-3.pdf and so on.
+    2. Paste the YouTube link (or just the 11-character video ID) of that week's animation into data-video="".
+       Leave it empty and the button shows "Video coming soon" by itself.
+    3. For a NEW week: copy one whole <article class="week-card"> ... </article> block, paste it at the bottom of the list,
+       and change the week number, the title, the description, the two file names, and the data-video value.
+  -->
+
+  <div class="week-list">
+
+    <article class="week-card">
+      <span class="card-tag">WEEK 1</span>
+      <h3>Same Prompt, Twice</h3>
+      <p>Why asking an AI the same question twice can give two different answers. Worked solutions on a toy language model: the NOT, OR and AND rules, how many calls it takes before a rare output shows up, and the temperature dial.</p>
+      <div class="week-actions">
+        <a class="btn primary small" href="notes/stanford-pai/week-1.pdf" download>Download notes (PDF)</a>
+        <a class="btn outline small" href="viewer.html?file=notes/stanford-pai/week-1.pdf&amp;title=Probability%20for%20AI%2C%20Week%201" target="_blank" rel="noopener">View online</a>
+        <button class="btn outline small video-toggle" type="button" data-video="" aria-expanded="false">Watch animation</button>
+      </div>
+      <div class="video-embed" hidden></div>
+    </article>
+
+    <article class="week-card">
+      <span class="card-tag">WEEK 2</span>
+      <h3>The Palpatine Poll</h3>
+      <p>How do you measure something people will not say out loud? The list experiment, built on Bernoulli and binomial random variables, and what an accuracy number really means on a finite test set.</p>
+      <div class="week-actions">
+        <a class="btn primary small" href="notes/stanford-pai/week-2.pdf" download>Download notes (PDF)</a>
+        <a class="btn outline small" href="viewer.html?file=notes/stanford-pai/week-2.pdf&amp;title=Probability%20for%20AI%2C%20Week%202" target="_blank" rel="noopener">View online</a>
+        <button class="btn outline small video-toggle" type="button" data-video="" aria-expanded="false">Watch animation</button>
+      </div>
+      <div class="video-embed" hidden></div>
+    </article>
+
+    <article class="week-card">
+      <span class="card-tag">WEEK 3</span>
+      <!-- EDIT: replace the title and description below with the real Week 3 topic -->
+      <h3>Week 3 Section Notes</h3>
+      <p>Worked solutions and a Manim animation for this week's section.</p>
+      <div class="week-actions">
+        <a class="btn primary small" href="notes/stanford-pai/week-3.pdf" download>Download notes (PDF)</a>
+        <a class="btn outline small" href="viewer.html?file=notes/stanford-pai/week-3.pdf&amp;title=Probability%20for%20AI%2C%20Week%203" target="_blank" rel="noopener">View online</a>
+        <button class="btn outline small video-toggle" type="button" data-video="" aria-expanded="false">Watch animation</button>
+      </div>
+      <div class="video-embed" hidden></div>
+    </article>
+
+  </div>
+  <p style="margin-top:1.8rem; color:var(--chalk-faint); font-size:0.85rem;">New weeks are added as the course moves along.</p>
+</section>
+
+<section class="block contact-block" id="contact">
+  <h2 class="block-title">Let's talk</h2>
+  <p>For teaching, research collaboration, or PhD-related conversations, reach out directly.</p>
+  <a class="btn primary" href="mailto:sohaibhassan199@gmail.com">sohaibhassan199@gmail.com</a>
+</section>
+
+<footer>
+  © <span id="year"></span> Sohaib Hasan · Chakwal, Pakistan
+</footer>
+
+<script src="script.js"></script>
+
+<!-- Cloudflare Web Analytics -->
+<script type='module' src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "40ee39fd48a64e00adc7efb9687f85f1"}'></script>
+<!-- End Cloudflare Web Analytics -->
+
+</body>
+</html>

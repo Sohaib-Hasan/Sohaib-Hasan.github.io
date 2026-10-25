@@ -109,6 +109,57 @@
   counters.forEach(function(el){ cObserver.observe(el); });
 })();
 
+// Video toggles (weekly notes): a "Watch animation" button opens an inline YouTube player.
+// The player is only created on click, so no YouTube code loads until a visitor asks for it.
+// data-video accepts a plain 11-character YouTube ID or any normal YouTube link.
+// Leave data-video empty and the button shows "Video coming soon".
+(function(){
+  var buttons = document.querySelectorAll('.video-toggle');
+  if (!buttons.length) return;
+
+  function youtubeId(value){
+    if (!value) return null;
+    value = value.trim();
+    if (/^[\w-]{11}$/.test(value)) return value;
+    var m = value.match(/(?:youtu\.be\/|[?&]v=|\/embed\/|\/shorts\/)([\w-]{11})/);
+    return m ? m[1] : null;
+  }
+
+  buttons.forEach(function(btn){
+    var id = youtubeId(btn.getAttribute('data-video'));
+    var card = btn.closest('.week-card');
+    var box = card ? card.querySelector('.video-embed') : null;
+    var label = btn.textContent;
+
+    if (!id || !box) {
+      btn.disabled = true;
+      btn.textContent = 'Video coming soon';
+      return;
+    }
+
+    btn.addEventListener('click', function(){
+      var open = !box.hasAttribute('hidden');
+      if (open) {
+        box.setAttribute('hidden', '');
+        box.innerHTML = '';
+        btn.textContent = label;
+        btn.setAttribute('aria-expanded', 'false');
+        return;
+      }
+      var frame = document.createElement('iframe');
+      frame.src = 'https://www.youtube-nocookie.com/embed/' + id + '?rel=0&autoplay=1';
+      frame.title = card.querySelector('h3') ? card.querySelector('h3').textContent + ' (animation)' : 'Animation video';
+      frame.allow = 'accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture; fullscreen';
+      frame.setAttribute('allowfullscreen', '');
+      frame.loading = 'lazy';
+      box.appendChild(frame);
+      box.removeAttribute('hidden');
+      btn.textContent = 'Hide video';
+      btn.setAttribute('aria-expanded', 'true');
+    });
+  });
+})();
+
 // Clickable category filter tags (Notes page, etc.)
 (function(){
   var tags = document.querySelectorAll('.tag.filter[data-filter]');

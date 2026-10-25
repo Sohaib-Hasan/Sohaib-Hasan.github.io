@@ -1,6 +1,6 @@
 # sohaib-hasan.github.io
 
-Personal site for **Sohaib Hasan** — Mathematics Lecturer & Head of Department, and creator of [PlotLab](https://sohaib-hasan.github.io/plotlab.html). Built as a static site on GitHub Pages: no framework, no build step, no dependencies beyond a handful of CDN fonts and three third-party embeds.
+Personal site for **Sohaib Hasan** — mathematics educator, section leader for Stanford's Probability for AI, and creator of [PlotLab](https://sohaib-hasan.github.io/plotlab.html). Built as a static site on GitHub Pages: no framework, no build step, no dependencies beyond a handful of CDN fonts and three third-party embeds.
 
 **Live site:** https://sohaib-hasan.github.io
 
@@ -48,7 +48,11 @@ Only the **blog** (`blog.html`, `_posts/`, `_layouts/post.html`) goes through Je
 ├── teaching.html            
 ├── research.html            
 ├── plotlab.html              "Animations" — PlotLab work
-├── notes.html                Notes library (links to /notes PDFs)
+├── notes.html                Notes library landing page (four folders)
+├── notes-mathematics.html    Folder: free course notes (links to /notes PDFs)
+├── notes-statistics.html     Folder: statistics notes (empty until the first note is added)
+├── notes-stanford-pai.html   Folder: Stanford Probability for AI, one card per week (PDF + video)
+├── notes-igcse.html          Folder: premium IGCSE packs (Gumroad links)
 ├── work-with-me.html         Services: tutoring, animation commissions, custom projects
 ├── contact.html
 ├── resources.html            Utility page — noindexed (see robots.txt)
@@ -64,7 +68,8 @@ Only the **blog** (`blog.html`, `_posts/`, `_layouts/post.html`) goes through Je
 ├── _posts/                     One Markdown file per post (see workflow below)
 │
 ├── cv/Sohaib-Hasan-CV.pdf
-├── notes/                      Downloadable subject notes (PDFs), linked from notes.html
+├── notes/                      Downloadable notes (PDFs), linked from the notes-*.html folder pages
+│   └── stanford-pai/           Weekly Stanford notes: week-1.pdf, week-2.pdf, week-3.pdf, ...
 ├── images/                     profile.png, og-image.jpg, post diagrams
 ├── favicon.ico, favicon-*.png, apple-touch-icon.png
 └── .github/workflows/link-check.yml   Runs lychee on every push to main, fails on broken links
@@ -76,12 +81,13 @@ Only the **blog** (`blog.html`, `_posts/`, `_layouts/post.html`) goes through Je
 
 | Page | Purpose | Indexed? |
 |---|---|---|
-| `index.html` | Home — hero, then a numbered teaser of every section (About → Teaching → Research → Animations → Notes → Blog → Newsletter → Work With Me → Contact) | Yes |
+| `index.html` | Home — hero, then a numbered teaser of every section (About → Teaching → Research → Animations → Notes → Blog → Work With Me → Contact) | Yes |
 | `about.html` | Bio | Yes |
 | `teaching.html` | Teaching background | Yes |
 | `research.html` | Research & achievements | Yes |
 | `plotlab.html` | PlotLab / animation work | Yes |
-| `notes.html` | Notes library | Yes |
+| `notes.html` | Notes library landing page with four folder cards | Yes |
+| `notes-mathematics.html`, `notes-statistics.html`, `notes-stanford-pai.html`, `notes-igcse.html` | The four notes folders | Yes |
 | `blog.html` | Blog index | Yes |
 | `work-with-me.html` | Tutoring, animation commissions, custom projects — each with a mailto CTA | Yes |
 | `contact.html` | General contact | Yes |
@@ -141,7 +147,15 @@ Once the file is pushed to `main`, it appears on `blog.html` automatically at th
 ### Adding a new notes PDF
 
 1. Drop the PDF into `/notes/`.
-2. Add a card/link to it on `notes.html` (same pattern as the existing entries).
+2. Add a card/link to it on the matching folder page (`notes-mathematics.html` or `notes-statistics.html`), copying the pattern of the existing cards. `notes-statistics.html` has the card template in an HTML comment.
+
+### Adding a Stanford Probability for AI week
+
+1. Upload the week's notes PDF to `/notes/stanford-pai/` as `week-N.pdf` (for example `week-4.pdf`).
+2. Open `notes-stanford-pai.html`, copy one whole `<article class="week-card">` block, paste it at the bottom of the list, and change the week number, title, description, the two file names, and `data-video`.
+3. `data-video` takes a YouTube link or just the 11-character video ID. Leave it empty and the button reads "Video coming soon". The player only loads when a visitor clicks it.
+
+Upload the PDF in the same commit as the page: the link checker runs on every push and fails on a link to a file that does not exist yet.
 
 ### Updating the CV
 
@@ -155,7 +169,7 @@ Replace `/cv/Sohaib-Hasan-CV.pdf` with the new file, same filename — every lin
 |---|---|---|
 | **Cloudflare Web Analytics** | Privacy-friendly visitor analytics (no cookies of its own) | One `<script>` beacon tag before `</body>` on every page |
 | **Google Search Console** | Search visibility, indexing, sitemap submission | `googled83bbc5219d8eb40.html` (ownership proof) + `sitemap.xml` |
-| **Kit (ConvertKit) newsletter** | Email list signup, independent of social media reach | Embedded form in the "Newsletter" section of `index.html` only |
+| **Kit (ConvertKit) newsletter** | Email list signup, independent of social media reach | Embedded form at the bottom of each blog post (`_layouts/post.html`). Removed from the home page in Oct 2026 |
 
 The Kit script is **lazy-loaded** — it only fetches `ck.5.js` when a visitor actually interacts with the form (hover, tap, or focus), not on page load. This was a deliberate fix: loading it eagerly caused a third-party cookie (`__cf_bm`, set by Cloudflare on Kit's CDN) that Lighthouse flagged under Best Practices. Deferring the load to real interaction keeps the automated audit clean without changing anything for actual subscribers.
 
