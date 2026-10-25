@@ -21,14 +21,14 @@
 <meta property="og:title" content="Blog · Sohaib Hasan">
 <meta property="og:description" content="Writing on mathematics, AI reasoning, and teaching by Sohaib Hasan.">
 <meta property="og:url" content="https://sohaib-hasan.github.io/blog/">
-<meta property="og:image" content="https://sohaib-hasan.github.io/images/og-image.jpg">
+<meta property="og:image" content="https://sohaib-hasan.github.io/images/og-image.jpg?v=2">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
 <meta property="og:site_name" content="Sohaib Hasan">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="Blog · Sohaib Hasan">
 <meta name="twitter:description" content="Writing on mathematics, AI reasoning, and teaching by Sohaib Hasan.">
-<meta name="twitter:image" content="https://sohaib-hasan.github.io/images/og-image.jpg">
+<meta name="twitter:image" content="https://sohaib-hasan.github.io/images/og-image.jpg?v=2">
 
 </head>
 <body>
@@ -66,14 +66,35 @@
     THUMBNAILS: add one line to a post's front matter to give it a square (1:1) thumbnail:
       thumbnail: /images/blog/my-post.png
     Any image works, it is cropped to a centred square automatically. A post without a thumbnail
-    shows the site icon instead, so every row stays aligned.
+    (or whose image file is not uploaded yet) shows the site icon instead, so every row stays aligned.
+    If the extension in the front matter does not match the uploaded file, png / jpg / jpeg / webp are tried automatically.
   -->
+  <script>
+    // If a thumbnail file is missing or has another extension (png / jpg / jpeg / webp),
+    // try the other common extensions, then fall back to the site icon.
+    function thumbFix(img){
+      if (img.getAttribute('data-fb')) { img.onerror = null; return; }
+      var src = img.getAttribute('src');
+      var base = img.getAttribute('data-base');
+      if (!base) {
+        base = src.replace(/\.[a-z0-9]+$/i, '');
+        img.setAttribute('data-base', base);
+        img.setAttribute('data-orig', src);
+      }
+      var orig = img.getAttribute('data-orig');
+      var list = ['png','jpg','jpeg','webp','PNG','JPG','JPEG'].map(function(e){ return base + '.' + e; })
+                   .filter(function(u){ return u !== orig; });
+      var n = parseInt(img.getAttribute('data-try') || '0', 10);
+      if (n < list.length) { img.setAttribute('data-try', n + 1); img.src = list[n]; }
+      else { img.setAttribute('data-fb', '1'); img.src = '/apple-touch-icon.png'; }
+    }
+  </script>
   <div class="post-list">
     {% for post in site.posts %}
     {% assign thumb = post.thumbnail | default: "/apple-touch-icon.png" %}
     {% unless thumb contains "://" %}{% assign thumb = thumb | prepend: "/" | replace: "//", "/" %}{% endunless %}
     <a class="post-row" href="{{ post.url }}">
-      <span class="post-thumb"><img src="{{ thumb }}" alt="" width="336" height="336" loading="lazy" decoding="async"></span>
+      <span class="post-thumb"><img src="{{ thumb }}" alt="" width="336" height="336" loading="lazy" decoding="async" onerror="thumbFix(this)"></span>
       <span class="post-body">
         <span class="card-tag">{{ post.date | date: "%B %-d, %Y" }}</span>
         <h3>{{ post.title }}</h3>

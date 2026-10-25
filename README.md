@@ -173,6 +173,36 @@ Once the file is pushed to `main`, it appears on `blog.html` automatically at th
 
 Upload the PDF in the same commit as the page: the link checker runs on every push and fails on a link to a file that does not exist yet.
 
+### Where to upload files
+
+| What | Upload to | File name |
+|---|---|---|
+| Stanford weekly notes (PDF) | `notes/stanford-pai/` | `week-1.pdf`, `week-2.pdf`, `week-3.pdf`, `week-4.pdf`, ... |
+| Blog post thumbnails (square) | `images/blog/` | the name written in that post's `thumbnail:` line, see the table below |
+| Other course notes (PDF) | `notes/` | any name, then add a card on the matching folder page |
+
+Blog thumbnail names (already written into each post's front matter, `.png` or `.jpg` both work):
+
+| Post | File name |
+|---|---|
+| Inside the AIMO3 pipeline (Aug 7) | `aimo3-pipeline` |
+| Classroom AI assistant (Aug 19) | `classroom-ai-assistant` |
+| 40,000 Facebook followers (Sep 1) | `facebook-40k-followers` |
+| Prediction apps / linear regression (Oct 18) | `linear-regression-apps` |
+| Stanford Probability for AI (Oct 24) | `stanford-probability-for-ai` |
+
+Until a file is uploaded, that post simply shows the site icon.
+
+### Link preview image
+
+The picture that appears when the site link is pasted into WhatsApp, LinkedIn, Facebook and similar apps is `images/og-image.jpg` (1200 x 630 px). Every page points to it as `og-image.jpg?v=2`. When you replace the picture, also bump the number in all pages (`?v=3`), otherwise those apps keep showing the old cached one:
+
+```
+sed -i 's/og-image.jpg?v=2/og-image.jpg?v=3/g' *.html _layouts/post.html
+```
+
+Then ask Facebook's Sharing Debugger and LinkedIn's Post Inspector to fetch the page again.
+
 ### Updating the CV
 
 Replace `/cv/Sohaib-Hasan-CV.pdf` with the new file, same filename — every link on the site keeps working.
