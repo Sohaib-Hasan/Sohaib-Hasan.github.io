@@ -62,14 +62,25 @@
 
 <section class="block" id="posts" style="border-top:none; padding-top:1rem;">
   {% if site.posts.size > 0 %}
-  <div class="card-grid">
+  <!--
+    THUMBNAILS: add one line to a post's front matter to give it a square (1:1) thumbnail:
+      thumbnail: /images/blog/my-post.png
+    Any image works, it is cropped to a centred square automatically. A post without a thumbnail
+    shows the site icon instead, so every row stays aligned.
+  -->
+  <div class="post-list">
     {% for post in site.posts %}
-    <div class="card">
-      <span class="card-tag">{{ post.date | date: "%B %-d, %Y" }}</span>
-      <h3>{{ post.title }}</h3>
-      <p>{{ post.excerpt | strip_html | strip_newlines | truncatewords: 22 }}</p>
-      <a class="proj-link" href="{{ post.url }}">Read →</a>
-    </div>
+    {% assign thumb = post.thumbnail | default: "/apple-touch-icon.png" %}
+    {% unless thumb contains "://" %}{% assign thumb = thumb | prepend: "/" | replace: "//", "/" %}{% endunless %}
+    <a class="post-row" href="{{ post.url }}">
+      <span class="post-thumb"><img src="{{ thumb }}" alt="" width="336" height="336" loading="lazy" decoding="async"></span>
+      <span class="post-body">
+        <span class="card-tag">{{ post.date | date: "%B %-d, %Y" }}</span>
+        <h3>{{ post.title }}</h3>
+        <p>{{ post.excerpt | strip_html | strip_newlines | truncatewords: 22 }}</p>
+        <span class="proj-link">Read →</span>
+      </span>
+    </a>
     {% endfor %}
   </div>
   {% else %}

@@ -51,7 +51,8 @@ Only the **blog** (`blog.html`, `_posts/`, `_layouts/post.html`) goes through Je
 ├── notes.html                Notes library landing page (four folders)
 ├── notes-mathematics.html    Folder: free course notes (links to /notes PDFs)
 ├── notes-statistics.html     Folder: statistics notes (empty until the first note is added)
-├── notes-stanford-pai.html   Folder: Stanford Probability for AI, one card per week (PDF + video)
+├── notes-stanford-pai.html   Folder: Stanford Probability for AI, one card per week (PDF + video), buttons for Video Animations and PDFs
+├── notes-stanford-pai-pdfs.html   Sub-folder: every Stanford PDF as a View / Download card
 ├── notes-igcse.html          Folder: premium IGCSE packs (Gumroad links)
 ├── work-with-me.html         Services: tutoring, animation commissions, custom projects
 ├── contact.html
@@ -71,6 +72,7 @@ Only the **blog** (`blog.html`, `_posts/`, `_layouts/post.html`) goes through Je
 ├── notes/                      Downloadable notes (PDFs), linked from the notes-*.html folder pages
 │   └── stanford-pai/           Weekly Stanford notes: week-1.pdf, week-2.pdf, week-3.pdf, ...
 ├── images/                     profile.png, og-image.jpg, post diagrams
+│   └── blog/                   Square thumbnails for blog posts (see "Publishing a blog post")
 ├── favicon.ico, favicon-*.png, apple-touch-icon.png
 └── .github/workflows/link-check.yml   Runs lychee on every push to main, fails on broken links
 ```
@@ -88,6 +90,7 @@ Only the **blog** (`blog.html`, `_posts/`, `_layouts/post.html`) goes through Je
 | `plotlab.html` | PlotLab / animation work | Yes |
 | `notes.html` | Notes library landing page with four folder cards | Yes |
 | `notes-mathematics.html`, `notes-statistics.html`, `notes-stanford-pai.html`, `notes-igcse.html` | The four notes folders | Yes |
+| `notes-stanford-pai-pdfs.html` | PDFs sub-folder inside the Stanford folder | Yes |
 | `blog.html` | Blog index | Yes |
 | `work-with-me.html` | Tutoring, animation commissions, custom projects — each with a mailto CTA | Yes |
 | `contact.html` | General contact | Yes |
@@ -136,6 +139,18 @@ title: "Your Post Title Here"
 ---
 ```
 
+**Optional thumbnail.** To show a square (1:1) thumbnail next to the post's title on the blog page, upload an image to `/images/blog/` and add one line to the front matter:
+
+```
+---
+layout: post
+title: "Your Post Title Here"
+thumbnail: /images/blog/your-post.png
+---
+```
+
+Use a square image, 1200 x 1200 px is plenty, under about 200 KB. Any other shape still works, because the blog page crops it to a centred square. A post with no `thumbnail` line shows the site icon (`/apple-touch-icon.png`) instead, so the list always stays aligned. The thumbnail appears only on the blog index, not on the post page itself.
+
 Then write normal Markdown below it. A few things specific to this site's setup:
 
 - Code blocks use **three tildes** (`~~~`), not backticks — that's what kramdown (this site's Markdown engine) is configured to expect.
@@ -154,6 +169,7 @@ Once the file is pushed to `main`, it appears on `blog.html` automatically at th
 1. Upload the week's notes PDF to `/notes/stanford-pai/` as `week-N.pdf` (for example `week-4.pdf`).
 2. Open `notes-stanford-pai.html`, copy one whole `<article class="week-card">` block, paste it at the bottom of the list, and change the week number, title, description, the two file names, and `data-video`.
 3. `data-video` takes a YouTube link or just the 11-character video ID. Leave it empty and the button reads "Video coming soon". The player only loads when a visitor clicks it.
+4. Add a matching card for the same PDF on `notes-stanford-pai-pdfs.html` (copy an existing card and change the tag, title, description and file names).
 
 Upload the PDF in the same commit as the page: the link checker runs on every push and fails on a link to a file that does not exist yet.
 
