@@ -1,6 +1,7 @@
 ---
 layout: post
 title: "How I Got 40,000 Facebook Followers in Just Two Months"
+thumbnail: /images/blog/facebook-40k-followers.png
 ---
 
 Two months ago, my Facebook page had a small, quiet following. Today, more than 40,000 people follow it. I did not expect this to happen so fast, and I do not believe there is a secret trick behind it. But I do understand why it happened, and I want to explain it honestly, because the reason is actually more useful than a trick would be.

@@ -1,6 +1,7 @@
 ---
 layout: post
 title: "Every AI Answer Is a Bet: What I Learned Teaching Stanford's Probability for AI"
+thumbnail: /images/blog/stanford-probability-for-ai.png
 ---
 
 Ask an AI a question and watch the words arrive, one after another. It feels like the machine is looking something up. It is not. At every step, the model is placing a bet. Given everything written so far, it assigns a probability to each possible next word, picks one, and moves on. The paragraph you finally read is a chain of weighted guesses, and the quality of the whole answer depends on how well those guesses were calibrated. It is also why asking the same question twice can give you two different answers.
@@ -89,6 +90,6 @@ That habit of asking is worth more than any single formula, and you do not need 
 
 I'm Sohaib Hasan. I have 9+ years of teaching experience in advanced mathematics and statistics, and I turn the ideas I teach into Manim animations, the kind that Prof. Chris Piech and fellow section leaders of Stanford's Probability for AI have appreciated.
 
-I share these animations on my YouTube channel, [PlotLab Algorithms](https://www.youtube.com/@PlotLabAlgorithms), where I teach data science, machine learning, cryptography, math, DSA and statistics visually, in the style made popular by 3Blue1Brown. Shorter clips live on [Facebook](https://web.facebook.com/plotlab1/reels/) (70K+ followers) and [Instagram](https://www.instagram.com/plotlab01/) (15K+ followers).
+I share these animations on my YouTube channel, [PlotLab Algorithms](https://www.youtube.com/@PlotLabAlgorithms), where I teach data science, machine learning, cryptography, math, DSA and statistics visually, in the style made popular by 3Blue1Brown. Shorter clips live on [Facebook](https://web.facebook.com/plotlab1/reels/) (85K+ followers) and [Instagram](https://www.instagram.com/plotlab01/) (15K+ followers).
 
 **Want an animation like this for your own work?** If you have a project, a research article, a thesis defense, a YouTube video, or any idea that is hard to explain with slides alone, I can turn it into a clear, professional animation. Reach out through my [Work With Me](https://sohaib-hasan.github.io/work-with-me.html) page and tell me what you are working on. If you would rather learn to build animations yourself, start with my [Manim CE Beginner's Handbook](https://plotlab1.gumroad.com/l/manim_guide_handbook). And I'd like to hear what you think of this post, drop a comment.

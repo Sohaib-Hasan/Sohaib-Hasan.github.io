@@ -1,6 +1,7 @@
 ---
 layout: post
 title: "I Built My Students an AI Assistant That's Not Allowed to Make Things Up"
+thumbnail: /images/blog/classroom-ai-assistant.png
 ---
 
 Ask a generic AI chatbot a question about your course, and it will answer confidently, using its own notation, its own conventions, and occasionally its own facts. It doesn't know that you define a term slightly differently than the textbook does, or that a particular proof technique hasn't been covered yet, or that the "obvious" shortcut it just suggested isn't one your students are allowed to use on the exam. It will still answer. That's the problem.

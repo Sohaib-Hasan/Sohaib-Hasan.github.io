@@ -1,6 +1,7 @@
 ---
 layout: post
 title: "The One Idea Quietly Running Every Prediction App On Your Phone"
+thumbnail: /images/blog/linear-regression-apps.png
 ---
 
 Open your phone right now and check three things. The weather app telling you tomorrow will be 34 degrees. A real estate app showing you what a plot in your area is roughly worth before you even call the agent. Careem or Uber quoting you a fare before the ride has even started.
@@ -53,4 +54,4 @@ It is not magic. It never was. It is just a very old, very patient idea, trusted
 
 ---
 
-I lead the Mathematics Department at my college, and PlotLab is where I turn ideas like this one into animation. If this kind of explanation helped something click, there is more where it came from on [Facebook](https://web.facebook.com/plotlab1/reels/) (70K+ followers) and [Instagram](https://www.instagram.com/plotlab01/) (15K+ followers). If you're a teacher, student, or researcher who needs an idea explained visually like this, reach out through my [Work With Me](https://sohaib-hasan.github.io/work-with-me.html) page. I'd like to hear what you think, drop a comment.
+I lead the Mathematics Department at my college, and PlotLab is where I turn ideas like this one into animation. If this kind of explanation helped something click, there is more where it came from on [Facebook](https://web.facebook.com/plotlab1/reels/) (85K+ followers) and [Instagram](https://www.instagram.com/plotlab01/) (15K+ followers). If you're a teacher, student, or researcher who needs an idea explained visually like this, reach out through my [Work With Me](https://sohaib-hasan.github.io/work-with-me.html) page. I'd like to hear what you think, drop a comment.

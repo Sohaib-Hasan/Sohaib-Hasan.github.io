@@ -1,6 +1,7 @@
 ---
 layout: post
 title: "AI Just Posted a Perfect Score at the Real Math Olympiad. I Spent Months Building One of These Systems. Here's What It Actually Takes"
+thumbnail: /images/blog/aimo3-pipeline.png
 ---
 
 In July 2026, in Shanghai, something happened that mathematicians had been debating for two years: AI systems from Huawei and Xiaohongshu were each reported to have solved all six problems of the International Mathematical Olympiad, a perfect 42 out of 42. Several other labs reported matching results on their own. It followed a 2025 breakthrough where Google DeepMind's Gemini Deep Think, officially graded by IMO coordinators, and an OpenAI experimental model both reached the gold-medal threshold of 35/42.
