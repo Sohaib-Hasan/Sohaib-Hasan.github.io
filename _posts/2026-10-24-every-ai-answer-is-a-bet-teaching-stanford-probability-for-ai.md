@@ -1,7 +1,7 @@
 ---
 layout: post
 title: "Every AI Answer Is a Bet: What I Learned Teaching Stanford's Probability for AI"
-thumbnail: /images/blog/stanford-probability-for-ai.png
+thumbnail: /images/blog/Blog-24oct.png
 ---
 
 Ask an AI a question and watch the words arrive, one after another. It feels like the machine is looking something up. It is not. At every step, the model is placing a bet. Given everything written so far, it assigns a probability to each possible next word, picks one, and moves on. The paragraph you finally read is a chain of weighted guesses, and the quality of the whole answer depends on how well those guesses were calibrated. It is also why asking the same question twice can give you two different answers.
