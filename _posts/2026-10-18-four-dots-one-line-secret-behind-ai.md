@@ -1,7 +1,7 @@
 ---
 layout: post
 title: "The One Idea Quietly Running Every Prediction App On Your Phone"
-thumbnail: /images/blog/Blog-18oct.png
+thumbnail: /images/blog/Blog-oct18.jpg
 ---
 
 Open your phone right now and check three things. The weather app telling you tomorrow will be 34 degrees. A real estate app showing you what a plot in your area is roughly worth before you even call the agent. Careem or Uber quoting you a fare before the ride has even started.
