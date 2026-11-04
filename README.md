@@ -34,7 +34,7 @@ Personal site for **Sohaib Hasan** — mathematics educator, section leader for 
 | Markup | Plain HTML5 — every non-blog page is hand-written, no templating |
 | Styling | Single hand-written `style.css`, no framework |
 | JS | Vanilla `script.js` on every page (nav, counters, filters, video toggles) plus `hero.js` on the home page only (the Fourier-epicycle animation). No libraries, no build tooling |
-| Fonts | Self-hosted subset `woff2` files in the repo root (about 80 KB total): Latin Modern Roman / Italic / Caps for headings and labels, Inter for body text. No Google Fonts requests |
+| Fonts | Self-hosted subset `woff2` files in the repo root (about 80 KB total): Latin Modern Roman / Italic / Caps for headings and labels, a tiny Latin Modern Math subset for symbols in the drawings, Inter for body text. No Google Fonts requests |
 
 Only the **blog** (`blog.html`, `_posts/`, `_layouts/post.html`) goes through Jekyll's Liquid + kramdown pipeline. Every other `.html` file has no front matter, so Jekyll copies it to the output untouched — this is deliberate, it keeps the rest of the site simple to edit by hand.
 
@@ -61,7 +61,7 @@ Only the **blog** (`blog.html`, `_posts/`, `_layouts/post.html`) goes through Je
 ├── style.css                 All site styling — design tokens at the top
 ├── script.js                 Nav, footer year, stat counters, pointer glow, video toggles, notes filters
 ├── hero.js                   Home-page hero animation (canvas, pauses when off-screen)
-├── font-lm-roman.woff2, font-lm-italic.woff2, font-lm-caps.woff2, font-inter.woff2   Self-hosted fonts (keep in the repo root)
+├── font-lm-roman.woff2, font-lm-italic.woff2, font-lm-caps.woff2, font-lm-math.woff2, font-inter.woff2   Self-hosted fonts (keep in the repo root)
 ├── sitemap.xml / robots.txt   SEO plumbing
 ├── googled83bbc5219d8eb40.html   Google Search Console ownership verification
 │
@@ -121,7 +121,11 @@ Every color and font lives as a CSS custom property at the top of `style.css`:
 
 Fonts: `--f-display` (Latin Modern Roman, headings), `--f-caps` (Latin Modern Caps, small labels, written lowercase and rendered as small caps), `--f-body` (Inter). Each has a metric-matched fallback `@font-face`, so nothing jumps while the font files load.
 
-Reusable pieces: `.block` + `.block-head` / `.block-title` (a page section), `.card` / `.card-grid`, `.folder-card`, `.post-row`, `.btn.primary` (gold CTA), `.page-header` (title block of every sub-page), `.page-art` (the small animated math drawing inside a sub-page header: pure inline SVG + CSS, shown on screens 1300 px and wider, hidden on phones), `.site-footer`.
+Reusable pieces: `.block` + `.block-head` / `.block-title` (a page section), `.card` / `.card-grid`, `.folder-card`, `.post-row`, `.btn.primary` (gold CTA), `.page-header` (title block of every sub-page), `.page-art` (the animated math drawing inside a sub-page header: pure inline SVG + CSS, with a small caption and a glowing tracer dot; beside the title on screens 1100 px and wider, below the intro text on tablets and phones), `.site-footer`.
+
+**Page transitions:** when you click a link to another page on the site, a dark curtain with a gold `S` and the chalkboard grid rises over the page, and lifts off the new page while its content rises into place. It is plain CSS (`html.pt-out` / `html.pt-in` in `style.css`) driven by the short transition block at the top of `script.js` and a one-line script in the `<head>` of every page. It only moves `transform`, it is skipped for `prefers-reduced-motion` users, for PDFs and downloads, for links that open a new tab, and for Ctrl/Cmd-clicks, and the back button never leaves the curtain stuck. Links are also prefetched when the pointer touches them.
+
+**Type scale:** headings were tuned to stay calm. The home name is `clamp(3rem, 6.1vw, 5.3rem)` and stays on one line on every phone; sub-page titles are `clamp(2.2rem, 4.9vw, 3.7rem)`. Change these two lines in `style.css` (`.hero h1`, `.page-header h1`) if you want them bigger or smaller.
 
 **Accessibility:** every page has a skip link and a `<main id="main">` landmark, headings run in order, in-text links are underlined, and everything respects `prefers-reduced-motion`. An axe-core audit of all pages came back with 0 violations.
 
@@ -256,9 +260,9 @@ Where to look if this happens again:
 3. The GitHub-linked email inbox (check spam) — GitHub emails a "Page build failure" notice automatically when a build fails.
 4. If nothing points to an error, a trivial re-commit (even a one-character edit) usually forces a fresh rebuild attempt.
 
-**I changed `style.css` or `script.js` but the live site still looks old:** the pages load them as `/style.css?v=3`, `/script.js?v=3` and `/hero.js?v=3`. Browsers cache those files for a while. After a CSS or JS change, bump the number (`?v=4`, `?v=5`, ...) in every HTML file, including `_layouts/post.html`. A hard refresh on your own device (Ctrl+Shift+R) also works.
+**I changed `style.css` or `script.js` but the live site still looks old:** the pages load them as `/style.css?v=4`, `/script.js?v=4` and `/hero.js?v=4`. Browsers cache those files for a while. After a CSS or JS change, bump the number (`?v=5`, `?v=6`, ...) in every HTML file, including `_layouts/post.html`. A hard refresh on your own device (Ctrl+Shift+R) also works.
 
-**Text suddenly shows in Georgia or a system font:** the four `font-*.woff2` files must sit in the repo root next to `index.html`. If one is missing, the browser falls back to a similar-sized system font.
+**Text suddenly shows in Georgia or a system font:** the five `font-*.woff2` files (roman, italic, caps, inter and the tiny `font-lm-math.woff2` used for Greek letters, ∫ and ∩ inside the drawings) must sit in the repo root next to `index.html`. If one is missing, the browser falls back to a similar-sized system font.
 
 **Content missing on mobile:** the redesign no longer hides anything until it scrolls into view (the old `will-animate` effect was removed), so missing content is a markup problem. Open the page in the browser's mobile view and check the HTML.
 
@@ -268,10 +272,11 @@ Where to look if this happens again:
 
 The redesign was built to stay light:
 
-- **Fonts:** four subset `woff2` files (about 80 KB), only the two used above the fold are preloaded, `font-display:swap`, metric-matched fallbacks (no layout shift).
+- **Fonts:** five subset `woff2` files (about 83 KB; the math one is 2.7 KB and only downloads when a drawing needs a Greek letter), only the two used above the fold are preloaded, `font-display:swap`, metric-matched fallbacks (no layout shift).
 - **JS:** `script.js` is about 7 KB and `hero.js` loads on the home page only. Nothing runs while it is off-screen: the hero animation pauses outside the viewport and when the tab is hidden, scroll handlers are passive and `requestAnimationFrame`-throttled.
 - **CSS:** one stylesheet (about 12 KB gzipped). Icons are CSS masks, the background is a single static layer, effects use `transform` and `opacity` only.
-- **Sub-page drawings:** inline SVG, animated once with CSS, no JS and no extra requests.
+- **Sub-page drawings:** inline SVG, drawn once with CSS and a few finite SMIL tracer dots, no libraries and no extra requests. The only JS is a few lines of pointer parallax on desktop.
+- **Page transition and reveals:** GPU-only (`transform`), scroll reveals use native scroll-driven animation where the browser supports it (nothing is hidden where it does not), and everything is switched off for `prefers-reduced-motion`.
 - **Local test numbers** (Chromium, mobile viewport, 4x CPU throttle): LCP about 0.4 s, CLS 0, no console errors.
 
 These are local numbers. After each deploy, run Lighthouse on the live URL and compare.
@@ -289,6 +294,7 @@ Rough build order, for reference:
 5. **Newsletter** — Kit-powered email signup on the homepage, later optimized to lazy-load for privacy/performance.
 6. **Mobile scroll-animation fix** — long-form blog posts excluded from the fade-in-on-scroll effect after it was found to leave post bodies stuck invisible on narrow viewports.
 7. **Redesign (Oct 2026)** — new design system (Latin Modern + Inter, self-hosted), animated Fourier hero, new home layout, per-page math drawings, new footer, accessibility pass (skip link, landmarks, heading order). The old scroll-in animation was removed.
+8. **Polish pass (Nov 2026)** — calmer type scale, one-line home name on phones, curtain page transitions, arch-framed portrait, richer captioned drawings with tracers on every page and every screen size.
 
 ---
 

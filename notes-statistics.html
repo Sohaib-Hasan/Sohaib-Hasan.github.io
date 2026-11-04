@@ -12,6 +12,7 @@
 
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<script>try{var t=+sessionStorage.getItem('pt');if(t&&Date.now()-t<8000)document.documentElement.classList.add('pt-in');sessionStorage.removeItem('pt')}catch(e){}</script>
 <link rel="icon" type="image/x-icon" href="/favicon.ico">
 <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
 <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
@@ -21,7 +22,7 @@
 <meta name="theme-color" content="#0f1b17">
 <link rel="preload" href="/font-lm-roman.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="preload" href="/font-inter.woff2" as="font" type="font/woff2" crossorigin>
-<link rel="stylesheet" href="/style.css?v=3">
+<link rel="stylesheet" href="/style.css?v=4">
 <link rel="canonical" href="https://sohaib-hasan.github.io/notes-statistics.html">
 <meta property="og:type" content="website">
 <meta property="og:title" content="Statistics Notes · Sohaib Hasan">
@@ -62,8 +63,8 @@
 <main id="main">
 
 <header class="page-header has-art">
-  <div class="page-art" aria-hidden="true"><svg viewBox="0 0 460 340" focusable="false"><path class="fi sh" style="animation-delay:1.6s" d="M174 292L174 166.2L179.6 153.6L185.2 141.4L190.8 129.6L196.4 118.7L202 108.9L207.6 100.5L213.2 93.7L218.8 88.7L224.4 85.6L230 84.6L235.6 85.6L241.2 88.7L246.8 93.7L252.4 100.5L258 108.9L263.6 118.7L269.2 129.6L274.8 141.4L280.4 153.6L286 166.2L286 292Z"/><path class="bar fi" style="animation-delay:0.2s" d="M5.5 292v-0.1h29.9v0.1M35.4 292v-0.8h29.9v0.8M65.4 292v-5.4h29.9v5.4M95.3 292v-21.6h29.9v21.6M125.2 292v-59.4h29.9v59.4M155.2 292v-118.9h29.9v118.9M185.1 292v-178.3h29.9v178.3M215 292v-203.8h29.9v203.8M245 292v-178.3h29.9v178.3M274.9 292v-118.9h29.9v118.9M304.8 292v-59.4h29.9v59.4M334.8 292v-21.6h29.9v21.6M364.7 292v-5.4h29.9v5.4M394.6 292v-0.8h29.9v0.8M424.6 292v-0.1h29.9v0.1"/><path class="ax fi" style="animation-delay:0s" d="M26 292H434"/><path class="dr cv" pathLength="1" d="M28.4 291.7L35.1 291.5L41.8 291.3L48.6 290.9L55.3 290.4L62 289.7L68.7 288.7L75.4 287.4L82.2 285.6L88.9 283.3L95.6 280.4L102.3 276.6L109 271.9L115.8 266.1L122.5 259.2L129.2 250.9L135.9 241.4L142.6 230.6L149.4 218.4L156.1 205.2L162.8 191L169.5 176.2L176.2 161.1L183 146.2L189.7 131.9L196.4 118.7L203.1 107.1L209.8 97.6L216.6 90.4L223.3 86L230 84.6L236.7 86L243.4 90.4L250.2 97.6L256.9 107.1L263.6 118.7L270.3 131.9L277 146.2L283.8 161.1L290.5 176.2L297.2 191L303.9 205.2L310.6 218.4L317.4 230.6L324.1 241.4L330.8 250.9L337.5 259.2L344.2 266.1L351 271.9L357.7 276.6L364.4 280.4L371.1 283.3L377.8 285.6L384.6 287.4L391.3 288.7L398 289.7L404.7 290.4L411.4 290.9L418.2 291.3L424.9 291.5L431.6 291.7" style="animation-delay:0.5s;animation-duration:2.6s;"/><path class="dsh fi" style="animation-delay:2.4s" d="M174 292V166.2M286 292V166.2"/><path class="dsh fi" style="animation-delay:2.4s" d="M230 292V84.6"/><text class="fi lb" x="230" y="316" text-anchor="middle" style="animation-delay:2.6s">μ</text><text class="fi lb" x="174" y="316" text-anchor="middle" style="animation-delay:2.7s">−σ</text><text class="fi lb" x="286" y="316" text-anchor="middle" style="animation-delay:2.7s">σ</text><text class="fi lb big" x="230" y="70" text-anchor="middle" style="animation-delay:2.9s">68%</text></svg></div>
-      <a class="back-link" href="notes.html">← Notes Library</a>
+  <div class="page-art" aria-hidden="true"><svg viewBox="0 0 460 372" focusable="false"><path class="fi sh" style="animation-delay:calc(var(--enter) + 1.6s)" d="M174 292L174 166.2L179.6 153.6L185.2 141.4L190.8 129.6L196.4 118.7L202 108.9L207.6 100.5L213.2 93.7L218.8 88.7L224.4 85.6L230 84.6L235.6 85.6L241.2 88.7L246.8 93.7L252.4 100.5L258 108.9L263.6 118.7L269.2 129.6L274.8 141.4L280.4 153.6L286 166.2L286 292Z"/><path class="bar fi" style="animation-delay:calc(var(--enter) + 0.2s)" d="M5.5 292v-0.1h29.9v0.1M35.4 292v-0.8h29.9v0.8M65.4 292v-5.4h29.9v5.4M95.3 292v-21.6h29.9v21.6M125.2 292v-59.4h29.9v59.4M155.2 292v-118.9h29.9v118.9M185.1 292v-178.3h29.9v178.3M215 292v-203.8h29.9v203.8M245 292v-178.3h29.9v178.3M274.9 292v-118.9h29.9v118.9M304.8 292v-59.4h29.9v59.4M334.8 292v-21.6h29.9v21.6M364.7 292v-5.4h29.9v5.4M394.6 292v-0.8h29.9v0.8M424.6 292v-0.1h29.9v0.1"/><path class="ax fi" style="animation-delay:calc(var(--enter) + 0s)" d="M26 292H434"/><path id="art-path" class="dr cv" pathLength="1" d="M28.4 291.7L35.1 291.5L41.8 291.3L48.6 290.9L55.3 290.4L62 289.7L68.7 288.7L75.4 287.4L82.2 285.6L88.9 283.3L95.6 280.4L102.3 276.6L109 271.9L115.8 266.1L122.5 259.2L129.2 250.9L135.9 241.4L142.6 230.6L149.4 218.4L156.1 205.2L162.8 191L169.5 176.2L176.2 161.1L183 146.2L189.7 131.9L196.4 118.7L203.1 107.1L209.8 97.6L216.6 90.4L223.3 86L230 84.6L236.7 86L243.4 90.4L250.2 97.6L256.9 107.1L263.6 118.7L270.3 131.9L277 146.2L283.8 161.1L290.5 176.2L297.2 191L303.9 205.2L310.6 218.4L317.4 230.6L324.1 241.4L330.8 250.9L337.5 259.2L344.2 266.1L351 271.9L357.7 276.6L364.4 280.4L371.1 283.3L377.8 285.6L384.6 287.4L391.3 288.7L398 289.7L404.7 290.4L411.4 290.9L418.2 291.3L424.9 291.5L431.6 291.7" style="animation-delay:calc(var(--enter) + 0.5s);animation-duration:2.6s;"/><path class="dsh fi" style="animation-delay:calc(var(--enter) + 2.4s)" d="M174 292V166.2M286 292V166.2M230 292V84.6"/><text class="fi lb" x="230" y="316" text-anchor="middle" style="animation-delay:calc(var(--enter) + 2.6s)">𝜇</text><text class="fi lb" x="174" y="316" text-anchor="middle" style="animation-delay:calc(var(--enter) + 2.7s)">−𝜎</text><text class="fi lb" x="286" y="316" text-anchor="middle" style="animation-delay:calc(var(--enter) + 2.7s)">𝜎</text><text class="fi lb big" x="230" y="70" text-anchor="middle" style="animation-delay:calc(var(--enter) + 2.9s)">68%</text><circle class="trc" r="5.5"><animate attributeName="opacity" values="0;1;1;0" keyTimes="0;.07;.93;1" dur="7s" begin="3.8s" repeatCount="3"/><animateMotion dur="7s" begin="3.8s" repeatCount="3" calcMode="linear"><mpath href="#art-path"/></animateMotion></circle><text class="fi cap" x="230" y="362" text-anchor="middle" style="animation-delay:calc(var(--enter) + 3.3s)">N(𝜇, 𝜎²)</text></svg></div>
+                      <a class="back-link" href="notes.html">← Notes Library</a>
   <div class="eyebrow">Notes Library · Statistics</div>
   <h1>Statistics notes.</h1>
   <p class="lede">LaTeX-typeset statistics notes for undergraduate courses. This folder is ready and the first notes are on the way.</p>
@@ -127,7 +128,7 @@
   <div class="foot-base">© <span id="year"></span> Sohaib Hasan · Chakwal, Pakistan</div>
 </footer>
 
-<script src="/script.js?v=3"></script>
+<script src="/script.js?v=4"></script>
 
 <!-- Cloudflare Web Analytics -->
 <script type='module' src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "40ee39fd48a64e00adc7efb9687f85f1"}'></script>

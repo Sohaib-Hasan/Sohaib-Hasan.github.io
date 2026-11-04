@@ -1,5 +1,63 @@
-// Shared site script: footer year, nav, stat counters, video toggles, filters, pointer glow.
+// Shared site script: page transitions, footer year, nav, stat counters, video toggles, filters, pointer glow.
 // Small on purpose: no libraries, passive listeners, work only when something is on screen.
+
+// Page transitions: a curtain rises over the page you leave (html.pt-out) and lifts off the page you arrive on
+// (html.pt-in, set by a tiny script in <head>). Same-site links only; plain clicks only; skipped for
+// reduced-motion users. Links are also prefetched a moment before the click so the next page opens fast.
+(function(){
+  var html = document.documentElement;
+  var reduce = window.matchMedia && matchMedia('(prefers-reduced-motion: reduce)').matches;
+  // never leave the curtain down (back button / bfcache), and never leave it up if animations are paused
+  window.addEventListener('pageshow', function(){ html.classList.remove('pt-out'); try { sessionStorage.removeItem('pt'); } catch(e){} });
+  setTimeout(function(){ html.classList.remove('pt-in'); }, 1600);
+  if (reduce) return;
+
+  var FILE = /\.(pdf|zip|png|jpe?g|gif|webp|svg|xml|txt|docx?|pptx?|xlsx?|mp4|mp3)(\?|#|$)/i;
+  function eligible(a, e){
+    if (!a || !a.href || a.hasAttribute('download')) return false;
+    if (a.target && a.target !== '_self') return false;
+    if (a.origin !== location.origin || !/^https?:$/.test(a.protocol)) return false;
+    if (FILE.test(a.pathname)) return false;
+    if (a.pathname === location.pathname && a.search === location.search) return false; // same page or #anchor
+    return true;
+  }
+  document.addEventListener('click', function(e){
+    if (e.defaultPrevented || e.button || e.metaKey || e.ctrlKey || e.shiftKey || e.altKey) return;
+    var a = e.target.closest ? e.target.closest('a[href]') : null;
+    if (!eligible(a, e)) return;
+    e.preventDefault();
+    if (html.classList.contains('pt-out')) return;
+    try { sessionStorage.setItem('pt', String(Date.now())); } catch(err){}
+    html.classList.add('pt-out');
+    setTimeout(function(){ location.href = a.href; }, 400);
+  });
+
+  var warmed = {};
+  function warm(e){
+    var a = e.target.closest ? e.target.closest('a[href]') : null;
+    if (!eligible(a, e) || warmed[a.href]) return;
+    warmed[a.href] = 1;
+    var l = document.createElement('link'); l.rel = 'prefetch'; l.href = a.href; document.head.appendChild(l);
+  }
+  document.addEventListener('pointerover', warm, { passive: true });
+  document.addEventListener('touchstart', warm, { passive: true });
+})();
+
+// Header drawings drift a few pixels with the pointer (desktop only)
+(function(){
+  var art = document.querySelector('.page-art');
+  if (!art || !window.matchMedia || !matchMedia('(hover: hover) and (min-width: 1100px) and (prefers-reduced-motion: no-preference)').matches) return;
+  var raf = 0, x = 0, y = 0;
+  document.addEventListener('pointermove', function(e){
+    x = (e.clientX / window.innerWidth - .5) * 2; y = (e.clientY / window.innerHeight - .5) * 2;
+    if (raf) return;
+    raf = requestAnimationFrame(function(){
+      raf = 0;
+      art.style.setProperty('--px', (x * -9).toFixed(1) + 'px');
+      art.style.setProperty('--py', (y * -7).toFixed(1) + 'px');
+    });
+  }, { passive: true });
+})();
 
 // Footer year
 (function(){
