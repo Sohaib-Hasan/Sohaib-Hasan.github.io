@@ -1,3 +1,5 @@
+---
+---
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -9,11 +11,10 @@
 <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
 <title>Sohaib Hasan · Mathematics, AI Reasoning &amp; PlotLab</title>
 <meta name="description" content="Sohaib Hasan, mathematics educator and section leader for Stanford's Probability for AI. Research in cryptography and AI mathematical reasoning. Creator of PlotLab, with 100K+ followers.">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;0,9..144,600;1,9..144,400&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" onload="this.onload=null;this.rel='stylesheet'">
-<noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;0,9..144,600;1,9..144,400&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap"></noscript>
-<link rel="stylesheet" href="style.css">
+<meta name="theme-color" content="#0f1b17">
+<link rel="preload" href="/font-lm-roman.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="/font-inter.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="/style.css?v=3">
 <link rel="canonical" href="https://sohaib-hasan.github.io/">
 <meta property="og:type" content="website">
 <meta property="og:title" content="Sohaib Hasan · Mathematics, AI Reasoning &amp; PlotLab">
@@ -56,6 +57,7 @@
 </script>
 </head>
 <body>
+<a class="skip-link" href="#main">Skip to content</a>
 
 <div class="grain"></div>
 
@@ -77,113 +79,126 @@
 </nav>
 <div class="nav-backdrop" id="navBackdrop"></div>
 
+<main id="main">
 <section class="hero">
   <div class="hero-inner">
-    <img src="images/profile.png" alt="Sohaib Hasan" class="portrait">
-    <div class="eyebrow">Mathematician &nbsp;·&nbsp; Data Scientist &nbsp;·&nbsp; Manim Animator</div>
-    <h1>Sohaib Hasan</h1>
-    <p class="role">Mathematics Educator &amp; Section Leader, Stanford Probability for AI</p>
-    <p class="hero-desc">
-      <strong>Nine years</strong> teaching advanced mathematics, and now a <strong>section leader for Stanford's Probability for AI</strong>, chosen from 2,700+ participants across 70 countries. An <strong>MPhil in Mathematics</strong> researching elliptic-curve cryptography, a <strong>top-12% finish at the AI Mathematical Olympiad</strong>, an <strong>AI tutor built for my own classroom</strong>, and <strong>PlotLab</strong>, where my animations reach <strong>100K+ followers</strong>. Every one of them comes from the same belief: careful reasoning gets rewarded, whether it comes from a student or a machine.
-    </p>
-    <div class="social-row">
-      <a href="mailto:sohaibhassan199@gmail.com" class="social-icon" aria-label="Email" title="Email"><svg viewBox="0 0 512 512"><path d="M48 64C21.5 64 0 85.5 0 112c0 15.1 7.1 29.3 19.2 38.4L236.8 313.6c11.4 8.5 27 8.5 38.4 0L492.8 150.4c12.1-9.1 19.2-23.3 19.2-38.4c0-26.5-21.5-48-48-48L48 64zM0 176L0 384c0 35.3 28.7 64 64 64l384 0c35.3 0 64-28.7 64-64l0-208L294.4 339.2c-22.8 17.1-54 17.1-76.8 0L0 176z"/></svg></a>
-      <a href="https://www.linkedin.com/in/sohaibhassan05/" class="social-icon" aria-label="LinkedIn" title="LinkedIn" target="_blank" rel="noopener"><svg viewBox="0 0 448 512"><path d="M100.28 448H7.4V148.9h92.88zM53.79 108.1C24.09 108.1 0 83.5 0 53.8a53.79 53.79 0 0 1 107.58 0c0 29.7-24.1 54.3-53.79 54.3zM447.9 448h-92.68V302.4c0-34.7-.7-79.2-48.29-79.2-48.29 0-55.69 37.7-55.69 76.7V448h-92.78V148.9h89.08v40.8h1.3c12.4-23.5 42.69-48.3 87.88-48.3 94 0 111.28 61.9 111.28 142.3V448z"/></svg></a>
-      <a href="https://github.com/Sohaib-Hasan" class="social-icon" aria-label="GitHub" title="GitHub" target="_blank" rel="noopener"><svg viewBox="0 0 24 24"><path d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12"/></svg></a>
-      <a href="https://www.youtube.com/@PlotLabAlgorithms" class="social-icon" aria-label="YouTube" title="YouTube" target="_blank" rel="noopener"><svg viewBox="0 0 24 24"><path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg></a>
-      <a href="https://www.instagram.com/plotlab01/" class="social-icon" aria-label="Instagram" title="Instagram" target="_blank" rel="noopener"><svg viewBox="0 0 24 24"><path d="M7.0301.084c-1.2768.0602-2.1487.264-2.911.5634-.7888.3075-1.4575.72-2.1228 1.3877-.6652.6677-1.075 1.3368-1.3802 2.127-.2954.7638-.4956 1.6365-.552 2.914-.0564 1.2775-.0689 1.6882-.0626 4.947.0062 3.2586.0206 3.6671.0825 4.9473.061 1.2765.264 2.1482.5635 2.9107.308.7889.72 1.4573 1.388 2.1228.6679.6655 1.3365 1.0743 2.1285 1.38.7632.295 1.6361.4961 2.9134.552 1.2773.056 1.6884.069 4.9462.0627 3.2578-.0062 3.668-.0207 4.9478-.0814 1.28-.0607 2.147-.2652 2.9098-.5633.7889-.3086 1.4578-.72 2.1228-1.3881.665-.6682 1.0745-1.3378 1.3795-2.1284.2957-.7632.4966-1.636.552-2.9124.056-1.2809.0692-1.6898.063-4.948-.0063-3.2583-.021-3.6668-.0817-4.9465-.0607-1.2797-.264-2.1487-.5633-2.9117-.3084-.7889-.72-1.4568-1.3876-2.1228C21.2982 1.33 20.628.9208 19.8378.6165 19.074.321 18.2017.1197 16.9244.0645 15.6471.0093 15.236-.005 11.977.0014 8.718.0076 8.31.0215 7.0301.0839m.1402 21.6932c-1.17-.0509-1.8053-.2453-2.2287-.408-.5606-.216-.96-.4771-1.3819-.895-.422-.4178-.6811-.8186-.9-1.378-.1644-.4234-.3624-1.058-.4171-2.228-.0595-1.2645-.072-1.6442-.079-4.848-.007-3.2037.0053-3.583.0607-4.848.05-1.169.2456-1.805.408-2.2282.216-.5613.4762-.96.895-1.3816.4188-.4217.8184-.6814 1.3783-.9003.423-.1651 1.0575-.3614 2.227-.4171 1.2655-.06 1.6447-.072 4.848-.079 3.2033-.007 3.5835.005 4.8495.0608 1.169.0508 1.8053.2445 2.228.408.5608.216.96.4754 1.3816.895.4217.4194.6816.8176.9005 1.3787.1653.4217.3617 1.056.4169 2.2263.0602 1.2655.0739 1.645.0796 4.848.0058 3.203-.0055 3.5834-.061 4.848-.051 1.17-.245 1.8055-.408 2.2294-.216.5604-.4763.96-.8954 1.3814-.419.4215-.8181.6811-1.3783.9-.4224.1649-1.0577.3617-2.2262.4174-1.2656.0595-1.6448.072-4.8493.079-3.2045.007-3.5825-.006-4.848-.0608M16.953 5.5864A1.44 1.44 0 1 0 18.39 4.144a1.44 1.44 0 0 0-1.437 1.4424M5.8385 12.012c.0067 3.4032 2.7706 6.1557 6.173 6.1493 3.4026-.0065 6.157-2.7701 6.1506-6.1733-.0065-3.4032-2.771-6.1565-6.174-6.1498-3.403.0067-6.156 2.771-6.1496 6.1738M8 12.0077a4 4 0 1 1 4.008 3.9921A3.9996 3.9996 0 0 1 8 12.0077"/></svg></a>
-      <a href="https://web.facebook.com/plotlab1/reels/" class="social-icon" aria-label="Facebook" title="Facebook" target="_blank" rel="noopener"><svg viewBox="0 0 24 24"><path d="M9.101 23.691v-7.98H6.627v-3.667h2.474v-1.58c0-4.085 1.848-5.978 5.858-5.978.401 0 .955.042 1.468.103a8.68 8.68 0 0 1 1.141.195v3.325a8.623 8.623 0 0 0-.653-.036 26.805 26.805 0 0 0-.733-.009c-.707 0-1.259.096-1.675.309a1.686 1.686 0 0 0-.679.622c-.258.42-.374.995-.374 1.752v1.297h3.919l-.386 2.103-.287 1.564h-3.246v8.245C19.396 23.238 24 18.179 24 12.044c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.628 3.874 10.35 9.101 11.647Z"/></svg></a>
-      <a href="https://plotlab1.gumroad.com" class="social-icon" aria-label="Gumroad" title="Gumroad" target="_blank" rel="noopener"><svg viewBox="0 0 448 512"><path d="M160 112c0-35.3 28.7-64 64-64s64 28.7 64 64l0 48-128 0 0-48zm-48 48l-64 0c-26.5 0-48 21.5-48 48L0 416c0 53 43 96 96 96l256 0c53 0 96-43 96-96l0-208c0-26.5-21.5-48-48-48l-64 0 0-48C336 50.1 285.9 0 224 0S112 50.1 112 112l0 48zm24 48a24 24 0 1 1 0 48 24 24 0 1 1 0-48zm152 24a24 24 0 1 1 48 0 24 24 0 1 1 -48 0z"/></svg></a>
+    <div class="hero-copy">
+      <a class="byline" href="about.html"><img class="avatar" src="images/profile.png" alt="Portrait of Sohaib Hasan" width="46" height="46" decoding="async">Lecturer in mathematics, Chakwal</a>
+      <h1><span>Sohaib</span> <span>Hasan</span></h1>
+      <p class="role">Mathematics Educator &amp; Section Leader, Stanford Probability for AI</p>
+      <p class="hero-desc">
+        <strong>Nine years</strong> teaching advanced mathematics, an <strong>MPhil in Mathematics</strong> researching elliptic-curve cryptography, and a <strong>top-12% finish at the AI Mathematical Olympiad</strong>. Everything I build, from the <strong>AI tutor for my own classroom</strong> to <strong>PlotLab</strong> animations followed by <strong>100K+ people</strong>, comes from one belief: careful reasoning gets rewarded, whether it comes from a student or a machine.
+      </p>
+      <div class="hero-actions">
+        <div class="cta-row">
+          <a class="btn primary" href="notes.html">Browse the notes</a>
+          <a class="btn ghost" href="work-with-me.html">Work with me</a>
+        </div>
+        <div class="social-row">
+          <a href="mailto:sohaibhassan199@gmail.com" class="social-icon" aria-label="Email" title="Email"><span class="ic ic-email" aria-hidden="true"></span></a><a href="https://www.linkedin.com/in/sohaibhassan05/" class="social-icon" aria-label="LinkedIn" title="LinkedIn" target="_blank" rel="noopener"><span class="ic ic-linkedin" aria-hidden="true"></span></a><a href="https://github.com/Sohaib-Hasan" class="social-icon" aria-label="GitHub" title="GitHub" target="_blank" rel="noopener"><span class="ic ic-github" aria-hidden="true"></span></a><a href="https://www.youtube.com/@PlotLabAlgorithms" class="social-icon" aria-label="YouTube" title="YouTube" target="_blank" rel="noopener"><span class="ic ic-youtube" aria-hidden="true"></span></a><a href="https://www.instagram.com/plotlab01/" class="social-icon" aria-label="Instagram" title="Instagram" target="_blank" rel="noopener"><span class="ic ic-instagram" aria-hidden="true"></span></a><a href="https://web.facebook.com/plotlab1/reels/" class="social-icon" aria-label="Facebook" title="Facebook" target="_blank" rel="noopener"><span class="ic ic-facebook" aria-hidden="true"></span></a><a href="https://plotlab1.gumroad.com" class="social-icon" aria-label="Gumroad" title="Gumroad" target="_blank" rel="noopener"><span class="ic ic-gumroad" aria-hidden="true"></span></a>
+        </div>
+      </div>
     </div>
-    <div class="hero-divider" aria-hidden="true"></div>
+    <figure class="board" role="img" aria-label="Animation: a chain of rotating circles, a Fourier series, draws the letter S">
+      <canvas id="boardCanvas" aria-hidden="true"></canvas>
+      <figcaption><span class="math">f(t) = Σ c<sub>k</sub> e<sup>ikt</sup></span><span><span id="boardCount">48</span> circles drawing an S</span></figcaption>
+    </figure>
   </div>
+  <ul class="rail">
+    <li><b><span class="count-target" data-count="2700">2,700</span>+</b><span>participants from 70+ countries; I was selected as a Stanford section leader</span></li>
+    <li><b>Top 12%</b><span>AI Mathematical Olympiad (AIMO3): 495th of 4,138 teams</span></li>
+    <li><b>10 / 10</b><span>Perfect score at Harvard CS50x Puzzle Day 2026</span></li>
+    <li><b><span class="count-target" data-count="100">100</span>K+</b><span>PlotLab followers on Facebook and Instagram</span></li>
+  </ul>
 </section>
 
 <section class="block" id="about">
   <div class="block-head">
-    <div>
-      <div class="block-num">01 / About</div>
-      <h2 class="block-title">The short version</h2>
-    </div>
+    <h2 class="block-title">The short version</h2>
     <a href="about.html" class="readmore">Full bio →</a>
   </div>
-  <div class="about-grid">
+  <div class="about-home">
+    <figure class="figure">
+      <img src="images/profile.png" alt="Sohaib Hasan" width="251" height="300" loading="lazy" decoding="async">
+    </figure>
     <div>
-      <p>I teach undergraduate mathematics at Horizon Degree &amp; Commerce College in Chakwal, Pakistan, and I'm a section leader for Stanford's Probability for AI, where I teach top tech minds, researchers, and working professionals from around the world. My own path went through an MSc in fluid dynamics and an MPhil in Mathematics researching elliptic-curve cryptography, and more recently toward AI systems that can reason mathematically.</p>
+      <p>I teach undergraduate mathematics at Horizon Degree &amp; Commerce College in Chakwal, Pakistan, and I'm a section leader for Stanford's Probability for AI, where I teach top tech minds, researchers, and working professionals from around the world.</p>
+      <p>My own path went through an MSc in fluid dynamics and an MPhil in Mathematics researching elliptic-curve cryptography, and more recently toward AI systems that can reason mathematically.</p>
       <p>I'm currently applying to PhD programs in Data Science, Applied Mathematics, and Statistics. Alongside teaching and research, I run PlotLab, where I build mathematical animations followed by 100K+ people on Facebook and Instagram, plus a YouTube channel, PlotLab Algorithms.</p>
-    </div>
-    <div class="stat-list">
-      <div class="stat"><b><span class="count-target" data-count="9">0</span>+ yrs</b><span>teaching advanced mathematics</span></div>
-      <div class="stat"><b><span class="count-target" data-count="1500">0</span>+</b><span>undergraduate students taught</span></div>
-      <div class="stat"><b><span class="count-target" data-count="100">0</span>K+</b><span>PlotLab followers</span></div>
+      <div class="stat-inline">
+        <div class="stat"><b><span class="count-target" data-count="9">9</span>+ yrs</b><span>teaching advanced mathematics</span></div>
+        <div class="stat"><b><span class="count-target" data-count="1500">1,500</span>+</b><span>undergraduate students taught</span></div>
+        <div class="stat"><b><span class="count-target" data-count="11">11</span></b><span>subjects taught</span></div>
+      </div>
     </div>
   </div>
 </section>
 
 <section class="block" id="teaching">
   <div class="block-head">
-    <div>
-      <div class="block-num">02 / Teaching</div>
-      <h2 class="block-title">In the classroom</h2>
-    </div>
+    <h2 class="block-title">In the classroom</h2>
     <a href="teaching.html" class="readmore">Full page →</a>
   </div>
-  <p style="color:var(--chalk-dim); max-width:640px; margin-bottom:1.4rem;">Nine years lecturing undergraduate mathematics at Horizon Degree &amp; Commerce College, covering Real Analysis, Abstract Algebra, Functional Analysis, Number Theory, and more, using LaTeX-typeset notes and Manim-animated lectures. Now with an international classroom at Stanford too.</p>
-  <div class="card-grid">
-    <div class="card">
-      <span class="card-tag">2026 · STANFORD PROBABILITY FOR AI</span>
+  <article class="feature">
+    <div>
+      <span class="card-tag">2026 · Stanford Probability for AI</span>
       <h3>Section Leader</h3>
       <p>Chosen from 2,700+ participants across 70 countries to teach a section of top tech minds, researchers, and working professionals from the USA, UK, Germany, Portugal, Spain, and India.</p>
+      <div class="links">
+        <a class="btn primary" href="notes-stanford-pai.html">Notes and videos</a>
+        <a class="btn ghost" href="teaching.html#stanford">About the section</a>
+      </div>
     </div>
-    <div class="card">
-      <span class="card-tag">MARCH 2017 – PRESENT</span>
+    <div class="feature-stats">
+      <div class="stat"><b>6</b><span>countries in my section</span></div>
+      <div class="stat"><b>70+</b><span>countries in the whole course</span></div>
+      <div class="stat"><b>Weekly</b><span>worked solutions and a Manim animation</span></div>
+    </div>
+  </article>
+  <div class="lecturer">
+    <span class="card-tag">March 2017 – present</span>
+    <div>
       <h3>Lecturer in Mathematics</h3>
-      <p>Real Analysis, Measure Theory, Abstract Algebra, Functional Analysis, Number Theory, Numerical Analysis, Statistics &amp; ML.</p>
+      <p>Nine years lecturing undergraduate mathematics at Horizon Degree &amp; Commerce College: Real Analysis, Measure Theory, Abstract Algebra, Functional Analysis, Number Theory, Numerical Analysis, Statistics &amp; ML, using LaTeX-typeset notes and Manim-animated lectures. Now with an international classroom at Stanford too.</p>
     </div>
   </div>
 </section>
 
 <section class="block" id="research">
   <div class="block-head">
-    <div>
-      <div class="block-num">03 / Research &amp; Achievements</div>
-      <h2 class="block-title">Recent work</h2>
-    </div>
+    <h2 class="block-title">Recent work</h2>
     <a href="research.html" class="readmore">Full page →</a>
   </div>
-  <div class="card-grid">
-    <div class="card">
-      <span class="card-tag">AI MATHEMATICAL OLYMPIAD · PP3</span>
+  <ul class="ledger">
+    <li>
+      <span class="card-tag">AI Mathematical Olympiad · PP3</span>
       <h3>Top 12% globally</h3>
       <p>Scored 42/50 in Kaggle's AIMO3, ranking 495th out of 4,138 teams, by designing verification-driven prompting for an olympiad-reasoning pipeline.</p>
-    </div>
-    <div class="card">
-      <span class="card-tag">HARVARD CS50x · PUZZLE DAY 2026</span>
+    </li>
+    <li>
+      <span class="card-tag">Harvard CS50x · Puzzle Day 2026</span>
       <h3>Perfect score, 10/10</h3>
       <p>Solved every puzzle, including the Metapuzzle, in Harvard's international logic and reasoning competition, which drew participants from 166+ countries.</p>
-    </div>
-    <div class="card">
-      <span class="card-tag">M.PHIL THESIS · CUST ISLAMABAD</span>
+    </li>
+    <li>
+      <span class="card-tag">M.Phil thesis · CUST Islamabad</span>
       <h3>Generalized signcryption</h3>
       <p>Extended an elliptic-curve signcryption scheme into a generalized construction supporting encryption-only and signature-only modes.</p>
-    </div>
-    <div class="card">
-      <span class="card-tag">M.SC THESIS · COMSATS ATTOCK</span>
+    </li>
+    <li>
+      <span class="card-tag">M.Sc thesis · COMSATS Attock</span>
       <h3>Eyring–Powell fluid flow</h3>
       <p>Solved the channel-flow equations for a non-Newtonian fluid using the Adomian Decomposition Method.</p>
-    </div>
-  </div>
+    </li>
+  </ul>
 </section>
 
 <section class="block" id="plotlab">
   <div class="block-head">
-    <div>
-      <div class="block-num">04 / Animations</div>
-      <h2 class="block-title">Mathematics, animated</h2>
-    </div>
+    <h2 class="block-title">Mathematics, animated</h2>
     <a href="plotlab.html" class="readmore">Full page →</a>
   </div>
-  <p style="color:var(--chalk-dim); max-width:640px;">PlotLab is where I turn abstract mathematics into Manim-built animation, followed by 100K+ people on Facebook and Instagram, with full-length lessons on YouTube and weekly animations for Stanford's Probability for AI.</p>
+  <p style="max-width:640px;">PlotLab is where I turn abstract mathematics into Manim-built animation, followed by 100K+ people on Facebook and Instagram, with full-length lessons on YouTube and weekly animations for Stanford's Probability for AI.</p>
   <div class="platform-row">
     <a class="platform-chip" href="https://web.facebook.com/plotlab1/reels/" target="_blank" rel="noopener">
       <span class="platform-logo fb"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9.101 23.691v-7.98H6.627v-3.667h2.474v-1.58c0-4.085 1.848-5.978 5.858-5.978.401 0 .955.042 1.468.103a8.68 8.68 0 0 1 1.141.195v3.325a8.623 8.623 0 0 0-.653-.036 26.805 26.805 0 0 0-.733-.009c-.707 0-1.259.096-1.675.309a1.686 1.686 0 0 0-.679.622c-.258.42-.374.995-.374 1.752v1.297h3.919l-.386 2.103-.287 1.564h-3.246v8.245C19.396 23.238 24 18.179 24 12.044c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.628 3.874 10.35 9.101 11.647Z"/></svg></span>
@@ -202,49 +217,123 @@
 
 <section class="block" id="notes">
   <div class="block-head">
-    <div>
-      <div class="block-num">05 / Notes Library</div>
-      <h2 class="block-title">Mathematics notes</h2>
-    </div>
+    <h2 class="block-title">Mathematics notes</h2>
     <a href="notes.html" class="readmore">Full library →</a>
   </div>
-  <p style="color:var(--chalk-dim); max-width:640px;">LaTeX-typeset notes, sorted into folders: Mathematics, Statistics, Stanford's Probability for AI (weekly notes, each paired with an animation video), and IGCSE Math. Free to read and download, with premium animated IGCSE packs.</p>
+  <p style="max-width:640px; margin-bottom:2.2rem;">LaTeX-typeset notes, sorted into folders: Mathematics, Statistics, Stanford's Probability for AI (weekly notes, each paired with an animation video), and IGCSE Math. Free to read and download, with premium animated IGCSE packs.</p>
+  <div class="folder-grid">
+
+    <a class="folder-card" href="notes-mathematics.html">
+      <div class="folder-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 7a2 2 0 0 1 2-2h4l2 2h8a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V7z"/></svg></div>
+      <h3>Mathematics</h3>
+      <p>Course notes for BS/ADP Mathematics and CS, IT and SE students: Calculus, Linear Algebra, Discrete Mathematics, Number Theory, History of Mathematics, and Machine Learning.</p>
+      <div class="folder-meta">6 notes · Free</div>
+    </a>
+
+    <a class="folder-card" href="notes-statistics.html">
+      <div class="folder-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 7a2 2 0 0 1 2-2h4l2 2h8a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V7z"/></svg></div>
+      <h3>Statistics</h3>
+      <p>Statistics notes for undergraduate courses, typeset in LaTeX like the rest of the library.</p>
+      <div class="folder-meta">Coming soon</div>
+    </a>
+
+    <a class="folder-card featured" href="notes-stanford-pai.html">
+      <span class="folder-badge">Weekly</span>
+      <div class="folder-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 7a2 2 0 0 1 2-2h4l2 2h8a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V7z"/></svg></div>
+      <h3>Stanford Probability for AI</h3>
+      <p>Weekly notes and worked solutions from my section at Stanford's Probability for AI, each paired with a Manim animation video.</p>
+      <div class="folder-meta">Weeks 1 to 4 · Videos</div>
+    </a>
+
+    <a class="folder-card" href="notes-igcse.html">
+      <div class="folder-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 7a2 2 0 0 1 2-2h4l2 2h8a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V7z"/></svg></div>
+      <h3>IGCSE Math</h3>
+      <p>Premium, fully animated note packs for Cambridge IGCSE Mathematics 0580, Core and Extended, with previews and purchase on Gumroad.</p>
+      <div class="folder-meta">13 packs · Premium</div>
+    </a>
+
+  </div>
 </section>
 
+{% if site.posts.size > 0 %}
 <section class="block" id="blog">
   <div class="block-head">
-    <div>
-      <div class="block-num">06 / Blog</div>
-      <h2 class="block-title">Writing</h2>
-    </div>
-    <a href="/blog/" class="readmore">Read blog →</a>
+    <h2 class="block-title">Writing</h2>
+    <a href="/blog/" class="readmore">Read the blog →</a>
   </div>
-  <p style="color:var(--chalk-dim); max-width:640px;">Long-form writing on mathematics, AI reasoning, and teaching, with full LaTeX math support built in.</p>
+  <p style="max-width:640px; margin-bottom:2.2rem;">Long-form writing on mathematics, AI reasoning, and teaching, with full LaTeX math support built in.</p>
+  <script>
+    // A missing thumbnail (or one uploaded with another extension) falls back gracefully.
+    function thumbFix(img){
+      if (img.getAttribute('data-fb')) { img.onerror = null; return; }
+      var src = img.getAttribute('src'), base = img.getAttribute('data-base');
+      if (!base) { base = src.replace(/\.[a-z0-9]+$/i, ''); img.setAttribute('data-base', base); img.setAttribute('data-orig', src); }
+      var orig = img.getAttribute('data-orig');
+      var list = ['png','jpg','jpeg','webp','PNG','JPG','JPEG'].map(function(e){ return base + '.' + e; }).filter(function(u){ return u !== orig; });
+      var n = parseInt(img.getAttribute('data-try') || '0', 10);
+      if (n < list.length) { img.setAttribute('data-try', n + 1); img.src = list[n]; }
+      else { img.setAttribute('data-fb', '1'); img.src = '/apple-touch-icon.png'; }
+    }
+  </script>
+  <div class="post-list">
+    {% for post in site.posts limit:3 %}
+    {% assign thumb = post.thumbnail | default: "/apple-touch-icon.png" %}
+    {% unless thumb contains "://" %}{% assign thumb = thumb | prepend: "/" | replace: "//", "/" %}{% endunless %}
+    <a class="post-row" href="{{ post.url }}">
+      <span class="post-thumb"><img src="{{ thumb }}" alt="" width="336" height="336" loading="lazy" decoding="async" onerror="thumbFix(this)"></span>
+      <span class="post-body">
+        <span class="card-tag">{{ post.date | date: "%B %-d, %Y" }}</span>
+        <h3>{{ post.title }}</h3>
+        <p>{{ post.excerpt | strip_html | strip_newlines | truncatewords: 22 }}</p>
+        <span class="proj-link">Read →</span>
+      </span>
+    </a>
+    {% endfor %}
+  </div>
 </section>
+{% endif %}
 
-<section class="block" id="work-with-me">
-  <div class="block-head">
+<section class="block closing" id="contact">
+  <div class="closing-grid">
     <div>
-      <div class="block-num">07 / Work With Me</div>
       <h2 class="block-title">Let's build something</h2>
+      <p>Tutoring in mathematics, statistics, cryptography, DSA, and machine learning. Custom Manim-built animations for research, teaching, or anything else. Or something else entirely.</p>
+      <p>For teaching, research collaboration, or PhD-related conversations, reach out directly.</p>
+      <div class="cta-row">
+        <a class="btn primary" href="work-with-me.html">See how I can help</a>
+        <a class="btn ghost" href="mailto:sohaibhassan199@gmail.com">sohaibhassan199@gmail.com</a>
+      </div>
     </div>
-    <a href="work-with-me.html" class="readmore">See how →</a>
+    <svg class="closing-mark" viewBox="0 0 100 100" aria-hidden="true" focusable="false">
+      <defs><mask id="sMask"><rect width="100" height="100" fill="#000"/><path d="M72 27C66 15 30 14 30 35C30 52 70 48 70 65C70 86 34 85 28 73" fill="none" stroke="#fff" stroke-width="15.4" stroke-linecap="round"/><path d="M72 27C66 15 30 14 30 35C30 52 70 48 70 65C70 86 34 85 28 73" fill="none" stroke="#000" stroke-width="12.6" stroke-linecap="round"/></mask></defs>
+      <rect width="100" height="100" fill="#ecb44e" mask="url(#sMask)"/>
+      <g stroke="#f3eee2" stroke-opacity=".28" stroke-width=".6"><line x1="50" y1="6" x2="50" y2="94"/><line x1="6" y1="50" x2="94" y2="50"/></g>
+    </svg>
   </div>
-  <p style="color:var(--chalk-dim); max-width:640px;">Tutoring in mathematics, statistics, cryptography, DSA, and machine learning. Custom Manim-built animations for research, teaching, or anything else. Or something else entirely. <a href="work-with-me.html" style="color:var(--gold);">Let's talk</a>.</p>
 </section>
+</main>
 
-<section class="block contact-block" id="contact">
-  <div class="block-num">08 / Contact</div>
-  <h2 class="block-title">Let's talk</h2>
-  <p>For teaching, research collaboration, or PhD-related conversations, reach out directly.</p>
-  <a class="btn primary" href="mailto:sohaibhassan199@gmail.com">sohaibhassan199@gmail.com</a>
-</section>
-
-<footer>
-  © <span id="year"></span> Sohaib Hasan · Chakwal, Pakistan
+<footer class="site-footer">
+  <div class="foot-inner">
+    <div class="foot-brand">
+      <span class="foot-name">Sohaib Hasan</span>
+      <p>Mathematics educator, section leader for Stanford's Probability for AI, and the animator behind PlotLab.</p>
+    </div>
+    <div class="foot-links">
+      <a href="/about.html">About</a><a href="/notes.html">Notes</a>
+      <a href="/teaching.html">Teaching</a><a href="/blog/">Blog</a>
+      <a href="/research.html">Research</a><a href="/work-with-me.html">Work with me</a>
+      <a href="/plotlab.html">Animations</a><a href="/contact.html">Contact</a>
+    </div>
+    <div class="foot-social">
+      <a href="mailto:sohaibhassan199@gmail.com" class="social-icon" aria-label="Email" title="Email"><span class="ic ic-email" aria-hidden="true"></span></a><a href="https://www.linkedin.com/in/sohaibhassan05/" class="social-icon" aria-label="LinkedIn" title="LinkedIn" target="_blank" rel="noopener"><span class="ic ic-linkedin" aria-hidden="true"></span></a><a href="https://github.com/Sohaib-Hasan" class="social-icon" aria-label="GitHub" title="GitHub" target="_blank" rel="noopener"><span class="ic ic-github" aria-hidden="true"></span></a><a href="https://www.youtube.com/@PlotLabAlgorithms" class="social-icon" aria-label="YouTube" title="YouTube" target="_blank" rel="noopener"><span class="ic ic-youtube" aria-hidden="true"></span></a><a href="https://www.instagram.com/plotlab01/" class="social-icon" aria-label="Instagram" title="Instagram" target="_blank" rel="noopener"><span class="ic ic-instagram" aria-hidden="true"></span></a><a href="https://web.facebook.com/plotlab1/reels/" class="social-icon" aria-label="Facebook" title="Facebook" target="_blank" rel="noopener"><span class="ic ic-facebook" aria-hidden="true"></span></a>
+    </div>
+  </div>
+  <div class="foot-base">© <span id="year"></span> Sohaib Hasan · Chakwal, Pakistan</div>
 </footer>
 
-<script src="script.js"></script>
+<script src="/script.js?v=3"></script>
+<script src="/hero.js?v=3" defer></script>
 
 <!-- Cloudflare Web Analytics -->
 <script type='module' src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "40ee39fd48a64e00adc7efb9687f85f1"}'></script>

@@ -1,6 +1,6 @@
 # sohaib-hasan.github.io
 
-Personal site for **Sohaib Hasan** — mathematics educator, section leader for Stanford's Probability for AI, and creator of [PlotLab](https://sohaib-hasan.github.io/plotlab.html). Built as a static site on GitHub Pages: no framework, no build step, no dependencies beyond a handful of CDN fonts and three third-party embeds.
+Personal site for **Sohaib Hasan** — mathematics educator, section leader for Stanford's Probability for AI, and creator of [PlotLab](https://sohaib-hasan.github.io/plotlab.html). Built as a static site on GitHub Pages: no framework, no build step, self-hosted fonts, and three third-party embeds.
 
 **Live site:** https://sohaib-hasan.github.io
 
@@ -33,8 +33,8 @@ Personal site for **Sohaib Hasan** — mathematics educator, section leader for 
 | Static site generator | Jekyll (GitHub Pages' built-in build — used **only** for the blog) |
 | Markup | Plain HTML5 — every non-blog page is hand-written, no templating |
 | Styling | Single hand-written `style.css`, no framework |
-| JS | Single vanilla `script.js` (nav toggle, current year, etc.), no build tooling |
-| Fonts | Fraunces (serif, headings), Inter (sans, body), JetBrains Mono (mono accents) — loaded from Google Fonts |
+| JS | Vanilla `script.js` on every page (nav, counters, filters, video toggles) plus `hero.js` on the home page only (the Fourier-epicycle animation). No libraries, no build tooling |
+| Fonts | Self-hosted subset `woff2` files in the repo root (about 80 KB total): Latin Modern Roman / Italic / Caps for headings and labels, Inter for body text. No Google Fonts requests |
 
 Only the **blog** (`blog.html`, `_posts/`, `_layouts/post.html`) goes through Jekyll's Liquid + kramdown pipeline. Every other `.html` file has no front matter, so Jekyll copies it to the output untouched — this is deliberate, it keeps the rest of the site simple to edit by hand.
 
@@ -43,7 +43,7 @@ Only the **blog** (`blog.html`, `_posts/`, `_layouts/post.html`) goes through Je
 ## Site structure
 
 ```
-├── index.html              Home — hero + numbered section previews of every other page
+├── index.html              Home — hero with the animated Fourier "S", then about, teaching, research, PlotLab, notes, latest blog posts (Liquid; the file starts with empty `---` front matter on purpose)
 ├── about.html               
 ├── teaching.html            
 ├── research.html            
@@ -59,7 +59,9 @@ Only the **blog** (`blog.html`, `_posts/`, `_layouts/post.html`) goes through Je
 ├── resources.html            Utility page — noindexed (see robots.txt)
 ├── viewer.html                Generic PDF viewer utility — noindexed
 ├── style.css                 All site styling — design tokens at the top
-├── script.js                 Nav toggle, footer year, scroll-in animation, etc.
+├── script.js                 Nav, footer year, stat counters, pointer glow, video toggles, notes filters
+├── hero.js                   Home-page hero animation (canvas, pauses when off-screen)
+├── font-lm-roman.woff2, font-lm-italic.woff2, font-lm-caps.woff2, font-inter.woff2   Self-hosted fonts (keep in the repo root)
 ├── sitemap.xml / robots.txt   SEO plumbing
 ├── googled83bbc5219d8eb40.html   Google Search Console ownership verification
 │
@@ -100,23 +102,28 @@ Only the **blog** (`blog.html`, `_posts/`, `_layouts/post.html`) goes through Je
 
 ## Design system
 
-Every color and font lives as a CSS custom property at the top of `style.css` — change it once, it updates everywhere.
+**Concept:** a chalkboard drawn like a Manim scene and typeset like a LaTeX paper. Deep green board, gold / Manim-blue / teal accents, Latin Modern headings, Inter body text. One memorable moment (the hero animation); everything else is quiet.
+
+Every color and font lives as a CSS custom property at the top of `style.css`:
 
 ```css
---board:        #1c2b26   /* base background */
---board-deep:   #12201b   /* darkest surface */
---board-light:  #24382f   /* card / panel background */
---chalk:        #f2ede1   /* primary text */
---chalk-dim:    #b9c2bb   /* secondary text */
---chalk-faint:  #8a9890   /* tertiary / muted text */
---gold:         #e8b04b   /* accent — links, buttons, highlights */
---ink:          #7ca6a8   /* secondary accent — tags, labels */
---line:         rgba(242,237,225,0.12)   /* borders/dividers */
+--bg:          #0f1b17   /* page background */
+--bg-deep:     #0a1310   /* darkest surface */
+--surface:     #172620   /* card / panel background */
+--chalk:       #f3eee2   /* primary text */
+--chalk-dim:   #c1cbc3   /* secondary text */
+--chalk-faint: #97a89d   /* tertiary / muted text */
+--gold:        #ecb44e   /* accent: buttons, links, highlights */
+--blue:        #58c4dd   /* Manim blue: curves in drawings */
+--teal:        #5cd0b3   /* secondary drawing colour */
+--ink:         #8dbabc   /* labels, small-caps eyebrows */
 ```
 
-Fonts: **Fraunces** for headings (`h1`–`h3`, `.block-title`), **Inter** for body text, **JetBrains Mono** for small mono labels (`.card-tag`, `.block-num`).
+Fonts: `--f-display` (Latin Modern Roman, headings), `--f-caps` (Latin Modern Caps, small labels, written lowercase and rendered as small caps), `--f-body` (Inter). Each has a metric-matched fallback `@font-face`, so nothing jumps while the font files load.
 
-Reusable component classes: `.card` / `.card-grid` (project & service cards), `.block` (a numbered homepage/page section), `.btn.primary` (gold CTA button), `.page-header` (top-of-page title block used on every non-home page).
+Reusable pieces: `.block` + `.block-head` / `.block-title` (a page section), `.card` / `.card-grid`, `.folder-card`, `.post-row`, `.btn.primary` (gold CTA), `.page-header` (title block of every sub-page), `.page-art` (the small animated math drawing inside a sub-page header: pure inline SVG + CSS, shown on screens 1300 px and wider, hidden on phones), `.site-footer`.
+
+**Accessibility:** every page has a skip link and a `<main id="main">` landmark, headings run in order, in-text links are underlined, and everything respects `prefers-reduced-motion`. An axe-core audit of all pages came back with 0 violations.
 
 ---
 
@@ -149,7 +156,7 @@ thumbnail: /images/blog/your-post.png
 ---
 ```
 
-Use a square image, 1200 x 1200 px is plenty, under about 200 KB. Any other shape still works, because the blog page crops it to a centred square. A post with no `thumbnail` line shows the site icon (`/apple-touch-icon.png`) instead, so the list always stays aligned. The thumbnail appears only on the blog index, not on the post page itself.
+Use a square image, resized to about **480 x 480 px and saved as a JPEG under ~100 KB**. A 2 MB original makes the blog page slow, because every thumbnail is downloaded. The file name in the front matter must match the uploaded file **exactly**, letter for letter (`Blog-aug7.jpg` is not `Blog-7aug.jpg`, and `.png` is not `.jpg`). Any other shape still works, because the blog page crops it to a centred square. A post with no `thumbnail` line shows the site icon (`/apple-touch-icon.png`) instead, so the list always stays aligned. The thumbnail appears only on the blog index and the home page, not on the post page itself.
 
 Then write normal Markdown below it. A few things specific to this site's setup:
 
@@ -249,17 +256,25 @@ Where to look if this happens again:
 3. The GitHub-linked email inbox (check spam) — GitHub emails a "Page build failure" notice automatically when a build fails.
 4. If nothing points to an error, a trivial re-commit (even a one-character edit) usually forces a fresh rebuild attempt.
 
-**A page looks fine on desktop but content is missing/invisible on mobile:** check `script.js`'s scroll-in animation (`will-animate` / `in-view` classes). It uses an `IntersectionObserver` with a threshold — very tall elements (long blog posts, especially on narrow mobile viewports where text wraps into many more lines) can fail to ever cross that threshold and stay stuck at `opacity:0`. Long-form article content (`<article class="block">`) is deliberately excluded from this animation for exactly this reason — keep it that way if the pattern is reused elsewhere.
+**I changed `style.css` or `script.js` but the live site still looks old:** the pages load them as `/style.css?v=3`, `/script.js?v=3` and `/hero.js?v=3`. Browsers cache those files for a while. After a CSS or JS change, bump the number (`?v=4`, `?v=5`, ...) in every HTML file, including `_layouts/post.html`. A hard refresh on your own device (Ctrl+Shift+R) also works.
+
+**Text suddenly shows in Georgia or a system font:** the four `font-*.woff2` files must sit in the repo root next to `index.html`. If one is missing, the browser falls back to a similar-sized system font.
+
+**Content missing on mobile:** the redesign no longer hides anything until it scrolls into view (the old `will-animate` effect was removed), so missing content is a markup problem. Open the page in the browser's mobile view and check the HTML.
 
 ---
 
 ## Performance
 
-Current Lighthouse scores (mobile):
+The redesign was built to stay light:
 
-| Performance | Accessibility | Best Practices | SEO |
-|---|---|---|---|
-| 98 | 98 | 100 | 100 |
+- **Fonts:** four subset `woff2` files (about 80 KB), only the two used above the fold are preloaded, `font-display:swap`, metric-matched fallbacks (no layout shift).
+- **JS:** `script.js` is about 7 KB and `hero.js` loads on the home page only. Nothing runs while it is off-screen: the hero animation pauses outside the viewport and when the tab is hidden, scroll handlers are passive and `requestAnimationFrame`-throttled.
+- **CSS:** one stylesheet (about 12 KB gzipped). Icons are CSS masks, the background is a single static layer, effects use `transform` and `opacity` only.
+- **Sub-page drawings:** inline SVG, animated once with CSS, no JS and no extra requests.
+- **Local test numbers** (Chromium, mobile viewport, 4x CPU throttle): LCP about 0.4 s, CLS 0, no console errors.
+
+These are local numbers. After each deploy, run Lighthouse on the live URL and compare.
 
 ---
 
@@ -273,6 +288,7 @@ Rough build order, for reference:
 4. **Work With Me page** — dedicated services page (tutoring, animation commissions, open-ended projects), linked from nav and a homepage teaser section.
 5. **Newsletter** — Kit-powered email signup on the homepage, later optimized to lazy-load for privacy/performance.
 6. **Mobile scroll-animation fix** — long-form blog posts excluded from the fade-in-on-scroll effect after it was found to leave post bodies stuck invisible on narrow viewports.
+7. **Redesign (Oct 2026)** — new design system (Latin Modern + Inter, self-hosted), animated Fourier hero, new home layout, per-page math drawings, new footer, accessibility pass (skip link, landmarks, heading order). The old scroll-in animation was removed.
 
 ---
 

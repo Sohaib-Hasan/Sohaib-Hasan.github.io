@@ -18,11 +18,10 @@
 <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
 <title>Notes Library · Sohaib Hasan</title>
 <meta name="description" content="Notes library organized in folders: Mathematics, Statistics, Stanford Probability for AI weekly notes with animation videos, and IGCSE Math, by Sohaib Hasan.">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;0,9..144,600;1,9..144,400&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" onload="this.onload=null;this.rel='stylesheet'">
-<noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;0,9..144,600;1,9..144,400&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap"></noscript>
-<link rel="stylesheet" href="style.css">
+<meta name="theme-color" content="#0f1b17">
+<link rel="preload" href="/font-lm-roman.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="/font-inter.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="/style.css?v=3">
 <link rel="canonical" href="https://sohaib-hasan.github.io/notes.html">
 <meta property="og:type" content="website">
 <meta property="og:title" content="Notes Library · Sohaib Hasan">
@@ -60,6 +59,7 @@
 </script>
 </head>
 <body>
+<a class="skip-link" href="#main">Skip to content</a>
 
 <div class="grain"></div>
 
@@ -81,8 +81,11 @@
 </nav>
 <div class="nav-backdrop" id="navBackdrop"></div>
 
-<header class="page-header">
-  <a class="back-link" href="index.html">← Home</a>
+<main id="main">
+
+<header class="page-header has-art">
+  <div class="page-art" aria-hidden="true"><svg viewBox="0 0 460 340" focusable="false"><path class="bar fi" style="animation-delay:.3s" d="M54 286v-72.8h33.6v72.8M87.6 286v-128.8h33.6v128.8M121.3 286v-169.1h33.6v169.1M154.9 286v-192h33.6v192M188.5 286v-198h33.6v198M222.2 286v-190h33.6v190M255.8 286v-172.1h33.6v172.1M289.5 286v-148.3h33.6v148.3M323.1 286v-121.6h33.6v121.6M356.7 286v-92.5h33.6v92.5M390.4 286v-59.3h33.6v59.3"/><path class="ax fi" style="animation-delay:0s" d="M28 286H438M54 28V298"/><path class="dr cv" pathLength="1" d="M54 246L58.1 237.7L62.2 229.6L66.3 221.7L70.4 213.9L74.6 206.3L78.7 198.9L82.8 191.7L86.9 184.7L91 177.9L95.1 171.3L99.2 165L103.3 158.8L107.4 152.9L111.6 147.3L115.7 141.9L119.8 136.7L123.9 131.8L128 127.2L132.1 122.8L136.2 118.7L140.3 114.8L144.4 111.2L148.6 107.9L152.7 104.8L156.8 102L160.9 99.5L165 97.2L169.1 95.2L173.2 93.4L177.3 91.9L181.4 90.6L185.6 89.6L189.7 88.8L193.8 88.3L197.9 88L202 87.9L206.1 88L210.2 88.4L214.3 88.9L218.4 89.6L222.6 90.6L226.7 91.7L230.8 93L234.9 94.4L239 96L243.1 97.7L247.2 99.6L251.3 101.7L255.4 103.8L259.6 106.1L263.7 108.4L267.8 110.9L271.9 113.5L276 116.1L280.1 118.8L284.2 121.6L288.3 124.5L292.4 127.4L296.6 130.4L300.7 133.5L304.8 136.5L308.9 139.7L313 142.8L317.1 146L321.2 149.3L325.3 152.5L329.4 155.8L333.6 159.2L337.7 162.5L341.8 165.9L345.9 169.4L350 172.8L354.1 176.3L358.2 179.9L362.3 183.5L366.4 187.1L370.6 190.8L374.7 194.5L378.8 198.3L382.9 202.2L387 206.1L391.1 210.1L395.2 214.2L399.3 218.4L403.4 222.7L407.6 227.1L411.7 231.7L415.8 236.3L419.9 241.1L424 246" style="animation-delay:0.6s;animation-duration:2.6s;"/><text class="fi lb" x="48" y="52" text-anchor="end" style="animation-delay:2.6s">f(x)</text><text class="fi lb" x="430" y="312" text-anchor="end" style="animation-delay:2.6s">x</text><text class="fi lb big" x="230" y="52" text-anchor="middle" style="animation-delay:2.9s">∫ f(x) dx</text></svg></div>
+      <a class="back-link" href="index.html">← Home</a>
   <div class="eyebrow">Notes Library</div>
   <h1>LaTeX-typeset notes.</h1>
   <p class="lede">Sorted into folders, so you can open the one you need instead of scrolling a long list. Most notes are free to read and download, and the IGCSE packs are premium and fully animated.</p>
@@ -116,7 +119,7 @@
       <div class="folder-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 7a2 2 0 0 1 2-2h4l2 2h8a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V7z"/></svg></div>
       <h3>Stanford Probability for AI</h3>
       <p>Weekly notes and worked solutions from my section at Stanford's Probability for AI, each paired with a Manim animation video.</p>
-      <div class="folder-meta">Weeks 1 to 3 · Videos</div>
+      <div class="folder-meta">Weeks 1 to 4 · Videos</div>
     </a>
 
     <a class="folder-card" href="notes-igcse.html">
@@ -152,11 +155,28 @@
   <a class="btn primary" href="mailto:sohaibhassan199@gmail.com">sohaibhassan199@gmail.com</a>
 </section>
 
-<footer>
-  © <span id="year"></span> Sohaib Hasan · Chakwal, Pakistan
+</main>
+
+<footer class="site-footer">
+  <div class="foot-inner">
+    <div class="foot-brand">
+      <span class="foot-name">Sohaib Hasan</span>
+      <p>Mathematics educator, section leader for Stanford's Probability for AI, and the animator behind PlotLab.</p>
+    </div>
+    <div class="foot-links">
+      <a href="/about.html">About</a><a href="/notes.html">Notes</a>
+      <a href="/teaching.html">Teaching</a><a href="/blog/">Blog</a>
+      <a href="/research.html">Research</a><a href="/work-with-me.html">Work with me</a>
+      <a href="/plotlab.html">Animations</a><a href="/contact.html">Contact</a>
+    </div>
+    <div class="foot-social">
+      <a href="mailto:sohaibhassan199@gmail.com" class="social-icon" aria-label="Email" title="Email"><span class="ic ic-email" aria-hidden="true"></span></a><a href="https://www.linkedin.com/in/sohaibhassan05/" class="social-icon" aria-label="LinkedIn" title="LinkedIn" target="_blank" rel="noopener"><span class="ic ic-linkedin" aria-hidden="true"></span></a><a href="https://github.com/Sohaib-Hasan" class="social-icon" aria-label="GitHub" title="GitHub" target="_blank" rel="noopener"><span class="ic ic-github" aria-hidden="true"></span></a><a href="https://www.youtube.com/@PlotLabAlgorithms" class="social-icon" aria-label="YouTube" title="YouTube" target="_blank" rel="noopener"><span class="ic ic-youtube" aria-hidden="true"></span></a><a href="https://www.instagram.com/plotlab01/" class="social-icon" aria-label="Instagram" title="Instagram" target="_blank" rel="noopener"><span class="ic ic-instagram" aria-hidden="true"></span></a><a href="https://web.facebook.com/plotlab1/reels/" class="social-icon" aria-label="Facebook" title="Facebook" target="_blank" rel="noopener"><span class="ic ic-facebook" aria-hidden="true"></span></a>
+    </div>
+  </div>
+  <div class="foot-base">© <span id="year"></span> Sohaib Hasan · Chakwal, Pakistan</div>
 </footer>
 
-<script src="script.js"></script>
+<script src="/script.js?v=3"></script>
 
 <!-- Cloudflare Web Analytics -->
 <script type='module' src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "40ee39fd48a64e00adc7efb9687f85f1"}'></script>

@@ -1,4 +1,5 @@
-// Shared site script — footer year, mobile nav, scroll-in animation, stat counters
+// Shared site script: footer year, nav, stat counters, video toggles, filters, pointer glow.
+// Small on purpose: no libraries, passive listeners, work only when something is on screen.
 
 // Footer year
 (function(){
@@ -6,13 +7,23 @@
   if (yearEl) yearEl.textContent = new Date().getFullYear();
 })();
 
-// Mobile nav toggle
+// Nav: mobile drawer + a solid bar once the page has scrolled
 (function(){
+  var bar = document.querySelector('body > nav');
   var toggle = document.getElementById('navToggle');
   var links = document.getElementById('navLinks');
   var backdrop = document.getElementById('navBackdrop');
-  if (!toggle || !links) return;
 
+  if (bar) {
+    var ticking = false;
+    var update = function(){ bar.classList.toggle('scrolled', window.scrollY > 12); ticking = false; };
+    window.addEventListener('scroll', function(){
+      if (!ticking) { ticking = true; requestAnimationFrame(update); }
+    }, { passive: true });
+    update();
+  }
+
+  if (!toggle || !links) return;
   function closeMenu(){
     links.classList.remove('open');
     toggle.classList.remove('active');
@@ -29,84 +40,66 @@
     if (links.classList.contains('open')) closeMenu(); else openMenu();
   });
   if (backdrop) backdrop.addEventListener('click', closeMenu);
-  links.querySelectorAll('a').forEach(function(a){
-    a.addEventListener('click', closeMenu);
-  });
-  window.addEventListener('resize', function(){
-    if (window.innerWidth >= 720) closeMenu();
-  });
+  links.querySelectorAll('a').forEach(function(a){ a.addEventListener('click', closeMenu); });
+  document.addEventListener('keydown', function(e){ if (e.key === 'Escape') closeMenu(); });
+  window.addEventListener('resize', function(){ if (window.innerWidth >= 960) closeMenu(); });
 })();
 
-// Scroll-in animation
-(function(){
-  var targets = Array.prototype.slice.call(document.querySelectorAll('.block, .page-header')).filter(function(el){
-    return el.tagName !== 'ARTICLE'; // long-form content (blog posts) is excluded — very tall
-                                      // elements can never satisfy a >0 intersection threshold
-                                      // on narrow (mobile) viewports, which left them stuck at opacity:0
-  });
-  if (!targets.length) return;
-
-  if (!('IntersectionObserver' in window)) {
-    targets.forEach(function(el){ el.classList.add('in-view'); });
-    return;
-  }
-
-  var observer = new IntersectionObserver(function(entries){
-    entries.forEach(function(entry){
-      if (entry.isIntersecting) {
-        entry.target.classList.add('in-view');
-        observer.unobserve(entry.target);
-      }
-    });
-  }, { threshold: 0, rootMargin: '0px 0px -40px 0px' });
-
-  targets.forEach(function(el){
-    el.classList.add('will-animate');
-    observer.observe(el);
-  });
-})();
-
-// Animated stat counters — targets elements with [data-count], counts up when scrolled into view
+// Animated stat counters: elements with [data-count] count up once when they scroll into view
 (function(){
   var counters = document.querySelectorAll('[data-count]');
   if (!counters.length) return;
+  var reduce = window.matchMedia && matchMedia('(prefers-reduced-motion: reduce)').matches;
 
   function animateCount(el){
     var target = parseFloat(el.getAttribute('data-count'));
     if (isNaN(target)) return;
-    var duration = 1300;
-    var start = null;
-
-    function step(timestamp){
-      if (!start) start = timestamp;
-      var progress = Math.min((timestamp - start) / duration, 1);
-      var eased = 1 - Math.pow(1 - progress, 3);
+    if (reduce) { el.textContent = target.toLocaleString(); return; }
+    var duration = 1400, start = null;
+    function step(ts){
+      if (!start) start = ts;
+      var progress = Math.min((ts - start) / duration, 1);
+      var eased = 1 - Math.pow(1 - progress, 4);
       var value = target * eased;
       el.textContent = (Number.isInteger(target) ? Math.round(value) : value.toFixed(1)).toLocaleString();
-      if (progress < 1) {
-        requestAnimationFrame(step);
-      } else {
-        el.textContent = target.toLocaleString();
-      }
+      if (progress < 1) requestAnimationFrame(step); else el.textContent = target.toLocaleString();
     }
     requestAnimationFrame(step);
   }
 
-  if (!('IntersectionObserver' in window)) {
-    counters.forEach(animateCount);
-    return;
-  }
-
-  var cObserver = new IntersectionObserver(function(entries){
+  if (!('IntersectionObserver' in window)) { counters.forEach(animateCount); return; }
+  // Counters below the fold start from 0 (the final number stays in the HTML as the no-JS fallback)
+  if (!reduce) counters.forEach(function(el){
+    if (el.getBoundingClientRect().top > window.innerHeight) el.textContent = '0';
+  });
+  var io = new IntersectionObserver(function(entries){
     entries.forEach(function(entry){
-      if (entry.isIntersecting) {
-        animateCount(entry.target);
-        cObserver.unobserve(entry.target);
-      }
+      if (entry.isIntersecting) { animateCount(entry.target); io.unobserve(entry.target); }
     });
-  }, { threshold: 0.5 });
+  }, { threshold: 0.6 });
+  counters.forEach(function(el){ io.observe(el); });
+})();
 
-  counters.forEach(function(el){ cObserver.observe(el); });
+// Pointer glow on clickable surfaces (cards, folders, posts). One delegated listener.
+(function(){
+  if (!window.matchMedia || !matchMedia('(hover: hover)').matches) return;
+  var sel = '.folder-card, .post-row, a.card, .platform-chip';
+  var els = document.querySelectorAll(sel);
+  els.forEach(function(el){ el.classList.add('spot'); });
+  if (!els.length) return;
+  var raf = 0, target = null, px = 0, py = 0;
+  document.addEventListener('pointermove', function(e){
+    var el = e.target.closest ? e.target.closest(sel) : null;
+    if (!el) return;
+    target = el; px = e.clientX; py = e.clientY;
+    if (raf) return;
+    raf = requestAnimationFrame(function(){
+      raf = 0;
+      var r = target.getBoundingClientRect();
+      target.style.setProperty('--mx', (px - r.left) + 'px');
+      target.style.setProperty('--my', (py - r.top) + 'px');
+    });
+  }, { passive: true });
 })();
 
 // Video toggles (weekly notes): a "Watch animation" button opens an inline YouTube player.

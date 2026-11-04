@@ -9,11 +9,10 @@
 <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
 <title>Contact · Sohaib Hasan</title>
 <meta name="description" content="Get in touch with Sohaib Hasan for teaching, research collaboration, or PhD-related conversations.">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;0,9..144,600;1,9..144,400&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" onload="this.onload=null;this.rel='stylesheet'">
-<noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;0,9..144,600;1,9..144,400&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap"></noscript>
-<link rel="stylesheet" href="style.css">
+<meta name="theme-color" content="#0f1b17">
+<link rel="preload" href="/font-lm-roman.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="/font-inter.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="/style.css?v=3">
 <link rel="canonical" href="https://sohaib-hasan.github.io/contact.html">
 <meta property="og:type" content="website">
 <meta property="og:title" content="Contact · Sohaib Hasan">
@@ -30,6 +29,7 @@
 
 </head>
 <body>
+<a class="skip-link" href="#main">Skip to content</a>
 
 <div class="grain"></div>
 
@@ -51,8 +51,11 @@
 </nav>
 <div class="nav-backdrop" id="navBackdrop"></div>
 
-<header class="page-header" style="padding-bottom:1rem;">
-  <a class="back-link" href="index.html">← Home</a>
+<main id="main">
+
+<header class="page-header has-art" style="padding-bottom:1rem;">
+  <div class="page-art" aria-hidden="true"><svg viewBox="0 0 460 340" focusable="false"><defs><clipPath id="lens"><circle cx="178" cy="170" r="100"/></clipPath></defs><circle class="fi sh" clip-path="url(#lens)" cx="282" cy="170" r="100" style="animation-delay:1.8s"/><circle class="dr cv" pathLength="1" cx="178" cy="170" r="100" style="animation-duration:2.2s;animation-delay:.2s"/><circle class="dr au" pathLength="1" cx="282" cy="170" r="100" style="animation-duration:2.2s;animation-delay:.7s"/><text class="fi lb big" x="126" y="176" text-anchor="middle" style="animation-delay:2.4s">you</text><text class="fi lb big" x="334" y="176" text-anchor="middle" style="animation-delay:2.5s">me</text><circle class="fi dt" cx="230" cy="170" r="4" style="animation-delay:2.7s"/></svg></div>
+      <a class="back-link" href="index.html">← Home</a>
   <div class="eyebrow">Contact</div>
   <h1>Let's talk.</h1>
   <p class="lede">For teaching, research collaboration, PhD-related conversations, or anything else, reach out directly.</p>
@@ -74,11 +77,28 @@
   <p style="margin-top:2.2rem; color:var(--chalk-faint); font-size:0.85rem;">Chakwal, Pakistan</p>
 </section>
 
-<footer>
-  © <span id="year"></span> Sohaib Hasan · Chakwal, Pakistan
+</main>
+
+<footer class="site-footer">
+  <div class="foot-inner">
+    <div class="foot-brand">
+      <span class="foot-name">Sohaib Hasan</span>
+      <p>Mathematics educator, section leader for Stanford's Probability for AI, and the animator behind PlotLab.</p>
+    </div>
+    <div class="foot-links">
+      <a href="/about.html">About</a><a href="/notes.html">Notes</a>
+      <a href="/teaching.html">Teaching</a><a href="/blog/">Blog</a>
+      <a href="/research.html">Research</a><a href="/work-with-me.html">Work with me</a>
+      <a href="/plotlab.html">Animations</a><a href="/contact.html">Contact</a>
+    </div>
+    <div class="foot-social">
+      <a href="mailto:sohaibhassan199@gmail.com" class="social-icon" aria-label="Email" title="Email"><span class="ic ic-email" aria-hidden="true"></span></a><a href="https://www.linkedin.com/in/sohaibhassan05/" class="social-icon" aria-label="LinkedIn" title="LinkedIn" target="_blank" rel="noopener"><span class="ic ic-linkedin" aria-hidden="true"></span></a><a href="https://github.com/Sohaib-Hasan" class="social-icon" aria-label="GitHub" title="GitHub" target="_blank" rel="noopener"><span class="ic ic-github" aria-hidden="true"></span></a><a href="https://www.youtube.com/@PlotLabAlgorithms" class="social-icon" aria-label="YouTube" title="YouTube" target="_blank" rel="noopener"><span class="ic ic-youtube" aria-hidden="true"></span></a><a href="https://www.instagram.com/plotlab01/" class="social-icon" aria-label="Instagram" title="Instagram" target="_blank" rel="noopener"><span class="ic ic-instagram" aria-hidden="true"></span></a><a href="https://web.facebook.com/plotlab1/reels/" class="social-icon" aria-label="Facebook" title="Facebook" target="_blank" rel="noopener"><span class="ic ic-facebook" aria-hidden="true"></span></a>
+    </div>
+  </div>
+  <div class="foot-base">© <span id="year"></span> Sohaib Hasan · Chakwal, Pakistan</div>
 </footer>
 
-<script src="script.js"></script>
+<script src="/script.js?v=3"></script>
 
 <!-- Cloudflare Web Analytics -->
 <script type='module' src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "40ee39fd48a64e00adc7efb9687f85f1"}'></script>

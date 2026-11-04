@@ -18,11 +18,10 @@
 <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
 <title>IGCSE Math Notes (Cambridge 0580) · Sohaib Hasan</title>
 <meta name="description" content="Fully animated IGCSE Mathematics note packs for Cambridge 0580 Core and Extended: Algebra and Graphs, Statistics, Coordinate Geometry and Equations, by Sohaib Hasan.">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;0,9..144,600;1,9..144,400&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" onload="this.onload=null;this.rel='stylesheet'">
-<noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;0,9..144,600;1,9..144,400&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap"></noscript>
-<link rel="stylesheet" href="style.css">
+<meta name="theme-color" content="#0f1b17">
+<link rel="preload" href="/font-lm-roman.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="/font-inter.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="/style.css?v=3">
 <link rel="canonical" href="https://sohaib-hasan.github.io/notes-igcse.html">
 <meta property="og:type" content="website">
 <meta property="og:title" content="IGCSE Math Notes (Cambridge 0580) · Sohaib Hasan">
@@ -50,6 +49,7 @@
 </script>
 </head>
 <body>
+<a class="skip-link" href="#main">Skip to content</a>
 
 <div class="grain"></div>
 
@@ -71,8 +71,11 @@
 </nav>
 <div class="nav-backdrop" id="navBackdrop"></div>
 
-<header class="page-header">
-  <a class="back-link" href="notes.html">← Notes Library</a>
+<main id="main">
+
+<header class="page-header has-art">
+  <div class="page-art" aria-hidden="true"><svg viewBox="0 0 460 340" focusable="false"><path class="ax fi" style="animation-delay:0s" d="M24 170H442M120 70V270"/><circle class="dr ax2" pathLength="1" cx="120" cy="170" r="78" style="animation-duration:1.6s;animation-delay:.2s"/><path class="dr cv" pathLength="1" d="M236 170L238.6 163.9L241.2 157.8L243.7 151.8L246.3 145.9L248.9 140.2L251.4 134.6L254 129.2L256.6 124.2L259.2 119.3L261.8 114.8L264.3 110.7L266.9 106.9L269.5 103.5L272.1 100.5L274.6 97.9L277.2 95.8L279.8 94.2L282.4 93L284.9 92.2L287.5 92L290.1 92.2L292.6 93L295.2 94.2L297.8 95.8L300.4 97.9L302.9 100.5L305.5 103.5L308.1 106.9L310.7 110.7L313.2 114.8L315.8 119.3L318.4 124.2L321 129.2L323.6 134.6L326.1 140.2L328.7 145.9L331.3 151.8L333.9 157.8L336.4 163.9L339 170L341.6 176.1L344.1 182.2L346.7 188.2L349.3 194.1L351.9 199.8L354.4 205.4L357 210.8L359.6 215.8L362.2 220.7L364.8 225.2L367.3 229.3L369.9 233.1L372.5 236.5L375 239.5L377.6 242.1L380.2 244.2L382.8 245.8L385.4 247L387.9 247.8L390.5 248L393.1 247.8L395.6 247L398.2 245.8L400.8 244.2L403.4 242.1L406 239.5L408.5 236.5L411.1 233.1L413.7 229.3L416.2 225.2L418.8 220.7L421.4 215.8L424 210.8L426.5 205.4L429.1 199.8L431.7 194.1L434.3 188.2L436.9 182.2L439.4 176.1L442 170" style="animation-delay:1.0s;animation-duration:2.6s;"/><path class="dsh fi" style="animation-delay:2.2s" d="M168 108.5H265.8M265.8 108.5V170"/><path class="dr ch" pathLength="1" d="M120 170L168 108.5" style="animation-delay:1.6s;animation-duration:0.9s;"/><circle class="fi dt" cx="168" cy="108.5" r="5" style="animation-delay:2.4s"/><circle class="fi dt" cx="265.8" cy="108.5" r="5" style="animation-delay:2.9s"/><circle class="fi dt3" cx="120" cy="170" r="3" style="animation-delay:2.2s"/><text class="fi lb" x="144" y="162" text-anchor="start" style="animation-delay:2.5s">θ</text></svg></div>
+      <a class="back-link" href="notes.html">← Notes Library</a>
   <div class="eyebrow">Notes Library · IGCSE Math</div>
   <h1>IGCSE Mathematics · Cambridge 0580.</h1>
   <p class="lede">Fully animated, downloadable note packs for Core and Extended (2025–2027). Each one opens on Gumroad, where you can preview and purchase.</p>
@@ -188,11 +191,28 @@
   <a class="btn primary" href="mailto:sohaibhassan199@gmail.com">sohaibhassan199@gmail.com</a>
 </section>
 
-<footer>
-  © <span id="year"></span> Sohaib Hasan · Chakwal, Pakistan
+</main>
+
+<footer class="site-footer">
+  <div class="foot-inner">
+    <div class="foot-brand">
+      <span class="foot-name">Sohaib Hasan</span>
+      <p>Mathematics educator, section leader for Stanford's Probability for AI, and the animator behind PlotLab.</p>
+    </div>
+    <div class="foot-links">
+      <a href="/about.html">About</a><a href="/notes.html">Notes</a>
+      <a href="/teaching.html">Teaching</a><a href="/blog/">Blog</a>
+      <a href="/research.html">Research</a><a href="/work-with-me.html">Work with me</a>
+      <a href="/plotlab.html">Animations</a><a href="/contact.html">Contact</a>
+    </div>
+    <div class="foot-social">
+      <a href="mailto:sohaibhassan199@gmail.com" class="social-icon" aria-label="Email" title="Email"><span class="ic ic-email" aria-hidden="true"></span></a><a href="https://www.linkedin.com/in/sohaibhassan05/" class="social-icon" aria-label="LinkedIn" title="LinkedIn" target="_blank" rel="noopener"><span class="ic ic-linkedin" aria-hidden="true"></span></a><a href="https://github.com/Sohaib-Hasan" class="social-icon" aria-label="GitHub" title="GitHub" target="_blank" rel="noopener"><span class="ic ic-github" aria-hidden="true"></span></a><a href="https://www.youtube.com/@PlotLabAlgorithms" class="social-icon" aria-label="YouTube" title="YouTube" target="_blank" rel="noopener"><span class="ic ic-youtube" aria-hidden="true"></span></a><a href="https://www.instagram.com/plotlab01/" class="social-icon" aria-label="Instagram" title="Instagram" target="_blank" rel="noopener"><span class="ic ic-instagram" aria-hidden="true"></span></a><a href="https://web.facebook.com/plotlab1/reels/" class="social-icon" aria-label="Facebook" title="Facebook" target="_blank" rel="noopener"><span class="ic ic-facebook" aria-hidden="true"></span></a>
+    </div>
+  </div>
+  <div class="foot-base">© <span id="year"></span> Sohaib Hasan · Chakwal, Pakistan</div>
 </footer>
 
-<script src="script.js"></script>
+<script src="/script.js?v=3"></script>
 
 <!-- Cloudflare Web Analytics -->
 <script type='module' src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "40ee39fd48a64e00adc7efb9687f85f1"}'></script>

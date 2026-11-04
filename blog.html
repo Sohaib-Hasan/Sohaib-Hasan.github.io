@@ -11,11 +11,10 @@
 <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
 <title>Blog · Sohaib Hasan</title>
 <meta name="description" content="Writing on mathematics, AI reasoning, and teaching by Sohaib Hasan.">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;0,9..144,600;1,9..144,400&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" onload="this.onload=null;this.rel='stylesheet'">
-<noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;0,9..144,600;1,9..144,400&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap"></noscript>
-<link rel="stylesheet" href="/style.css">
+<meta name="theme-color" content="#0f1b17">
+<link rel="preload" href="/font-lm-roman.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="/font-inter.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="/style.css?v=3">
 <link rel="canonical" href="https://sohaib-hasan.github.io/blog/">
 <meta property="og:type" content="website">
 <meta property="og:title" content="Blog · Sohaib Hasan">
@@ -32,6 +31,7 @@
 
 </head>
 <body>
+<a class="skip-link" href="#main">Skip to content</a>
 
 <div class="grain"></div>
 
@@ -53,8 +53,11 @@
 </nav>
 <div class="nav-backdrop" id="navBackdrop"></div>
 
-<header class="page-header">
-  <a class="back-link" href="/index.html">← Home</a>
+<main id="main">
+
+<header class="page-header has-art">
+  <div class="page-art" aria-hidden="true"><svg viewBox="0 0 460 340" focusable="false"><path class="ax fi" style="animation-delay:0s" d="M323.4 97.3h20.8v20.8h-20.8ZM323.4 118.1h20.8v20.8h-20.8ZM281.9 97.3h41.5v41.5h-41.5ZM281.9 35h62.3v62.3h-62.3ZM344.2 35h103.8v103.8h-103.8ZM281.9 138.9h166.1v166.1h-166.1ZM12 35h269.9v269.9h-269.9Z"/><path class="dr au" pathLength="1" d="M323.4 97.3A20.8 20.8 0 0 1 344.2 118.1A20.8 20.8 0 0 1 323.4 138.9A41.5 41.5 0 0 1 281.9 97.3A62.3 62.3 0 0 1 344.2 35A103.8 103.8 0 0 1 448 138.9A166.1 166.1 0 0 1 281.9 305A269.9 269.9 0 0 1 12 35" style="animation-delay:0.5s;animation-duration:3.4s;"/></svg></div>
+      <a class="back-link" href="/index.html">← Home</a>
   <div class="eyebrow">Blog</div>
   <h1>Writing.</h1>
   <p class="lede">Long-form pieces on mathematics, AI reasoning, and teaching, with full LaTeX math support built in.</p>
@@ -97,7 +100,7 @@
       <span class="post-thumb"><img src="{{ thumb }}" alt="" width="336" height="336" loading="lazy" decoding="async" onerror="thumbFix(this)"></span>
       <span class="post-body">
         <span class="card-tag">{{ post.date | date: "%B %-d, %Y" }}</span>
-        <h3>{{ post.title }}</h3>
+        <h2>{{ post.title }}</h2>
         <p>{{ post.excerpt | strip_html | strip_newlines | truncatewords: 22 }}</p>
         <span class="proj-link">Read →</span>
       </span>
@@ -118,11 +121,28 @@
   <a class="btn primary" href="mailto:sohaibhassan199@gmail.com">sohaibhassan199@gmail.com</a>
 </section>
 
-<footer>
-  © <span id="year"></span> Sohaib Hasan · Chakwal, Pakistan
+</main>
+
+<footer class="site-footer">
+  <div class="foot-inner">
+    <div class="foot-brand">
+      <span class="foot-name">Sohaib Hasan</span>
+      <p>Mathematics educator, section leader for Stanford's Probability for AI, and the animator behind PlotLab.</p>
+    </div>
+    <div class="foot-links">
+      <a href="/about.html">About</a><a href="/notes.html">Notes</a>
+      <a href="/teaching.html">Teaching</a><a href="/blog/">Blog</a>
+      <a href="/research.html">Research</a><a href="/work-with-me.html">Work with me</a>
+      <a href="/plotlab.html">Animations</a><a href="/contact.html">Contact</a>
+    </div>
+    <div class="foot-social">
+      <a href="mailto:sohaibhassan199@gmail.com" class="social-icon" aria-label="Email" title="Email"><span class="ic ic-email" aria-hidden="true"></span></a><a href="https://www.linkedin.com/in/sohaibhassan05/" class="social-icon" aria-label="LinkedIn" title="LinkedIn" target="_blank" rel="noopener"><span class="ic ic-linkedin" aria-hidden="true"></span></a><a href="https://github.com/Sohaib-Hasan" class="social-icon" aria-label="GitHub" title="GitHub" target="_blank" rel="noopener"><span class="ic ic-github" aria-hidden="true"></span></a><a href="https://www.youtube.com/@PlotLabAlgorithms" class="social-icon" aria-label="YouTube" title="YouTube" target="_blank" rel="noopener"><span class="ic ic-youtube" aria-hidden="true"></span></a><a href="https://www.instagram.com/plotlab01/" class="social-icon" aria-label="Instagram" title="Instagram" target="_blank" rel="noopener"><span class="ic ic-instagram" aria-hidden="true"></span></a><a href="https://web.facebook.com/plotlab1/reels/" class="social-icon" aria-label="Facebook" title="Facebook" target="_blank" rel="noopener"><span class="ic ic-facebook" aria-hidden="true"></span></a>
+    </div>
+  </div>
+  <div class="foot-base">© <span id="year"></span> Sohaib Hasan · Chakwal, Pakistan</div>
 </footer>
 
-<script src="/script.js"></script>
+<script src="/script.js?v=3"></script>
 
 <!-- Cloudflare Web Analytics -->
 <script type='module' src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "40ee39fd48a64e00adc7efb9687f85f1"}'></script>

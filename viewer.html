@@ -18,11 +18,10 @@
 <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
 <title id="pageTitle">Viewing Notes · Sohaib Hasan</title>
 <meta name="robots" content="noindex">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;0,9..144,600;1,9..144,400&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" onload="this.onload=null;this.rel='stylesheet'">
-<noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;0,9..144,600;1,9..144,400&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap"></noscript>
-<link rel="stylesheet" href="style.css">
+<meta name="theme-color" content="#0f1b17">
+<link rel="preload" href="/font-lm-roman.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="/font-inter.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="/style.css?v=3">
 <style>
   body{ -webkit-user-select:none; user-select:none; }
   .viewer-header{
@@ -31,9 +30,9 @@
     border-bottom:1px solid var(--line);
     position:sticky; top:0; background:var(--board); z-index:10;
   }
-  .viewer-title{font-family:'Fraunces', serif; font-size:1rem; font-weight:500;}
+  .viewer-title{font-family:var(--f-display); font-size:1.3rem; line-height:1.15;}
   .viewer-note{
-    font-family:'JetBrains Mono', monospace; font-size:0.68rem; color:var(--chalk-faint);
+    font-size:0.78rem; color:var(--chalk-faint);
   }
   .pages-wrap{
     display:flex; flex-direction:column; align-items:center; gap:1.2rem;
@@ -49,10 +48,10 @@
     background:var(--board-light);
   }
   .page-slot{ min-height:200px; width:100%; max-width:900px; display:flex; align-items:center; justify-content:center; }
-  .page-slot .placeholder{ color:var(--chalk-faint); font-family:'JetBrains Mono', monospace; font-size:0.75rem; }
+  .page-slot .placeholder{ color:var(--chalk-faint); font-size:0.8rem; }
   #loadingMsg{
-    color:var(--chalk-faint); font-family:'JetBrains Mono', monospace;
-    font-size:0.8rem; padding:3rem 1rem; text-align:center;
+    color:var(--chalk-faint);
+    font-size:0.9rem; padding:3rem 1rem; text-align:center;
   }
 </style>
 </head>
