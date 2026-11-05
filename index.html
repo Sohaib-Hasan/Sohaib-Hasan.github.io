@@ -5,7 +5,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<script>try{var t=+sessionStorage.getItem('pt');if(t&&Date.now()-t<8000)document.documentElement.classList.add('pt-in');sessionStorage.removeItem('pt')}catch(e){}</script>
+<script>try{var d=document.documentElement,s=sessionStorage.getItem('pt'),V=window.CSSViewTransitionRule;sessionStorage.removeItem('pt');if(V)d.className+=' vt';if(s){var a=s.split(',');if(Date.now()-a[2]<8000){d.className+=' pt-in';if(V){var x=+a[0],y=+a[1],w=innerWidth,h=innerHeight;d.style.cssText+='--vx:'+x+'px;--vy:'+y+'px;--vr:'+Math.ceil(Math.hypot(Math.max(x,w-x),Math.max(y,h-y)))+'px';addEventListener('pagereveal',function(e){var v=e.viewTransition;if(!v)return;d.classList.add('vt-run');var f=function(){d.classList.remove('vt-run')};v.ready.catch(f);v.updateCallbackDone.catch(f);v.finished.then(f,f)})}}}}catch(e){}</script>
 <link rel="icon" type="image/x-icon" href="/favicon.ico">
 <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
 <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
@@ -15,7 +15,7 @@
 <meta name="theme-color" content="#0f1b17">
 <link rel="preload" href="/font-lm-roman.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="preload" href="/font-inter.woff2" as="font" type="font/woff2" crossorigin>
-<link rel="stylesheet" href="/style.css?v=4">
+<link rel="stylesheet" href="/style.css?v=5">
 <link rel="canonical" href="https://sohaib-hasan.github.io/">
 <meta property="og:type" content="website">
 <meta property="og:title" content="Sohaib Hasan · Mathematics, AI Reasoning &amp; PlotLab">
@@ -58,6 +58,7 @@
 </script>
 </head>
 <body>
+<i class="vt-ring" aria-hidden="true"></i>
 <a class="skip-link" href="#main">Skip to content</a>
 
 <div class="grain"></div>
@@ -333,8 +334,8 @@
   <div class="foot-base">© <span id="year"></span> Sohaib Hasan · Chakwal, Pakistan</div>
 </footer>
 
-<script src="/script.js?v=4"></script>
-<script src="/hero.js?v=4" defer></script>
+<script src="/script.js?v=5"></script>
+<script src="/hero.js?v=5" defer></script>
 
 <!-- Cloudflare Web Analytics -->
 <script type='module' src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "40ee39fd48a64e00adc7efb9687f85f1"}'></script>

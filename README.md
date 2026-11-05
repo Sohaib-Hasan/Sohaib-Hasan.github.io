@@ -123,7 +123,7 @@ Fonts: `--f-display` (Latin Modern Roman, headings), `--f-caps` (Latin Modern Ca
 
 Reusable pieces: `.block` + `.block-head` / `.block-title` (a page section), `.card` / `.card-grid`, `.folder-card`, `.post-row`, `.btn.primary` (gold CTA), `.page-header` (title block of every sub-page), `.page-art` (the animated math drawing inside a sub-page header: pure inline SVG + CSS, with a small caption and a glowing tracer dot; beside the title on screens 1100 px and wider, below the intro text on tablets and phones), `.site-footer`.
 
-**Page transitions:** when you click a link to another page on the site, a dark curtain with a gold `S` and the chalkboard grid rises over the page, and lifts off the new page while its content rises into place. It is plain CSS (`html.pt-out` / `html.pt-in` in `style.css`) driven by the short transition block at the top of `script.js` and a one-line script in the `<head>` of every page. It only moves `transform`, it is skipped for `prefers-reduced-motion` users, for PDFs and downloads, for links that open a new tab, and for Ctrl/Cmd-clicks, and the back button never leaves the curtain stuck. Links are also prefetched when the pointer touches them.
+**Page transitions:** a "circle reveal". When you click a link to another page on the site, the new page opens inside a circle that grows from the exact spot you clicked, with a thin gold edge and a soft glow, while the old page sinks back and fades. The logo and menu button stay in place, then the new page's text rises in. It uses the browser's built-in cross-page View Transitions (Chrome, Edge, Safari), so it is smooth and costs almost nothing: `@view-transition` and the `vt-*` rules in `style.css`, a one-line script in the `<head>` of every page that passes the click point to the CSS (`--vx`, `--vy`, `--vr`), and a hidden `<i class="vt-ring">` element after `<body>` that draws the gold edge. Browsers without it (Firefox) get a short fade instead (`script.js`). It is skipped for `prefers-reduced-motion` users, PDFs, downloads, links that open a new tab and Ctrl/Cmd-clicks; the back and forward buttons use a quick cross-fade. To make it slower or faster change `--vt-time` (default `.9s`) in `style.css`. Pages are also prefetched when you hover a link, so they open instantly.
 
 **Type scale:** headings were tuned to stay calm. The home name is `clamp(3rem, 6.1vw, 5.3rem)` and stays on one line on every phone; sub-page titles are `clamp(2.2rem, 4.9vw, 3.7rem)`. Change these two lines in `style.css` (`.hero h1`, `.page-header h1`) if you want them bigger or smaller.
 
@@ -260,7 +260,7 @@ Where to look if this happens again:
 3. The GitHub-linked email inbox (check spam) — GitHub emails a "Page build failure" notice automatically when a build fails.
 4. If nothing points to an error, a trivial re-commit (even a one-character edit) usually forces a fresh rebuild attempt.
 
-**I changed `style.css` or `script.js` but the live site still looks old:** the pages load them as `/style.css?v=4`, `/script.js?v=4` and `/hero.js?v=4`. Browsers cache those files for a while. After a CSS or JS change, bump the number (`?v=5`, `?v=6`, ...) in every HTML file, including `_layouts/post.html`. A hard refresh on your own device (Ctrl+Shift+R) also works.
+**I changed `style.css` or `script.js` but the live site still looks old:** the pages load them as `/style.css?v=5`, `/script.js?v=5` and `/hero.js?v=5`. Browsers cache those files for a while. After a CSS or JS change, bump the number (`?v=6`, `?v=7`, ...) in every HTML file, including `_layouts/post.html`. A hard refresh on your own device (Ctrl+Shift+R) also works.
 
 **Text suddenly shows in Georgia or a system font:** the five `font-*.woff2` files (roman, italic, caps, inter and the tiny `font-lm-math.woff2` used for Greek letters, ∫ and ∩ inside the drawings) must sit in the repo root next to `index.html`. If one is missing, the browser falls back to a similar-sized system font.
 
@@ -276,7 +276,7 @@ The redesign was built to stay light:
 - **JS:** `script.js` is about 7 KB and `hero.js` loads on the home page only. Nothing runs while it is off-screen: the hero animation pauses outside the viewport and when the tab is hidden, scroll handlers are passive and `requestAnimationFrame`-throttled.
 - **CSS:** one stylesheet (about 12 KB gzipped). Icons are CSS masks, the background is a single static layer, effects use `transform` and `opacity` only.
 - **Sub-page drawings:** inline SVG, drawn once with CSS and a few finite SMIL tracer dots, no libraries and no extra requests. The only JS is a few lines of pointer parallax on desktop.
-- **Page transition and reveals:** GPU-only (`transform`), scroll reveals use native scroll-driven animation where the browser supports it (nothing is hidden where it does not), and everything is switched off for `prefers-reduced-motion`.
+- **Page transition and reveals:** native View Transitions (no JS animation), scroll reveals use native scroll-driven animation where the browser supports it (nothing is hidden where it does not), and everything is switched off for `prefers-reduced-motion`.
 - **Local test numbers** (Chromium, mobile viewport, 4x CPU throttle): LCP about 0.4 s, CLS 0, no console errors.
 
 These are local numbers. After each deploy, run Lighthouse on the live URL and compare.
@@ -294,7 +294,7 @@ Rough build order, for reference:
 5. **Newsletter** — Kit-powered email signup on the homepage, later optimized to lazy-load for privacy/performance.
 6. **Mobile scroll-animation fix** — long-form blog posts excluded from the fade-in-on-scroll effect after it was found to leave post bodies stuck invisible on narrow viewports.
 7. **Redesign (Oct 2026)** — new design system (Latin Modern + Inter, self-hosted), animated Fourier hero, new home layout, per-page math drawings, new footer, accessibility pass (skip link, landmarks, heading order). The old scroll-in animation was removed.
-8. **Polish pass (Nov 2026)** — calmer type scale, one-line home name on phones, curtain page transitions, arch-framed portrait, richer captioned drawings with tracers on every page and every screen size.
+8. **Polish pass (Nov 2026)** — calmer type scale, one-line home name on phones, circle-reveal page transitions, arch-framed portrait, richer captioned drawings with tracers on every page and every screen size.
 
 ---
 

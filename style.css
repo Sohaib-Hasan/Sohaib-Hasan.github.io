@@ -97,34 +97,44 @@ strong{ font-weight:600; color:var(--chalk); }
   @keyframes progress{ to{ transform:scaleX(1); } }
 }
 
-/* ---- page transition: a board-coloured curtain with a gold leading edge ----
-   Leaving a page: script.js adds html.pt-out and the curtain rises over the page.
-   Arriving: a tiny inline script in <head> adds html.pt-in and the curtain lifts away.
-   Pure transform animation on one fixed layer (GPU), no libraries. */
-html.pt-out::before,html.pt-in::before{
-  content:""; position:fixed; inset:0; z-index:500; pointer-events:none; will-change:transform;
-  background:
-    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 96'%3E%3Cpath d='M50 22C50 8 14 6 14 26c0 20 36 20 36 42 0 22-38 22-38 4' fill='none' stroke='%23ecb44e' stroke-width='6' stroke-linecap='round'/%3E%3C/svg%3E") 50% 50%/40px 60px no-repeat,
-    radial-gradient(55% 45% at 50% 50%,rgba(236,180,78,.09),transparent 70%),
-    linear-gradient(var(--grid) 1px,transparent 1px) 0 0/64px 64px,
-    linear-gradient(90deg,var(--grid) 1px,transparent 1px) 0 0/64px 64px,
-    var(--bg-deep);
-}
-html.pt-out::before{
-  transform:translate3d(0,calc(100% + 90px),0);
-  box-shadow:0 -1px 0 var(--gold),0 -18px 54px rgba(236,180,78,.28);
-  animation:pt-cover .38s cubic-bezier(.7,0,.25,1) forwards;
-}
-html.pt-in::before{
-  box-shadow:0 1px 0 var(--gold),0 18px 54px rgba(236,180,78,.28);
-  animation:pt-reveal .7s cubic-bezier(.7,0,.2,1) .06s both;
-}
-@keyframes pt-cover{ to{ transform:translate3d(0,0,0); } }
-@keyframes pt-reveal{ from{ transform:translate3d(0,0,0); } to{ transform:translate3d(0,calc(-100% - 90px),0); visibility:hidden; } }
+/* ---- page transition: "circle reveal" ----
+   Chrome, Edge and Safari animate page changes natively (cross-document View Transitions): the new page
+   opens inside a growing circle that starts where you clicked, with a gold edge, while the old page sinks
+   back. The logo and menu button stay put. A tiny script in <head> hands the click point to the CSS as
+   --vx / --vy / --vr. Other browsers get a short fade (script.js). Nothing here touches layout. */
+@media (prefers-reduced-motion:no-preference){ @view-transition{ navigation:auto; } }
+@property --rr{ syntax:"<length>"; inherits:false; initial-value:5000px; }
+:root{ --vt-ease:cubic-bezier(.7,0,.2,1); --vt-time:.9s; }
+::view-transition{ background:var(--bg-deep); }
+@media(min-width:960px){ body > nav{ view-transition-name:nav; } }
+@media(max-width:959px){ .brand{ view-transition-name:brand; } .nav-toggle{ view-transition-name:toggle; } }
+.vt-ring{ position:fixed; inset:0; z-index:600; pointer-events:none; visibility:hidden; background:var(--gold); }
+html.vt-run .vt-ring{ visibility:visible; view-transition-name:ring; }
 
-/* content rises into place after the curtain (and on a direct visit) */
+html.pt-in::view-transition-old(root){
+  animation:vt-recede var(--vt-time) var(--vt-ease) both; mix-blend-mode:normal;
+  transform-origin:var(--vx,50%) var(--vy,40%);
+}
+html.pt-in::view-transition-new(root){
+  animation:vt-open var(--vt-time) var(--vt-ease) both; mix-blend-mode:normal;
+  clip-path:circle(var(--rr) at var(--vx,50%) var(--vy,40%));
+}
+html.pt-in::view-transition-group(ring){ animation:none; }
+html.pt-in::view-transition-old(ring){ display:none; }
+html.pt-in::view-transition-new(ring){
+  animation:vt-open var(--vt-time) var(--vt-ease) both; mix-blend-mode:normal;
+  -webkit-mask-image:radial-gradient(circle at var(--vx,50%) var(--vy,40%),transparent calc(var(--rr) - 130px),rgba(0,0,0,.2) calc(var(--rr) - 18px),#000 calc(var(--rr) - 3px),#000 var(--rr),transparent calc(var(--rr) + 1.5px));
+          mask-image:radial-gradient(circle at var(--vx,50%) var(--vy,40%),transparent calc(var(--rr) - 130px),rgba(0,0,0,.2) calc(var(--rr) - 18px),#000 calc(var(--rr) - 3px),#000 var(--rr),transparent calc(var(--rr) + 1.5px));
+}
+@keyframes vt-recede{ to{ transform:scale(.9); opacity:.15; } }
+@keyframes vt-open{ from{ --rr:0px; } to{ --rr:calc(var(--vr,1400px) + 150px); } } /* +150px so the ring's inner glow has left the screen before the end */
+html:not(.pt-in)::view-transition-old(root),html:not(.pt-in)::view-transition-new(root){ animation-duration:.3s; }
+/* browsers without view transitions: the page fades out, then the next one rises in */
+html.pt-out body{ opacity:0; transition:opacity .24s ease; }
+
+/* content rises into place after the reveal starts (and on a direct visit) */
 :root{ --enter:0s; }
-html.pt-in{ --enter:.34s; }
+html.vt.pt-in{ --enter:.46s; }
 @keyframes rise{ from{ opacity:0; transform:translate3d(0,18px,0); } to{ opacity:1; transform:none; } }
 .page-header > :not(.page-art),
 .hero .byline,.hero h1,.hero .role,.hero .board,.hero .hero-desc,.hero .hero-actions,.hero .rail{
@@ -751,5 +761,5 @@ p a:not([class]):hover,li a:not([class]):hover,.empty-state a:not([class]):hover
 @media(prefers-reduced-motion:reduce){
   html{ scroll-behavior:auto; }
   *,*::before,*::after{ transition-duration:.01ms !important; animation-duration:.01ms !important; }
-  html.pt-in::before,html.pt-out::before{ display:none; }
+  ::view-transition-group(*),::view-transition-old(*),::view-transition-new(*){ animation:none !important; }
 }

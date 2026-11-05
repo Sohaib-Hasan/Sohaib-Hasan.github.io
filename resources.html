@@ -12,7 +12,7 @@
 
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<script>try{var t=+sessionStorage.getItem('pt');if(t&&Date.now()-t<8000)document.documentElement.classList.add('pt-in');sessionStorage.removeItem('pt')}catch(e){}</script>
+<script>try{var d=document.documentElement,s=sessionStorage.getItem('pt'),V=window.CSSViewTransitionRule;sessionStorage.removeItem('pt');if(V)d.className+=' vt';if(s){var a=s.split(',');if(Date.now()-a[2]<8000){d.className+=' pt-in';if(V){var x=+a[0],y=+a[1],w=innerWidth,h=innerHeight;d.style.cssText+='--vx:'+x+'px;--vy:'+y+'px;--vr:'+Math.ceil(Math.hypot(Math.max(x,w-x),Math.max(y,h-y)))+'px';addEventListener('pagereveal',function(e){var v=e.viewTransition;if(!v)return;d.classList.add('vt-run');var f=function(){d.classList.remove('vt-run')};v.ready.catch(f);v.updateCallbackDone.catch(f);v.finished.then(f,f)})}}}}catch(e){}</script>
 <link rel="icon" type="image/x-icon" href="/favicon.ico">
 <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
 <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
@@ -22,7 +22,7 @@
 <meta name="theme-color" content="#0f1b17">
 <link rel="preload" href="/font-lm-roman.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="preload" href="/font-inter.woff2" as="font" type="font/woff2" crossorigin>
-<link rel="stylesheet" href="/style.css?v=4">
+<link rel="stylesheet" href="/style.css?v=5">
 <link rel="canonical" href="https://sohaib-hasan.github.io/resources.html">
 <meta property="og:type" content="website">
 <meta property="og:title" content="Resources · Sohaib Hasan">
@@ -39,6 +39,7 @@
 
 </head>
 <body>
+<i class="vt-ring" aria-hidden="true"></i>
 <a class="skip-link" href="#main">Skip to content</a>
 
 <div class="grain"></div>
@@ -65,7 +66,7 @@
 
 <header class="page-header has-art">
   <div class="page-art" aria-hidden="true"><svg viewBox="0 0 460 372" focusable="false"><text class="fi pa" x="230" y="56" text-anchor="middle" style="animation-delay:calc(var(--enter) + 0.15s)">1</text><text class="fi pa" x="208" y="86" text-anchor="middle" style="animation-delay:calc(var(--enter) + 0.37s)">1</text><text class="fi pa" x="252" y="86" text-anchor="middle" style="animation-delay:calc(var(--enter) + 0.37s)">1</text><text class="fi pa" x="186" y="116" text-anchor="middle" style="animation-delay:calc(var(--enter) + 0.59s)">1</text><text class="fi pb" x="230" y="116" text-anchor="middle" style="animation-delay:calc(var(--enter) + 0.59s)">2</text><text class="fi pa" x="274" y="116" text-anchor="middle" style="animation-delay:calc(var(--enter) + 0.59s)">1</text><text class="fi pa" x="164" y="146" text-anchor="middle" style="animation-delay:calc(var(--enter) + 0.81s)">1</text><text class="fi pa" x="208" y="146" text-anchor="middle" style="animation-delay:calc(var(--enter) + 0.81s)">3</text><text class="fi pa" x="252" y="146" text-anchor="middle" style="animation-delay:calc(var(--enter) + 0.81s)">3</text><text class="fi pa" x="296" y="146" text-anchor="middle" style="animation-delay:calc(var(--enter) + 0.81s)">1</text><text class="fi pa" x="142" y="176" text-anchor="middle" style="animation-delay:calc(var(--enter) + 1.03s)">1</text><text class="fi pb" x="186" y="176" text-anchor="middle" style="animation-delay:calc(var(--enter) + 1.03s)">4</text><text class="fi pb" x="230" y="176" text-anchor="middle" style="animation-delay:calc(var(--enter) + 1.03s)">6</text><text class="fi pb" x="274" y="176" text-anchor="middle" style="animation-delay:calc(var(--enter) + 1.03s)">4</text><text class="fi pa" x="318" y="176" text-anchor="middle" style="animation-delay:calc(var(--enter) + 1.03s)">1</text><text class="fi pa" x="120" y="206" text-anchor="middle" style="animation-delay:calc(var(--enter) + 1.25s)">1</text><text class="fi pa" x="164" y="206" text-anchor="middle" style="animation-delay:calc(var(--enter) + 1.25s)">5</text><text class="fi pb" x="208" y="206" text-anchor="middle" style="animation-delay:calc(var(--enter) + 1.25s)">10</text><text class="fi pb" x="252" y="206" text-anchor="middle" style="animation-delay:calc(var(--enter) + 1.25s)">10</text><text class="fi pa" x="296" y="206" text-anchor="middle" style="animation-delay:calc(var(--enter) + 1.25s)">5</text><text class="fi pa" x="340" y="206" text-anchor="middle" style="animation-delay:calc(var(--enter) + 1.25s)">1</text><text class="fi pa" x="98" y="236" text-anchor="middle" style="animation-delay:calc(var(--enter) + 1.47s)">1</text><text class="fi pb" x="142" y="236" text-anchor="middle" style="animation-delay:calc(var(--enter) + 1.47s)">6</text><text class="fi pa" x="186" y="236" text-anchor="middle" style="animation-delay:calc(var(--enter) + 1.47s)">15</text><text class="fi pb" x="230" y="236" text-anchor="middle" style="animation-delay:calc(var(--enter) + 1.47s)">20</text><text class="fi pa" x="274" y="236" text-anchor="middle" style="animation-delay:calc(var(--enter) + 1.47s)">15</text><text class="fi pb" x="318" y="236" text-anchor="middle" style="animation-delay:calc(var(--enter) + 1.47s)">6</text><text class="fi pa" x="362" y="236" text-anchor="middle" style="animation-delay:calc(var(--enter) + 1.47s)">1</text><text class="fi pa" x="76" y="266" text-anchor="middle" style="animation-delay:calc(var(--enter) + 1.69s)">1</text><text class="fi pa" x="120" y="266" text-anchor="middle" style="animation-delay:calc(var(--enter) + 1.69s)">7</text><text class="fi pa" x="164" y="266" text-anchor="middle" style="animation-delay:calc(var(--enter) + 1.69s)">21</text><text class="fi pa" x="208" y="266" text-anchor="middle" style="animation-delay:calc(var(--enter) + 1.69s)">35</text><text class="fi pa" x="252" y="266" text-anchor="middle" style="animation-delay:calc(var(--enter) + 1.69s)">35</text><text class="fi pa" x="296" y="266" text-anchor="middle" style="animation-delay:calc(var(--enter) + 1.69s)">21</text><text class="fi pa" x="340" y="266" text-anchor="middle" style="animation-delay:calc(var(--enter) + 1.69s)">7</text><text class="fi pa" x="384" y="266" text-anchor="middle" style="animation-delay:calc(var(--enter) + 1.69s)">1</text><text class="fi pa" x="54" y="296" text-anchor="middle" style="animation-delay:calc(var(--enter) + 1.91s)">1</text><text class="fi pb" x="98" y="296" text-anchor="middle" style="animation-delay:calc(var(--enter) + 1.91s)">8</text><text class="fi pb" x="142" y="296" text-anchor="middle" style="animation-delay:calc(var(--enter) + 1.91s)">28</text><text class="fi pb" x="186" y="296" text-anchor="middle" style="animation-delay:calc(var(--enter) + 1.91s)">56</text><text class="fi pb" x="230" y="296" text-anchor="middle" style="animation-delay:calc(var(--enter) + 1.91s)">70</text><text class="fi pb" x="274" y="296" text-anchor="middle" style="animation-delay:calc(var(--enter) + 1.91s)">56</text><text class="fi pb" x="318" y="296" text-anchor="middle" style="animation-delay:calc(var(--enter) + 1.91s)">28</text><text class="fi pb" x="362" y="296" text-anchor="middle" style="animation-delay:calc(var(--enter) + 1.91s)">8</text><text class="fi pa" x="406" y="296" text-anchor="middle" style="animation-delay:calc(var(--enter) + 1.91s)">1</text><text class="fi cap" x="230" y="362" text-anchor="middle" style="animation-delay:calc(var(--enter) + 3.3s)">C(n, k) mod 2</text></svg></div>
-                      <a class="back-link" href="index.html">← Home</a>
+                                  <a class="back-link" href="index.html">← Home</a>
   <div class="eyebrow">Resources</div>
   <h1>Resources.</h1>
   <p class="lede">Cheat sheets, guides, and useful links for mathematics students, collected here as the library grows.</p>
@@ -105,7 +106,7 @@
   <div class="foot-base">© <span id="year"></span> Sohaib Hasan · Chakwal, Pakistan</div>
 </footer>
 
-<script src="/script.js?v=4"></script>
+<script src="/script.js?v=5"></script>
 
 <!-- Cloudflare Web Analytics -->
 <script type='module' src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "40ee39fd48a64e00adc7efb9687f85f1"}'></script>

@@ -1,19 +1,37 @@
 // Shared site script: page transitions, footer year, nav, stat counters, video toggles, filters, pointer glow.
 // Small on purpose: no libraries, passive listeners, work only when something is on screen.
 
-// Page transitions: a curtain rises over the page you leave (html.pt-out) and lifts off the page you arrive on
-// (html.pt-in, set by a tiny script in <head>). Same-site links only; plain clicks only; skipped for
-// reduced-motion users. Links are also prefetched a moment before the click so the next page opens fast.
+// Page transitions. Chrome, Edge and Safari animate page changes natively (see "page transition" in style.css):
+// all this script does is remember where you clicked, so the new page can open from that point. Other browsers
+// get a short fade out here instead. Same-site links only, plain clicks only, nothing for reduced-motion users.
+// Links are prefetched just before the click (speculation rules where supported) so the next page opens fast.
 (function(){
   var html = document.documentElement;
   var reduce = window.matchMedia && matchMedia('(prefers-reduced-motion: reduce)').matches;
-  // never leave the curtain down (back button / bfcache), and never leave it up if animations are paused
+  var native = !!window.CSSViewTransitionRule;
+  // never leave the page faded out (back button / bfcache)
   window.addEventListener('pageshow', function(){ html.classList.remove('pt-out'); try { sessionStorage.removeItem('pt'); } catch(e){} });
-  setTimeout(function(){ html.classList.remove('pt-in'); }, 1600);
+  window.addEventListener('load', function(){ setTimeout(function(){ html.classList.remove('pt-in'); }, 2600); });
+
+  if (window.HTMLScriptElement && HTMLScriptElement.supports && HTMLScriptElement.supports('speculationrules')) {
+    var sr = document.createElement('script'); sr.type = 'speculationrules';
+    sr.textContent = JSON.stringify({ prefetch: [{ where: { and: [{ href_matches: '/*' }, { not: { href_matches: '/*.pdf' } }, { not: { selector_matches: '[download],[target=_blank]' } }] }, eagerness: 'moderate' }] });
+    document.head.appendChild(sr);
+  } else {
+    var warmed = {};
+    var warm = function(e){
+      var a = e.target.closest ? e.target.closest('a[href]') : null;
+      if (!a || a.origin !== location.origin || warmed[a.href] || /\.(pdf|zip)(\?|#|$)/i.test(a.pathname)) return;
+      warmed[a.href] = 1;
+      var l = document.createElement('link'); l.rel = 'prefetch'; l.href = a.href; document.head.appendChild(l);
+    };
+    document.addEventListener('pointerover', warm, { passive: true });
+    document.addEventListener('touchstart', warm, { passive: true });
+  }
   if (reduce) return;
 
   var FILE = /\.(pdf|zip|png|jpe?g|gif|webp|svg|xml|txt|docx?|pptx?|xlsx?|mp4|mp3)(\?|#|$)/i;
-  function eligible(a, e){
+  function eligible(a){
     if (!a || !a.href || a.hasAttribute('download')) return false;
     if (a.target && a.target !== '_self') return false;
     if (a.origin !== location.origin || !/^https?:$/.test(a.protocol)) return false;
@@ -24,23 +42,16 @@
   document.addEventListener('click', function(e){
     if (e.defaultPrevented || e.button || e.metaKey || e.ctrlKey || e.shiftKey || e.altKey) return;
     var a = e.target.closest ? e.target.closest('a[href]') : null;
-    if (!eligible(a, e)) return;
+    if (!eligible(a)) return;
+    var x = e.clientX, y = e.clientY;
+    if (!x && !y) { var r = a.getBoundingClientRect(); x = r.left + r.width / 2; y = r.top + r.height / 2; } // keyboard "click"
+    try { sessionStorage.setItem('pt', Math.round(x) + ',' + Math.round(y) + ',' + Date.now()); } catch(err){}
+    if (native) return;                          // the browser does the animation
     e.preventDefault();
     if (html.classList.contains('pt-out')) return;
-    try { sessionStorage.setItem('pt', String(Date.now())); } catch(err){}
     html.classList.add('pt-out');
-    setTimeout(function(){ location.href = a.href; }, 400);
+    setTimeout(function(){ location.href = a.href; }, 260);
   });
-
-  var warmed = {};
-  function warm(e){
-    var a = e.target.closest ? e.target.closest('a[href]') : null;
-    if (!eligible(a, e) || warmed[a.href]) return;
-    warmed[a.href] = 1;
-    var l = document.createElement('link'); l.rel = 'prefetch'; l.href = a.href; document.head.appendChild(l);
-  }
-  document.addEventListener('pointerover', warm, { passive: true });
-  document.addEventListener('touchstart', warm, { passive: true });
 })();
 
 // Header drawings drift a few pixels with the pointer (desktop only)
