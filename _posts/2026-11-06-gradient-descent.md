@@ -48,8 +48,6 @@ So I animated it. Using Manim, the same animation engine behind 3Blue1Brown's vi
 ![PLACEHOLDER: a frame from the Manim animation showing the walker descending the valley, captured by Sohaib from his own render](/images/gradient-descent-3-proof.png)
 *A frame from the full animated proof below.*
 
-**[Sohaib: screenshot needed]** File name `gradient-descent-3-proof.png`. Please capture a frame from your video showing the walker mid descent in the valley, ideally the part in Part 3 where it steps through 4, 3, 2, 1, 0. Your own code comment marks that around the 3:50 mark, but please confirm the exact timestamp against your actual render, since the voiceover timing can shift it slightly.
-
 Watch the full explanation: Gradient Descent Convergence Explained, Why Does It Actually Converge?
 
 <div style="position:relative;padding-bottom:56.25%;height:0;overflow:hidden;max-width:100%;">
