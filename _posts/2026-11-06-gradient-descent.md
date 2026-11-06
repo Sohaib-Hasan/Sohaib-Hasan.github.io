@@ -1,6 +1,7 @@
 ---
 layout: post
 title: "The Blindfolded Hike That Explains How Machines Learn"
+thumbnail: /images/blog/Blog-nov6.jpg
 ---
 
 Picture this: someone blindfolds you halfway up a hillside and asks you to find the lowest point. You cannot see a thing. All you can do is feel which way the ground tilts under your shoes, take one step, and feel again.
