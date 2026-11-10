@@ -40,6 +40,108 @@ I generated the chart above from a real, computed example, starting five units f
 
 That last line is the surprising part. A step size that is too large does not just fail to help. It can leave your model in a worse spot than before it ever started learning.
 
+<style>
+.gd{margin:2.2rem 0;padding:1.15rem 1.15rem 1.25rem;border:1px solid var(--line);border-radius:var(--r);background:linear-gradient(180deg,rgba(243,238,226,.05),rgba(243,238,226,.018));color:var(--chalk-dim);font-size:1rem;line-height:1.5}
+.gd-title{font:400 1.12rem/1.2 var(--f-caps);text-transform:lowercase;letter-spacing:.07em;color:var(--ink);margin-bottom:.2rem}
+.gd-sub{font-size:.93rem;color:var(--chalk-faint);margin-bottom:.85rem}
+.gd canvas{display:block;width:100%;border-radius:8px;background:var(--bg-deep);border:1px solid var(--line)}
+.gd-row{display:flex;flex-wrap:wrap;align-items:center;gap:.6rem 1rem;margin-top:.95rem}
+.gd label{font:400 1rem/1 var(--f-caps);text-transform:lowercase;letter-spacing:.07em;color:var(--ink)}
+.gd output{min-width:2.6em;color:var(--gold);font:500 1.05rem/1 var(--f-body);font-variant-numeric:tabular-nums}
+.gd input[type=range]{flex:1 1 180px;min-width:150px;height:28px;accent-color:#ecb44e}
+.gd button{padding:.6rem .85rem;border:1px solid var(--line-strong);border-radius:7px;background:transparent;color:var(--chalk);font:500 .88rem/1 var(--f-body);cursor:pointer;transition:border-color .2s,color .2s,background-color .2s}
+.gd button:hover{border-color:var(--gold);color:var(--gold)}
+.gd button[aria-pressed=true]{border-color:var(--gold);color:var(--gold);background:rgba(236,180,78,.08)}
+.gd button.go{border-color:var(--gold);background:linear-gradient(180deg,var(--gold-hi),var(--gold));color:#1a1405}
+.gd button.go:hover{color:#1a1405;filter:brightness(1.06)}
+.gd button:disabled{opacity:.5;cursor:default}
+.gd-read{min-height:3.2em;margin-top:.95rem;font-size:.97rem;color:var(--chalk-dim)}
+.gd-read b{color:var(--chalk);font-weight:600}
+</style>
+<div class="gd" id="gd">
+<div class="gd-title">Try it yourself</div>
+<div class="gd-sub">The same hill as the chart above, with the walker starting five units from the bottom. Drag the step size and watch where each step lands.</div>
+<canvas id="gd-cv" role="img" aria-label="A bowl-shaped hill with the walker's twelve steps marked as dots. The path changes as the step size changes."></canvas>
+<div class="gd-row"><label for="gd-lr">Step size</label><output id="gd-out" for="gd-lr">0.30</output><input id="gd-lr" type="range" min="0.01" max="1.2" step="0.01" value="0.30"></div>
+<div class="gd-row"><button type="button" data-lr="0.05">0.05 · slow</button><button type="button" data-lr="0.3">0.30 · just right</button><button type="button" data-lr="1.05">1.05 · too big</button><button type="button" class="go" id="gd-walk">Walk it</button></div>
+<div class="gd-read" id="gd-read" role="status" aria-live="polite"></div>
+</div>
+<script>
+(function(){
+  var cv=document.getElementById('gd-cv');
+  if(!cv||!cv.getContext)return;
+  var lr=document.getElementById('gd-lr'),out=document.getElementById('gd-out'),read=document.getElementById('gd-read'),walk=document.getElementById('gd-walk');
+  var box=document.getElementById('gd'),btns=box.querySelectorAll('button[data-lr]'),ctx=cv.getContext('2d');
+  var reduce=window.matchMedia&&matchMedia('(prefers-reduced-motion: reduce)').matches;
+  var N=12,X0=5,R=6.5,YM=42,shown=N,timer=0,W=0,H=0;
+  var css=getComputedStyle(document.documentElement);
+  function tok(n,d){return (css.getPropertyValue(n)||'').trim()||d;}
+  var GOLD=tok('--gold','#ecb44e'),BLUE=tok('--blue','#58c4dd'),DIM=tok('--chalk-faint','#97a89d'),LINE=tok('--line-strong','rgba(243,238,226,.22)'),CHALK=tok('--chalk','#f3eee2'),FONT=getComputedStyle(box).fontFamily;
+  if(reduce)walk.hidden=true;
+  function path(a){var p=[X0],x=X0,i;for(i=0;i<N;i++){x=x-a*2*x;p.push(x);}return p;}
+  function size(){
+    var d=window.devicePixelRatio||1;
+    W=Math.round(cv.getBoundingClientRect().width)||320;
+    H=Math.max(210,Math.round(W*.46));
+    cv.style.height=H+'px';cv.width=Math.round(W*d);cv.height=Math.round(H*d);ctx.setTransform(d,0,0,d,0,0);
+  }
+  function px(x){return 16+(x+R)/(2*R)*(W-32);}
+  function py(y){return H-28-Math.min(y,YM)/YM*(H-46);}
+  function out_(x){return Math.abs(x)>R;}
+  function draw(){
+    var a=+lr.value,p=path(a),k=Math.min(shown,N),i,x;
+    ctx.clearRect(0,0,W,H);
+    ctx.strokeStyle=LINE;ctx.lineWidth=1;ctx.beginPath();ctx.moveTo(16,py(0)+.5);ctx.lineTo(W-16,py(0)+.5);ctx.stroke();
+    ctx.strokeStyle=GOLD;ctx.lineWidth=2.4;ctx.beginPath();
+    for(i=0;i<=120;i++){x=-R+i*2*R/120;if(i)ctx.lineTo(px(x),py(x*x));else ctx.moveTo(px(x),py(x*x));}
+    ctx.stroke();
+    ctx.fillStyle=DIM;ctx.font='13px '+FONT;ctx.textAlign='center';ctx.fillText('bottom',px(0),H-8);
+    ctx.strokeStyle=BLUE;ctx.lineWidth=1.6;ctx.setLineDash([5,4]);ctx.beginPath();
+    for(i=0;i<=k;i++){
+      if(i&&out_(p[i-1])&&out_(p[i]))break;
+      if(i)ctx.lineTo(px(p[i]),py(p[i]*p[i]));else ctx.moveTo(px(p[i]),py(p[i]*p[i]));
+    }
+    ctx.stroke();ctx.setLineDash([]);
+    for(i=0;i<=k;i++){
+      if(out_(p[i]))continue;
+      var X=px(p[i]),Y=py(p[i]*p[i]);
+      ctx.beginPath();ctx.arc(X,Y,i===k?6.5:4.5,0,6.2832);
+      if(i===0){ctx.fillStyle='#0a1310';ctx.fill();ctx.strokeStyle=CHALK;ctx.lineWidth=1.8;ctx.stroke();}
+      else{ctx.fillStyle=i===k?GOLD:BLUE;ctx.fill();}
+    }
+    if(!out_(p[0])){ctx.fillStyle=CHALK;ctx.font='13px '+FONT;ctx.textAlign='left';ctx.fillText('start',px(X0)+10,py(X0*X0)-8);}
+    if(out_(p[k])){ctx.fillStyle=GOLD;ctx.font='600 13px '+FONT;ctx.textAlign=p[k]>0?'right':'left';ctx.fillText(p[k]>0?'off the hill →':'← off the hill',p[k]>0?W-18:18,24);}
+  }
+  function say(){
+    var a=+lr.value,p=path(a),r=Math.abs(1-2*a),k=Math.min(shown,N),d=Math.abs(p[k]),dist,v;
+    dist=d>=10000?'more than 10,000':d>=100?d.toFixed(0):d<.005?'0.00':d.toFixed(2);
+    if(r<.02)v='This step size lands exactly on the bottom in a single step.';
+    else if(r>=.999&&r<=1.001)v='The walker bounces between two spots forever and never settles.';
+    else if(r>1)v='Every step lands farther away than the last. The walker never settles.';
+    else if(r>.8)v=a>.5?'It bounces from side to side and shrinks very slowly.':'Safe, but slow. Twelve steps are not enough to get close.';
+    else if(a>.5)v='It overshoots the bottom every time, but each bounce is smaller, so it does settle.';
+    else v='It settles close to the bottom within a few steps.';
+    read.innerHTML='After <b>'+k+'</b> '+(k===1?'step':'steps')+' the walker is <b>'+dist+'</b> units from the bottom. '+v;
+  }
+  function stop(){if(timer){clearInterval(timer);timer=0;}walk.disabled=false;}
+  function update(){
+    stop();shown=N;out.textContent=(+lr.value).toFixed(2);
+    for(var i=0;i<btns.length;i++)btns[i].setAttribute('aria-pressed',Math.abs(+btns[i].getAttribute('data-lr')-lr.value)<.005?'true':'false');
+    draw();say();
+  }
+  lr.addEventListener('input',update);
+  for(var b=0;b<btns.length;b++)btns[b].addEventListener('click',function(){lr.value=this.getAttribute('data-lr');update();});
+  walk.addEventListener('click',function(){
+    if(reduce)return;
+    stop();shown=0;walk.disabled=true;draw();say();
+    timer=setInterval(function(){shown++;draw();say();if(shown>=N)stop();},420);
+  });
+  function resize(){size();draw();}
+  if('ResizeObserver' in window)new ResizeObserver(resize).observe(cv);else window.addEventListener('resize',resize);
+  size();update();
+})();
+</script>
+
 ## When my own students could not picture this hill, I built one
 
 I teach advanced mathematics and statistics, and gradient descent is one of those ideas that sounds simple on a whiteboard and still leaves students stuck. No matter how carefully I wrote out the equations, some of them could not picture an actual hillside made of numbers, a walker feeling their way down it, or what a "proof" about that walk even looks like.
@@ -52,7 +154,7 @@ So I animated it. Using Manim, the same animation engine behind 3Blue1Brown's vi
 Watch the full explanation: Gradient Descent Convergence Explained, Why Does It Actually Converge?
 
 <div style="position:relative;padding-bottom:56.25%;height:0;overflow:hidden;max-width:100%;">
-<iframe src="https://www.youtube.com/embed/kzVR-1mnQOI" style="position:absolute;top:0;left:0;width:100%;height:100%;" frameborder="0" allowfullscreen></iframe>
+<iframe src="https://www.youtube.com/embed/kzVR-1mnQOI" title="Gradient Descent Convergence Explained: Why Does It Actually Converge?" loading="lazy" style="position:absolute;top:0;left:0;width:100%;height:100%;" frameborder="0" allowfullscreen></iframe>
 </div>
 
 ## For those who like the math
