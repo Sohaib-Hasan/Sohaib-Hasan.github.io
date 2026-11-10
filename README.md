@@ -54,19 +54,19 @@ Only the **blog** (`blog.html`, `_posts/`, `_layouts/post.html`) goes through Je
 ├── notes-stanford-pai.html   Folder: Stanford Probability for AI, one card per week (PDF + video), buttons for Video Animations and PDFs
 ├── notes-stanford-pai-pdfs.html   Sub-folder: every Stanford PDF as a View / Download card
 ├── notes-igcse.html          Folder: premium IGCSE packs (Gumroad links)
-├── work-with-me.html         Services: tutoring, animation commissions, custom projects
+├── work-with-me.html         Services (4 cards), "How it works" steps, and a project brief form
 ├── contact.html
 ├── resources.html            Utility page — noindexed (see robots.txt)
 ├── viewer.html                Generic PDF viewer utility — noindexed
 ├── style.css                 All site styling — design tokens at the top
-├── script.js                 Nav, footer year, stat counters, pointer glow, video toggles, notes filters
+├── script.js                 Nav, footer year, stat counters, pointer glow, video toggles, notes filters, project brief form, reel wall
 ├── hero.js                   Home-page hero animation (canvas, pauses when off-screen)
 ├── font-lm-roman.woff2, font-lm-italic.woff2, font-lm-caps.woff2, font-lm-math.woff2, font-inter.woff2   Self-hosted fonts (keep in the repo root)
-├── sitemap.xml / robots.txt   SEO plumbing
+├── sitemap.xml / robots.txt   SEO plumbing (sitemap.xml lists every blog post automatically; only the fixed pages are typed by hand)
 ├── googled83bbc5219d8eb40.html   Google Search Console ownership verification
 │
 ├── blog.html                  Blog index (Jekyll — lists posts from _posts)
-├── _config.yml                 Jekyll config
+├── _config.yml                 Jekyll config (also switches on jekyll-feed, which publishes /feed.xml)
 ├── _layouts/post.html          Single blog-post template (includes KaTeX for math)
 ├── _posts/                     One Markdown file per post (see workflow below)
 │
@@ -74,7 +74,9 @@ Only the **blog** (`blog.html`, `_posts/`, `_layouts/post.html`) goes through Je
 ├── notes/                      Downloadable notes (PDFs), linked from the notes-*.html folder pages
 │   └── stanford-pai/           Weekly Stanford notes: week-1.pdf, week-2.pdf, week-3.pdf, ...
 ├── images/                     profile.png, og-image.jpg, post diagrams
-│   └── blog/                   Square thumbnails for blog posts (see "Publishing a blog post")
+│   ├── blog/                   Square thumbnails for blog posts (see "Publishing a blog post")
+│   └── og/                     Link-preview cards for blog posts, 1200 x 630 (see "Link preview image")
+├── reels/                      The 4 clips + posters shown on plotlab.html (see "Reel wall")
 ├── favicon.ico, favicon-*.png, apple-touch-icon.png
 └── .github/workflows/link-check.yml   Runs lychee on every push to main, fails on broken links
 ```
@@ -212,7 +214,46 @@ The picture that appears when the site link is pasted into WhatsApp, LinkedIn, F
 sed -i 's/og-image.jpg?v=2/og-image.jpg?v=3/g' *.html _layouts/post.html
 ```
 
-Then ask Facebook's Sharing Debugger and LinkedIn's Post Inspector to fetch the page again.
+Then ask Facebook's Sharing Debugger and LinkedIn's Post Inspector to fetch the page again. (Blog posts use their own cards, see the next section.)
+
+### Link preview cards for blog posts
+
+Each post gets its own preview picture when its link is shared (WhatsApp, Facebook, LinkedIn, X). `_layouts/post.html` looks for `images/og/<same file name as the thumbnail>`: a post with `thumbnail: /images/blog/Blog-nov6.jpg` uses `images/og/Blog-nov6.jpg`, a 1200 x 630 card (thumbnail on the left, title on the right). If that card does not exist, the post's square thumbnail is shared instead, and with no thumbnail the site card `og-image.jpg` is used, so nothing ever breaks. To get a card for a new post, ask Claude to make it (same style as the existing six) and upload it to `images/og/`. Visitors never download these files, only the apps that build previews do.
+
+Every post also carries `BlogPosting` structured data (headline, date, author, image) so search engines understand it, and blog pages advertise `/feed.xml` (Atom feed from `jekyll-feed`) for feed readers.
+
+### Project brief form (Work With Me)
+
+The "Just ask" form at the bottom of `work-with-me.html` works with no third party: it opens the visitor's email app with the message already written (subject, name, reply-to address, topic, deadline). To have messages arrive in your inbox without the visitor's email app, connect a free form service:
+
+1. Web3Forms (web3forms.com) or Formspree (formspree.io): create a free form with your email address.
+2. Web3Forms: copy the access key and add `<input type="hidden" name="access_key" value="YOUR_KEY">` inside the `<form id="briefForm">`, then set `data-endpoint="https://api.web3forms.com/submit"` on that form. Formspree: set `data-endpoint` to the form URL it gives you.
+3. Upload `work-with-me.html`. The form now posts in the background and shows a thank-you line; if the service is ever down it tells the visitor to email you directly. No script from the service is loaded on the page.
+
+The four service cards' "Get in touch" buttons jump to this form and pre-select their topic (`data-brief="tutoring|ai-tools|animation|other"`).
+
+### Reel wall (short animation clips on a page)
+
+**Live on `plotlab.html`** (section "Animations in motion"): Gradient Ascent, Continuity of a Function, Dijkstra's Algorithm, Minima and Maxima, each a 6-7 second teaser with a link to the full reels on Instagram, Facebook and YouTube. To swap or add a reel, follow the steps below and edit the `<figure class="reel">` blocks in that section.
+
+A row of vertical clips that stay still pictures until a visitor asks for them. Page weight stays tiny: only the small poster images load with the page (under 30 KB each); a clip's video file (under 250 KB) downloads only when someone hovers over it with a mouse, taps it, or on a phone scrolls it to the middle of the screen. One clip plays at a time. With "reduce motion" or Data Saver switched on, nothing starts by itself and a clip plays only when clicked. If a clip file is missing, the poster simply stays.
+
+1. Make `name.mp4` and `name.webp` (commands in `reels/README.md`) and upload both into `/reels/`.
+2. Paste this into the page where it should appear (for example `plotlab.html`, before the "Let's talk" section), one `<figure>` per reel, up to four:
+
+```
+<section class="block" id="reels">
+  <div class="block-head"><div><div class="block-num">Watch</div><h2 class="block-title">Animations in motion</h2></div></div>
+  <div class="reel-row" role="group" aria-label="Animation reels">
+    <figure class="reel" data-src="reels/name.mp4">
+      <button class="reel-frame" type="button" aria-pressed="false" aria-label="Play animation: TITLE"><img src="reels/name.webp" alt="" width="360" height="640" loading="lazy" decoding="async"><span class="reel-play" aria-hidden="true"></span></button>
+      <figcaption><b>TITLE</b><span>One line about it. <a href="LINK-TO-THE-FULL-REEL" target="_blank" rel="noopener">Watch the full reel</a></span></figcaption>
+    </figure>
+  </div>
+</section>
+```
+
+On a phone the row scrolls sideways; on desktop four clips sit side by side. The styles are `.reel*` in `style.css` and the behaviour is the "Reel wall" block at the end of `script.js`.
 
 ### Updating the CV
 
@@ -262,7 +303,7 @@ Where to look if this happens again:
 3. The GitHub-linked email inbox (check spam) — GitHub emails a "Page build failure" notice automatically when a build fails.
 4. If nothing points to an error, a trivial re-commit (even a one-character edit) usually forces a fresh rebuild attempt.
 
-**I changed `style.css` or `script.js` but the live site still looks old:** the pages load them as `/style.css?v=5`, `/script.js?v=5` and `/hero.js?v=5`. Browsers cache those files for a while. After a CSS or JS change, bump the number (`?v=6`, `?v=7`, ...) in every HTML file, including `_layouts/post.html`. A hard refresh on your own device (Ctrl+Shift+R) also works.
+**I changed `style.css` or `script.js` but the live site still looks old:** the pages load them as `/style.css?v=5`, `/script.js?v=5` and `/hero.js?v=5`. Browsers cache those files for a while. After a CSS or JS change, bump the number (`?v=6`, `?v=7`, ...) in every HTML file, including `_layouts/post.html`. (`work-with-me.html` already loads `?v=6` because it needed the new form styles at once; the other pages load `?v=5`, which is the same file and refreshes by itself within about ten minutes.) A hard refresh on your own device (Ctrl+Shift+R) also works.
 
 **Text suddenly shows in Georgia or a system font:** the five `font-*.woff2` files (roman, italic, caps, inter and the tiny `font-lm-math.woff2` used for Greek letters, ∫ and ∩ inside the drawings) must sit in the repo root next to `index.html`. If one is missing, the browser falls back to a similar-sized system font.
 
@@ -297,6 +338,7 @@ Rough build order, for reference:
 6. **Mobile scroll-animation fix** — long-form blog posts excluded from the fade-in-on-scroll effect after it was found to leave post bodies stuck invisible on narrow viewports.
 7. **Redesign (Oct 2026)** — new design system (Latin Modern + Inter, self-hosted), animated Fourier hero, new home layout, per-page math drawings, new footer, accessibility pass (skip link, landmarks, heading order). The old scroll-in animation was removed.
 8. **Polish pass (Nov 2026)** — calmer type scale, one-line home name on phones, circle-reveal page transitions, arch-framed portrait, richer captioned drawings with tracers on every page and every screen size.
+9. **Conversion and discoverability (Nov 2026)** — Work With Me gets a "How it works" section and a project brief form; per-post link-preview cards, `BlogPosting` structured data, `/feed.xml` and an automatic sitemap; an interactive step-size slider in the gradient-descent post; the reel wall component (poster-first, loads video only on demand).
 
 ---
 

@@ -22,7 +22,7 @@
 <meta name="theme-color" content="#0f1b17">
 <link rel="preload" href="/font-lm-roman.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="preload" href="/font-inter.woff2" as="font" type="font/woff2" crossorigin>
-<link rel="stylesheet" href="/style.css?v=5">
+<link rel="stylesheet" href="/style.css?v=6">
 <link rel="canonical" href="https://sohaib-hasan.github.io/work-with-me.html">
 <meta property="og:type" content="website">
 <meta property="og:title" content="Work With Me · Sohaib Hasan">
@@ -79,6 +79,7 @@
       <h2 class="block-title">Four ways in</h2>
     </div>
   </div>
+  <p style="max-width:680px; margin:-.6rem 0 1.8rem;">Every project is quoted individually, once I know what you need.</p>
   <div class="card-grid">
 
     <div class="card service-card">
@@ -86,8 +87,8 @@
       <h3>One-on-one sessions</h3>
       <p>Mathematics, Statistics, Probability, Cryptography, Data Structures &amp; Algorithms, and Machine Learning, taught from first-principles up to university-level rigor by a Stanford Probability for AI section leader with nine years of teaching behind him. Exam prep, coursework help, or building real understanding from scratch, at any level from beginner to postgraduate.</p>
       <div class="service-foot">
-        <span class="service-price">Contact for quote</span>
-        <a class="btn primary" href="mailto:sohaibhassan199@gmail.com?subject=Tutoring%20inquiry">Get in touch</a>
+        <span class="service-price">For students and self-learners</span>
+        <a class="btn primary" href="#brief" data-brief="tutoring">Get in touch</a>
       </div>
     </div>
 
@@ -96,8 +97,8 @@
       <h3>Custom classroom AI systems</h3>
       <p>I built a doubt-clearing assistant for my own students that answers strictly from their course notes, plus a teacher dashboard that shows exactly what they're struggling with. If you're a teacher or institution that wants something similar for your own courses, I can build it for you.</p>
       <div class="service-foot">
-        <span class="service-price">Contact for quote</span>
-        <a class="btn primary" href="mailto:sohaibhassan199@gmail.com?subject=AI%20tools%20inquiry">Get in touch</a>
+        <span class="service-price">For teachers and institutions</span>
+        <a class="btn primary" href="#brief" data-brief="ai-tools">Get in touch</a>
       </div>
     </div>
 
@@ -106,8 +107,8 @@
       <h3>Manim-built explainers</h3>
       <p>Visual explainers for research talks, thesis defenses, conference presentations, coursework, YouTube videos, or any other purpose where an idea needs to be seen, not just read. Built in the same style as PlotLab, the kind of animation Stanford professors and fellow section leaders of Probability for AI have appreciated, with a fast turnaround.</p>
       <div class="service-foot">
-        <span class="service-price">Contact for quote</span>
-        <a class="btn primary" href="mailto:sohaibhassan199@gmail.com?subject=Animation%20inquiry">Get in touch</a>
+        <span class="service-price">For researchers and creators</span>
+        <a class="btn primary" href="#brief" data-brief="animation">Get in touch</a>
       </div>
     </div>
 
@@ -116,12 +117,26 @@
       <h3>Got a different project?</h3>
       <p>If it's related to mathematics, statistics, cryptography, data science, or AI/ML but doesn't fit neatly into the above, reach out and let's talk it through first.</p>
       <div class="service-foot">
-        <span class="service-price">Contact for quote</span>
-        <a class="btn primary" href="mailto:sohaibhassan199@gmail.com?subject=Project%20inquiry">Get in touch</a>
+        <span class="service-price">For ideas that don't fit a box</span>
+        <a class="btn primary" href="#brief" data-brief="other">Get in touch</a>
       </div>
     </div>
 
   </div>
+</section>
+
+<section class="block" id="process">
+  <div class="block-head">
+    <div>
+      <div class="block-num">How it works</div>
+      <h2 class="block-title">Three simple steps</h2>
+    </div>
+  </div>
+  <ol class="steps">
+    <li class="step"><span class="step-n" aria-hidden="true">1</span><h3>Tell me what you need</h3><p>A few lines are enough: the topic, who it is for, and any deadline. Use the form below or just email me.</p></li>
+    <li class="step"><span class="step-n" aria-hidden="true">2</span><h3>We agree the plan</h3><p>I reply with how I would approach it, what it takes, and a quote, so the scope is clear before anything starts.</p></li>
+    <li class="step"><span class="step-n" aria-hidden="true">3</span><h3>I build it, you refine it</h3><p>You see the work as it takes shape, and we polish it together until it explains exactly what you meant.</p></li>
+  </ol>
 </section>
 
 <section class="block" id="proof">
@@ -149,11 +164,31 @@
   <p style="margin-top:1.8rem;"><a class="proj-link" href="plotlab.html#portfolio">Animation portfolio for researchers and thesis defenses →</a></p>
 </section>
 
-<section class="block contact-block" id="contact" style="padding-bottom:8rem;">
+<section class="block contact-block" id="brief" style="padding-bottom:8rem;">
   <div class="block-num" style="justify-content:center; display:flex;">Not sure which fits?</div>
   <h2 class="block-title">Just ask</h2>
   <p>Send a short note about what you need, whether it's tutoring, an animation, or something else, and I'll get back to you with next steps.</p>
-  <a class="btn primary" href="mailto:sohaibhassan199@gmail.com">sohaibhassan199@gmail.com</a>
+  <form class="brief" id="briefForm" action="mailto:sohaibhassan199@gmail.com" method="post" enctype="text/plain" data-endpoint="" data-mailto="sohaibhassan199@gmail.com">
+    <div class="brief-grid">
+      <div><label for="b-name">Your name</label><input id="b-name" name="name" type="text" autocomplete="name" required></div>
+      <div><label for="b-email">Your email</label><input id="b-email" name="email" type="email" autocomplete="email" required></div>
+      <div><label for="b-type">What do you need?</label>
+        <select id="b-type" name="type">
+          <option value="tutoring">Tutoring and mentoring</option>
+          <option value="ai-tools">AI tools for educators</option>
+          <option value="animation">A custom animation</option>
+          <option value="other">Something else</option>
+        </select></div>
+      <div><label for="b-deadline">Deadline (optional)</label><input id="b-deadline" name="deadline" type="text" placeholder="A date, or &ldquo;no rush&rdquo;"></div>
+      <div class="full"><label for="b-msg">Tell me about it</label><textarea id="b-msg" name="message" required placeholder="What are you working on, who is it for, and what should it help them understand?"></textarea></div>
+    </div>
+    <div class="hp" aria-hidden="true"><label>Company<input name="company" type="text" tabindex="-1" autocomplete="off"></label></div>
+    <div class="brief-foot">
+      <button class="btn primary" type="submit">Send message</button>
+      <span class="brief-note">or write to <a href="mailto:sohaibhassan199@gmail.com">sohaibhassan199@gmail.com</a></span>
+    </div>
+    <div class="brief-status" role="status" aria-live="polite"></div>
+  </form>
 </section>
 
 </main>
@@ -177,7 +212,7 @@
   <div class="foot-base">© <span id="year"></span> Sohaib Hasan · Chakwal, Pakistan</div>
 </footer>
 
-<script src="/script.js?v=5"></script>
+<script src="/script.js?v=6"></script>
 
 <!-- Cloudflare Web Analytics -->
 <script type='module' src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "40ee39fd48a64e00adc7efb9687f85f1"}'></script>

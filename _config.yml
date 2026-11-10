@@ -5,3 +5,5 @@ markdown: kramdown
 kramdown:
   syntax_highlighter: rouge
 permalink: /blog/:title/
+plugins:
+  - jekyll-feed

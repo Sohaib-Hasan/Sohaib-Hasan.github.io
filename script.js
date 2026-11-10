@@ -247,3 +247,95 @@
     });
   });
 })();
+
+// Work With Me: project brief form. With data-endpoint set (Web3Forms, Formspree, ...) it posts there;
+// without one it opens the visitor's email app with the message already written, so it works from day one.
+// Buttons with data-brief="tutoring|ai-tools|animation|other" jump to the form and pre-select that topic.
+(function(){
+  var f = document.getElementById('briefForm');
+  if (!f) return;
+  var out = f.querySelector('.brief-status'), sel = f.elements.namedItem('type'), to = f.getAttribute('data-mailto');
+  function say(t, bad){ out.textContent = t; out.classList.toggle('err', !!bad); }
+  function val(n){ return f.elements.namedItem(n).value.trim(); }
+  document.addEventListener('click', function(e){
+    var a = e.target.closest ? e.target.closest('[data-brief]') : null;
+    if (a && sel) sel.value = a.getAttribute('data-brief');
+  });
+  f.addEventListener('submit', function(e){
+    e.preventDefault();
+    if (val('company')) return;                                   // hidden spam trap
+    var label = sel.options[sel.selectedIndex].text, ep = f.getAttribute('data-endpoint');
+    var subject = label + ' inquiry from ' + val('name');
+    if (ep) {
+      var btn = f.querySelector('[type=submit]'), d = new FormData(f);
+      d.delete('company'); d.append('subject', subject); d.append('_subject', subject);
+      btn.disabled = true; say('Sending...');
+      fetch(ep, { method: 'POST', body: d, headers: { Accept: 'application/json' } })
+        .then(function(r){ if (!r.ok) throw 0; f.reset(); say('Thank you, your message is on its way. I will reply by email.'); })
+        .catch(function(){ say('That did not go through. Please email ' + to + ' directly.', true); })
+        .then(function(){ btn.disabled = false; });
+      return;
+    }
+    var body = val('message') + '\n\nName: ' + val('name') + '\nReply to: ' + val('email') + '\nTopic: ' + label + (val('deadline') ? '\nDeadline: ' + val('deadline') : '');
+    var a = document.createElement('a');
+    a.href = 'mailto:' + to + '?subject=' + encodeURIComponent(subject) + '&body=' + encodeURIComponent(body);
+    a.click();
+    say('Your email app should open with the message ready to send. If it does not, write to ' + to + '.');
+  });
+})();
+
+// Reel wall: every reel is just a poster until a visitor asks for it. The video file is fetched only when a reel
+// starts: hover with a mouse, tap, or (on phones) scrolled to the middle of the screen. One reel plays at a time.
+// With reduced motion, Data Saver or a very slow connection nothing starts by itself; a reel plays only when clicked.
+(function(){
+  var row = document.querySelector('.reel-row');
+  if (!row) return;
+  var reels = [].slice.call(row.querySelectorAll('.reel'));
+  var mq = function(q){ return window.matchMedia && matchMedia(q).matches; };
+  var conn = navigator.connection || {};
+  var auto = !mq('(prefers-reduced-motion: reduce)') && !conn.saveData && !/2g/.test(conn.effectiveType || '');
+  var touch = !mq('(hover: hover)');
+  function frameOf(r){ return r.querySelector('.reel-frame'); }
+  function video(r){
+    var v = r.querySelector('video');
+    if (!v) {
+      v = document.createElement('video');
+      v.muted = true; v.loop = true; v.playsInline = true; v.preload = 'auto';
+      v.setAttribute('muted', ''); v.setAttribute('playsinline', ''); v.setAttribute('aria-hidden', 'true');
+      v.addEventListener('error', function(){ v.remove(); r.classList.remove('on'); });
+      v.src = r.getAttribute('data-src');
+      frameOf(r).insertBefore(v, r.querySelector('.reel-play'));
+    }
+    return v;
+  }
+  function stop(r){ var v = r.querySelector('video'); if (v) v.pause(); r.classList.remove('on'); r.removeAttribute('data-pin'); frameOf(r).setAttribute('aria-pressed', 'false'); }
+  function start(r){
+    reels.forEach(function(o){ if (o !== r) stop(o); });
+    var p = video(r).play();
+    r.classList.add('on'); frameOf(r).setAttribute('aria-pressed', 'true');
+    if (p && p.catch) p.catch(function(){ stop(r); });
+  }
+  var hoverMode = auto && !touch;
+  reels.forEach(function(r){
+    frameOf(r).addEventListener('click', function(e){
+      var on = r.classList.contains('on');
+      if (hoverMode && on && e.detail > 0 && !r.hasAttribute('data-pin')) { r.setAttribute('data-pin', ''); return; } // mouse click on a reel that is playing: keep it playing after the pointer leaves
+      if (on) { stop(r); r.setAttribute('data-held', ''); }
+      else { r.removeAttribute('data-held'); start(r); }
+    });
+    if (hoverMode) {
+      frameOf(r).addEventListener('pointerenter', function(e){ if (e.pointerType === 'mouse' && !r.hasAttribute('data-held')) start(r); });
+      frameOf(r).addEventListener('pointerleave', function(e){ if (e.pointerType === 'mouse' && !r.hasAttribute('data-pin')) stop(r); });
+    }
+  });
+  if (auto && touch && 'IntersectionObserver' in window) {
+    var io = new IntersectionObserver(function(es){
+      es.forEach(function(en){
+        var r = en.target.closest('.reel');
+        if (en.isIntersecting) { if (!r.hasAttribute('data-held')) start(r); } else stop(r);
+      });
+    }, { threshold: 0.7 });
+    reels.forEach(function(r){ io.observe(frameOf(r)); });
+  }
+  document.addEventListener('visibilitychange', function(){ if (document.hidden) reels.forEach(stop); });
+})();
