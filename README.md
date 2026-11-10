@@ -228,6 +228,8 @@ Replace `/cv/Sohaib-Hasan-CV.pdf` with the new file, same filename — every lin
 | **Google Search Console** | Search visibility, indexing, sitemap submission | `googled83bbc5219d8eb40.html` (ownership proof) + `sitemap.xml` |
 | **Kit (ConvertKit) newsletter** | Email list signup, independent of social media reach | Embedded form at the bottom of each blog post (`_layouts/post.html`). Removed from the home page in Oct 2026 |
 
+**Comments and reactions:** blog posts have none. The GitHub-based widget (giscus) was removed on purpose in Nov 2026 because every commenter needed a GitHub account; its block was deleted from `_layouts/post.html`. The `.post-comments` rules left in `style.css` are unused and harmless.
+
 The Kit script is **lazy-loaded** — it only fetches `ck.5.js` when a visitor actually interacts with the form (hover, tap, or focus), not on page load. This was a deliberate fix: loading it eagerly caused a third-party cookie (`__cf_bm`, set by Cloudflare on Kit's CDN) that Lighthouse flagged under Best Practices. Deferring the load to real interaction keeps the automated audit clean without changing anything for actual subscribers.
 
 ---
