@@ -248,14 +248,23 @@
   });
 })();
 
-// Work With Me: project brief form. With data-endpoint set (Web3Forms, Formspree, ...) it posts there;
-// without one it opens the visitor's email app with the message already written, so it works from day one.
+// Work With Me: project brief form. With data-key set to a free Web3Forms access key (web3forms.com) the message is
+// delivered straight to the inbox from the page. (data-endpoint can point to another service, e.g. Formspree.)
+// Without either, it opens the visitor's email app, and offers a Gmail link too, so it still works from day one.
 // Buttons with data-brief="tutoring|ai-tools|animation|other" jump to the form and pre-select that topic.
 (function(){
   var f = document.getElementById('briefForm');
   if (!f) return;
   var out = f.querySelector('.brief-status'), sel = f.elements.namedItem('type'), to = f.getAttribute('data-mailto');
-  function say(t, bad){ out.textContent = t; out.classList.toggle('err', !!bad); }
+  function say(t, bad, links){
+    out.textContent = t; out.classList.toggle('err', !!bad);
+    (links || []).forEach(function(l, i){
+      var a = document.createElement('a'); a.href = l[1]; a.textContent = l[0];
+      a.style.cssText = 'color:inherit;font-weight:600;text-decoration:underline;text-underline-offset:3px';
+      if (/^http/.test(l[1])) { a.target = '_blank'; a.rel = 'noopener'; }
+      out.appendChild(document.createTextNode(i ? ' or ' : ' ')); out.appendChild(a);
+    });
+  }
   function val(n){ return f.elements.namedItem(n).value.trim(); }
   document.addEventListener('click', function(e){
     var a = e.target.closest ? e.target.closest('[data-brief]') : null;
@@ -264,23 +273,26 @@
   f.addEventListener('submit', function(e){
     e.preventDefault();
     if (val('company')) return;                                   // hidden spam trap
-    var label = sel.options[sel.selectedIndex].text, ep = f.getAttribute('data-endpoint');
-    var subject = label + ' inquiry from ' + val('name');
+    var label = sel.options[sel.selectedIndex].text, subject = label + ' inquiry from ' + val('name');
+    var body = val('message') + '\n\nName: ' + val('name') + '\nReply to: ' + val('email') + '\nTopic: ' + label + (val('deadline') ? '\nDeadline: ' + val('deadline') : '');
+    var q = encodeURIComponent(subject), b = encodeURIComponent(body);
+    var mail = 'mailto:' + to + '?subject=' + q + '&body=' + b;
+    var gmail = 'https://mail.google.com/mail/?view=cm&fs=1&to=' + encodeURIComponent(to) + '&su=' + q + '&body=' + b;
+    var key = f.getAttribute('data-key'), ep = f.getAttribute('data-endpoint') || (key ? 'https://api.web3forms.com/submit' : '');
     if (ep) {
-      var btn = f.querySelector('[type=submit]'), d = new FormData(f);
-      d.delete('company'); d.append('subject', subject); d.append('_subject', subject);
+      var btn = f.querySelector('[type=submit]');
+      var data = { subject: subject, name: val('name'), email: val('email'), topic: label, deadline: val('deadline'), message: val('message') };
+      if (key) data.access_key = key;
       btn.disabled = true; say('Sending...');
-      fetch(ep, { method: 'POST', body: d, headers: { Accept: 'application/json' } })
-        .then(function(r){ if (!r.ok) throw 0; f.reset(); say('Thank you, your message is on its way. I will reply by email.'); })
-        .catch(function(){ say('That did not go through. Please email ' + to + ' directly.', true); })
+      fetch(ep, { method: 'POST', headers: { 'Content-Type': 'application/json', Accept: 'application/json' }, body: JSON.stringify(data) })
+        .then(function(r){ return r.json().then(function(j){ if (!r.ok || !j || j.success === false) throw 0; }); })
+        .then(function(){ f.reset(); say('Thank you, your message has been sent. I will reply to you by email.'); })
+        .catch(function(){ say('Sorry, that did not go through. Your message is still here. You can send it with', true, [['Gmail', gmail], ['your email app', mail]]); })
         .then(function(){ btn.disabled = false; });
       return;
     }
-    var body = val('message') + '\n\nName: ' + val('name') + '\nReply to: ' + val('email') + '\nTopic: ' + label + (val('deadline') ? '\nDeadline: ' + val('deadline') : '');
-    var a = document.createElement('a');
-    a.href = 'mailto:' + to + '?subject=' + encodeURIComponent(subject) + '&body=' + encodeURIComponent(body);
-    a.click();
-    say('Your email app should open with the message ready to send. If it does not, write to ' + to + '.');
+    var a = document.createElement('a'); a.href = mail; a.click();
+    say('Your email app should open with the message ready to send. If nothing opened, send it with', false, [['Gmail', gmail]]);
   });
 })();
 
