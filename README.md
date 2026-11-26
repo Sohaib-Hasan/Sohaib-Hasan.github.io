@@ -211,13 +211,15 @@ Until a file is uploaded, that post simply shows the site icon.
 
 ### Link preview image
 
-The picture that appears when the site link is pasted into WhatsApp, LinkedIn, Facebook and similar apps is `images/og-image.jpg` (1200 x 630 px). Every page points to it as `og-image.jpg?v=2`. When you replace the picture, also bump the number in all pages (`?v=3`), otherwise those apps keep showing the old cached one:
+The picture that appears when the site link is pasted into WhatsApp, LinkedIn, Facebook and similar apps is `images/og-image.jpg` (1200 x 630 px, about 120 KB). Since Nov 2026 it is a chalkboard card: your portrait in a gold ring at the centre of a coordinate grid, a Fourier epicycle chain (rotating circles) drawing a gold curve around it, your name in large Latin Modern type, the Stanford section leader line, and three numbers (9+ years teaching, top 12% at the AI Math Olympiad, 100K+ PlotLab community). Important text sits at least 40 px from every edge so apps that crop slightly do not cut it. Visitors never download it; only the apps that build previews do.
+
+Every page points to it as `og-image.jpg?v=3`. When you replace the picture, also bump the number in all pages (`?v=4`), otherwise those apps keep showing the old cached one:
 
 ```
-sed -i 's/og-image.jpg?v=2/og-image.jpg?v=3/g' *.html _layouts/post.html
+sed -i 's/og-image.jpg?v=3/og-image.jpg?v=4/g' *.html _layouts/post.html
 ```
 
-Then ask Facebook's Sharing Debugger and LinkedIn's Post Inspector to fetch the page again. (Blog posts use their own cards, see the next section.)
+Then ask Facebook's Sharing Debugger (developers.facebook.com/tools/debug) and LinkedIn's Post Inspector (linkedin.com/post-inspector) to fetch the page again; WhatsApp and X refresh by themselves after some days. To change the card (new numbers, a new line, a new portrait), ask Claude to regenerate it. (Blog posts use their own cards, see the next section.)
 
 ### Link preview cards for blog posts
 
