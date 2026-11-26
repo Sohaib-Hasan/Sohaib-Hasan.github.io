@@ -25,7 +25,7 @@
 <link rel="stylesheet" href="/style.css?v=5">
 <link rel="canonical" href="{{ site.url }}{{ page.url }}">
 {%- comment -%} Share image: this post's own 1200x630 card (images/og/<thumbnail name>) if it exists, else its square thumbnail, else the site card. {%- endcomment -%}
-{%- assign og_img = site.url | append: '/images/og-image.jpg?v=2' -%}
+{%- assign og_img = site.url | append: '/images/og-image.jpg?v=3' -%}
 {%- assign og_card = true -%}
 {%- if page.thumbnail -%}
   {%- assign og_name = page.thumbnail | split: '/' | last -%}
