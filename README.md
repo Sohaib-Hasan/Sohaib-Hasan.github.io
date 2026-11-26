@@ -50,7 +50,7 @@ Only the **blog** (`blog.html`, `_posts/`, `_layouts/post.html`) goes through Je
 ├── plotlab.html              "Animations" — PlotLab work
 ├── notes.html                Notes library landing page (four folders)
 ├── notes-mathematics.html    Folder: free course notes (links to /notes PDFs)
-├── notes-statistics.html     Folder: statistics notes (empty until the first note is added)
+├── notes-statistics.html     Folder: statistics and probability notes (4 course cards; PDFs live in notes/statistics/)
 ├── notes-stanford-pai.html   Folder: Stanford Probability for AI, one card per week (PDF + video), buttons for Video Animations and PDFs
 ├── notes-stanford-pai-pdfs.html   Sub-folder: every Stanford PDF as a View / Download card
 ├── notes-igcse.html          Folder: premium IGCSE packs (Gumroad links)
@@ -174,8 +174,11 @@ Once the file is pushed to `main`, it appears on `blog.html` automatically at th
 
 ### Adding a new notes PDF
 
-1. Drop the PDF into `/notes/`.
-2. Add a card/link to it on the matching folder page (`notes-mathematics.html` or `notes-statistics.html`), copying the pattern of the existing cards. `notes-statistics.html` has the card template in an HTML comment.
+1. Drop the PDF into the right folder. Mathematics PDFs go in `/notes/`. **Statistics PDFs go in `/notes/statistics/`.**
+2. Name the file in lowercase with hyphens and no spaces, brackets, commas or `&`, for example `graph-theory.pdf` (GitHub Pages is case-sensitive, so keep `.pdf` lowercase too). The card must use exactly the same name.
+3. Add a card to the matching folder page (`notes-mathematics.html` or `notes-statistics.html`), copying the pattern of the existing cards. `notes-statistics.html` has the card template in an HTML comment.
+4. Upload the PDF first and the HTML page after it, so the new card never points to a file that is not there yet.
+5. Update the count on the folder cards (`<div class="folder-meta">`) in `notes.html` and `index.html`.
 
 ### Adding a Stanford Probability for AI week
 
