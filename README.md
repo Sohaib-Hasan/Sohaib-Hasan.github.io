@@ -50,7 +50,7 @@ Only the **blog** (`blog.html`, `_posts/`, `_layouts/post.html`) goes through Je
 ├── plotlab.html              "Animations" — PlotLab work
 ├── notes.html                Notes library landing page (four folders)
 ├── notes-mathematics.html    Folder: free course notes (links to /notes PDFs)
-├── notes-statistics.html     Folder: statistics and probability notes (4 course cards; PDFs live in notes/statistics/)
+├── notes-statistics.html     Folder: statistics and probability notes (5 course cards; PDFs live in notes/statistics/)
 ├── notes-stanford-pai.html   Folder: Stanford Probability for AI, one card per week (PDF + video), buttons for Video Animations and PDFs
 ├── notes-stanford-pai-pdfs.html   Sub-folder: every Stanford PDF as a View / Download card
 ├── notes-igcse.html          Folder: premium IGCSE packs (Gumroad links)
