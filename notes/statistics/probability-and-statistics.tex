@@ -1,0 +1,152 @@
+\documentclass[11pt,a4paper,openany]{book}
+
+% ========================================
+% ESSENTIAL PACKAGES
+% ========================================
+\usepackage[utf8]{inputenc}
+\usepackage[margin=1in, headheight=14pt]{geometry}
+\usepackage{amsmath,amssymb,amsthm}
+\usepackage{graphicx}
+\usepackage{xcolor}
+\usepackage{tikz}
+\usepackage{fontawesome5}
+\usetikzlibrary{positioning,shapes,arrows,calc,trees}
+\usepackage{pgfplots}
+\pgfplotsset{compat=1.17}
+\usepackage{tcolorbox}
+\tcbuselibrary{skins,breakable}
+\usepackage{enumitem}
+\usepackage{fancyhdr}
+\usepackage{booktabs}
+\usepackage{caption}
+\usepackage{float}
+\usepackage[hidelinks]{hyperref}
+\usepackage{colortbl}
+\usepackage{pifont}
+\usepackage{pgf-pie}
+
+% Fix headheight warning
+\setlength{\headheight}{14pt}
+\addtolength{\topmargin}{-2pt}
+
+% ========================================
+% COLOR SCHEME
+% ========================================
+\definecolor{primaryblue}{RGB}{41,128,185}
+\definecolor{secondaryblue}{RGB}{52,152,219}
+\definecolor{accentorange}{RGB}{230,126,34}
+\definecolor{lightgray}{RGB}{236,240,241}
+\definecolor{darkgray}{RGB}{52,73,94}
+
+% ========================================
+% CUSTOM BOX STYLES
+% ========================================
+\newtcolorbox{definitionbox}[1]{
+    colback=primaryblue!5,
+    colframe=primaryblue,
+    fonttitle=\bfseries,
+    title=#1,
+    breakable,
+    enhanced,
+    attach boxed title to top left={yshift=-2mm,xshift=3mm},
+    boxed title style={colback=primaryblue}
+}
+
+\newtcolorbox{examplebox}[1]{
+    colback=accentorange!5,
+    colframe=accentorange,
+    fonttitle=\bfseries,
+    title=#1,
+    breakable,
+    enhanced,
+    attach boxed title to top left={yshift=-2mm,xshift=3mm},
+    boxed title style={colback=accentorange}
+}
+
+\newtcolorbox{keypoint}{
+    colback=lightgray,
+    colframe=darkgray,
+    boxrule=0.5pt,
+    breakable,
+    enhanced,
+    left=5pt,
+    right=5pt
+}
+
+\newtcolorbox{theorembox}[1]{
+    colback=secondaryblue!5,
+    colframe=secondaryblue,
+    fonttitle=\bfseries,
+    title=#1,
+    breakable,
+    enhanced,
+    attach boxed title to top left={yshift=-2mm,xshift=3mm},
+    boxed title style={colback=secondaryblue}
+}
+
+% Kept for backward compatibility: Section 2 Part 1's "Practice Questions" boxes
+% use this. Later parts moved to the plain (non-boxed) practice-question style
+% below, but this definition must stay here or those older pages will error out.
+\newtcolorbox{practicebox}[1]{
+    colback=lightgray,
+    colframe=primaryblue,
+    boxrule=0.6pt,
+    fonttitle=\bfseries,
+    title=#1,
+    coltitle=white,
+    colbacktitle=primaryblue,
+    breakable,
+    enhanced,
+    attach boxed title to top left={yshift=-2mm,xshift=3mm},
+    boxed title style={colback=primaryblue}
+}
+
+% ========================================
+% HEADER AND FOOTER
+% ========================================
+% A master document spans many \section topics, so the left header cannot be a
+% fixed string (that was fine for a single stand-alone part file, but would show
+% the wrong topic for most of the book here). Instead it tracks the current
+% \section automatically:
+\renewcommand{\sectionmark}[1]{\markboth{#1}{#1}}
+
+% Some section titles run long (e.g. "Units and Their Conversions, Dimensions,
+% Area, Perimeter, and Volume"), so the header uses \small and keeps only the
+% page number on the right -- "Quantitative Reasoning -- I" moves to the footer
+% instead of competing with the title for the same line.
+\pagestyle{fancy}
+\fancyhf{}
+\fancyhead[R]{\small\textcolor{primaryblue}{\textbf{\leftmark}}}
+\fancyhead[L]{\small\textcolor{darkgray}{Probability and Statistics}}
+\fancyfoot[L]{\small \href{https://www.linkedin.com/in/sohaibhassan05/}{\textcolor{primaryblue}{Sohaib Hasan} (HOD Mathematics)}}
+\fancyfoot[C]{\small\textcolor{darkgray}{\thepage}}
+\fancyfoot[R]{\small Horizon College Chakwal}
+\renewcommand{\headrulewidth}{0.4pt}
+\renewcommand{\footrulewidth}{0.4pt}
+
+% Remove section numbering
+\setcounter{secnumdepth}{0}
+
+% Custom theorem environments without numbering
+\newtheorem*{definition}{Definition}
+\newtheorem*{theorem}{Theorem}
+\newtheorem*{corollary}{Corollary}
+\newtheorem*{example}{Example}
+
+\begin{document}
+
+% ========================================
+% CHAPTER 1 
+% ========================================
+\chapter{Introduction to Statistics and Data Analysis}
+\input{chapters/chapter1}
+%\chapter{Probability Distributions and Sampling Theory}
+%\input{chapters/chapter2}
+
+% ========================================
+% CHAPTER 3 -- FUNDAMENTAL STATISTICAL CONCEPTS (SECTION 3)
+% ========================================
+% Add once ready, exactly the same way:
+% \input{Chapter3_Fundamental_Statistical_Concepts_body}
+
+\end{document}
